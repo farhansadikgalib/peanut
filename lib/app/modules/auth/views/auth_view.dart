@@ -31,8 +31,11 @@ class AuthView extends GetView<AuthController> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   // Header Section
-                  const AuthLogo(
-                    slogan: 'Trade Smart, Trade Secure',
+                  Hero(
+                    tag: 'app_logo',
+                    child: const AuthLogo(
+                      slogan: 'Trade Smart, Trade Secure',
+                    ),
                   ),
                   AppWidgets().gapH(32),
 
