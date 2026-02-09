@@ -1,26 +1,27 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:peanut/app/core/helper/auth_helper.dart';
 import '../../../data/remote/repository/auth/auth_repository.dart';
 import '../../../data/remote/model/auth/login_response.dart';
 import '../../../core/helper/shared_value_helper.dart';
 import '../../../core/helper/app_widgets.dart';
+import '../../../routes/app_pages.dart';
 
 class AuthController extends GetxController {
-    final loginController = TextEditingController();
+  final loginController = TextEditingController();
   final passwordController = TextEditingController();
-  
+
   final isPasswordVisible = false.obs;
 
-@override
+  @override
   void onInit() {
     super.onInit();
-    if(kDebugMode){
+    if (kDebugMode) {
       loginController.text = "2088888";
-      passwordController.text = "ral11lod";   
+      passwordController.text = "ral11lod";
     }
   }
-
 
   @override
   void onClose() {
@@ -57,19 +58,12 @@ class AuthController extends GetxController {
     );
 
     if (response.result == true && response.token != null) {
-      // Save token
-      accessToken.$ = response.token!;
-      accessToken.save();
-      isLoggedIn.$ = true;
-      isLoggedIn.save();
+      AuthHelper().setUserData(response);
+      userId.$ = loginController.text.trim();
+      userId.save();
 
-      AppWidgets().getSnackBar(
-        title: "Success",
-        message: "Login successful!",
-      );
-
-      // Navigate to home or dashboard
-      // Get.offAllNamed(Routes.HOME);
+      AppWidgets().getSnackBar(title: "Success", message: "Login successful!");
+      Get.offAllNamed(Routes.HOME);
     } else {
       AppWidgets().getSnackBar(
         title: "Login Failed",

@@ -4,8 +4,8 @@ import 'package:get/get.dart';
 
 import '../../../core/helper/app_widgets.dart';
 import '../../../core/style/app_colors.dart';
-import '../../../core/widget/auth_logo.dart';
-import '../../../core/widget/primary_button.dart';
+import '../../../core/widget/app_logo.dart';
+import '../../../core/widget/custom_button.dart';
 import '../controllers/auth_controller.dart';
 import 'widgets/auth_login_form.dart';
 
@@ -33,7 +33,7 @@ class AuthView extends GetView<AuthController> {
                   // Header Section
                   Hero(
                     tag: 'app_logo',
-                    child: const AuthLogo(
+                    child: const AppLogo(
                       slogan: 'Trade Smart, Trade Secure',
                     ),
                   ),
@@ -45,7 +45,7 @@ class AuthView extends GetView<AuthController> {
 
 
                   // Login Button
-                  PrimaryButton(
+                  CustomButton(
                     text: 'Sign In',
                     onTap: () => controller.signIn(),
                   ),
