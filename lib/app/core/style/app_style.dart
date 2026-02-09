@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 import 'app_colors.dart';
 
@@ -9,7 +8,7 @@ TextStyle textHeaderStyle({
   double fontSize = 30,
   fontWeight = FontWeight.w700,
 }) {
-  return GoogleFonts.inter(
+  return TextStyle(
     fontSize: fontSize.sp,
     color: color,
     fontWeight: fontWeight,
@@ -22,7 +21,7 @@ TextStyle textAppBarStyle({
   fontWeight = FontWeight.w600,
   bool isGrayColor = false,
 }) {
-  return GoogleFonts.inter(
+  return TextStyle(
     fontSize: fontSize.sp,
     color: isGrayColor ? AppColors.gray : color,
     fontWeight: fontWeight,
@@ -36,7 +35,7 @@ TextStyle textRegularStyle({
   bool isGrayColor = false,
   bool isWhiteColor = false,
 }) {
-  return GoogleFonts.inter(
+  return TextStyle(
     fontSize: fontSize.sp,
     color: isWhiteColor
         ? AppColors.white
@@ -55,7 +54,7 @@ TextStyle drawerTextStyle({
   bool isGrayColor = false,
   bool isWhiteColor = false,
 }) {
-  return GoogleFonts.inter(
+  return TextStyle(
     fontSize: fontSize.sp,
     color: isWhiteColor
         ? AppColors.white
@@ -72,7 +71,7 @@ TextStyle textButtonStyle({
   double fontSize = 18,
   fontWeight = FontWeight.w600,
 }) {
-  return GoogleFonts.inter(
+  return TextStyle(
     fontSize: fontSize.sp,
     color: color,
     fontWeight: fontWeight,
@@ -84,14 +83,14 @@ TextStyle textLineStyle({
   double fontSize = 13,
   fontWeight = FontWeight.w600,
 }) {
-  return GoogleFonts.inter(
+  return TextStyle(
     fontSize: fontSize.sp,
     color: color,
     fontWeight: fontWeight,
   );
 }
 
-final hintStyle = GoogleFonts.inter(
+final hintStyle = TextStyle(
   fontSize: 14.sp,
   color: AppColors.gray,
   fontWeight: FontWeight.w500,
@@ -103,7 +102,7 @@ TextStyle splashTitleStyle({
   double fontSize = 32,
   fontWeight = FontWeight.w700,
 }) {
-  return GoogleFonts.inter(
+  return TextStyle(
     fontSize: fontSize.sp,
     color: color,
     fontWeight: fontWeight,
@@ -117,7 +116,7 @@ TextStyle splashSubtitleStyle({
   double fontSize = 15,
   fontWeight = FontWeight.w400,
 }) {
-  return GoogleFonts.inter(
+  return TextStyle(
     fontSize: fontSize.sp,
     color: color,
     fontWeight: fontWeight,
@@ -130,7 +129,7 @@ TextStyle splashButtonTextStyle({
   double fontSize = 14,
   fontWeight = FontWeight.w600,
 }) {
-  return GoogleFonts.inter(
+  return TextStyle(
     fontSize: fontSize.sp,
     color: color,
     fontWeight: fontWeight,
@@ -143,7 +142,7 @@ TextStyle pricingTitleStyle({
   double fontSize = 18,
   fontWeight = FontWeight.w700,
 }) {
-  return GoogleFonts.inter(
+  return TextStyle(
     fontSize: fontSize.sp,
     color: color,
     fontWeight: fontWeight,
@@ -155,7 +154,7 @@ TextStyle pricingSubtitleStyle({
   double fontSize = 14,
   fontWeight = FontWeight.w400,
 }) {
-  return GoogleFonts.inter(
+  return TextStyle(
     fontSize: fontSize.sp,
     color: color,
     fontWeight: fontWeight,
@@ -168,7 +167,7 @@ TextStyle pricingTierNameStyle({
   double fontSize = 16,
   fontWeight = FontWeight.w700,
 }) {
-  return GoogleFonts.inter(
+  return TextStyle(
     fontSize: fontSize.sp,
     color: color,
     fontWeight: fontWeight,
@@ -180,7 +179,7 @@ TextStyle pricingTierPriceStyle({
   double fontSize = 16,
   fontWeight = FontWeight.w600,
 }) {
-  return GoogleFonts.inter(
+  return TextStyle(
     fontSize: fontSize.sp,
     color: color,
     fontWeight: fontWeight,
@@ -192,7 +191,7 @@ TextStyle pricingFeatureTextStyle({
   double fontSize = 13,
   fontWeight = FontWeight.w400,
 }) {
-  return GoogleFonts.inter(
+  return TextStyle(
     fontSize: fontSize.sp,
     color: color,
     fontWeight: fontWeight,
@@ -205,7 +204,7 @@ TextStyle pricingFeatureBoldStyle({
   double fontSize = 13,
   fontWeight = FontWeight.w600,
 }) {
-  return GoogleFonts.inter(
+  return TextStyle(
     fontSize: fontSize.sp,
     color: color,
     fontWeight: fontWeight,

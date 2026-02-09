@@ -60,4 +60,35 @@ class AppColors {
   
   /// Dark mode muted/disabled text color (#6B7280)
   static const darkTextMuted = Color(0xFF6B7280);
+
+  // Trading App Specific Colors
+  /// Success/Profit color - green (#10B981)
+  static const successGreen = Color(0xFF10B981);
+
+  /// Danger/Loss color - red (#EF4444)
+  static const dangerRed = Color(0xFFEF4444);
+
+  /// Warning color - amber (#F59E0B)
+  static const warningAmber = Color(0xFFF59E0B);
+
+  /// Info color - cyan (#06B6D4)
+  static const infoCyan = Color(0xFF06B6D4);
+
+  /// Light background for input fields (#F8FAFC)
+  static const inputBackground = Color(0xFFF8FAFC);
+
+  /// Border color for input fields (#E2E8F0)
+  static const inputBorder = Color(0xFFE2E8F0);
+
+  /// Focus border color (#0066FF)
+  static const focusBorder = Color(0xFF0066FF);
+
+  /// Error color (#DC2626)
+  static const errorColor = Color(0xFFDC2626);
+
+  /// Light blue background (#EFF6FF)
+  static const lightBlue = Color(0xFFEFF6FF);
+
+  /// Subtle gray for secondary elements (#71717A)
+  static const subtleGray = Color(0xFF71717A);
 }
