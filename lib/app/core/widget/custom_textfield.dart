@@ -3,7 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../style/app_colors.dart';
 
-class CustomTextfield extends StatefulWidget {
+class CustomTextField extends StatefulWidget {
   final String? labelText;
   final String? hintText;
   final IconData? prefixIcon;
@@ -20,7 +20,7 @@ class CustomTextfield extends StatefulWidget {
   final ValueChanged<String>? onChanged;
   final bool readOnly;
 
-  const CustomTextfield({
+  const CustomTextField({
     Key? key,
     this.labelText,
     this.hintText,
@@ -40,10 +40,10 @@ class CustomTextfield extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  State<CustomTextfield> createState() => _CustomTextfieldState();
+  State<CustomTextField> createState() => _CustomTextFieldState();
 }
 
-class _CustomTextfieldState extends State<CustomTextfield>
+class _CustomTextFieldState extends State<CustomTextField>
     with SingleTickerProviderStateMixin {
   late FocusNode _focusNode;
   late AnimationController _animationController;
@@ -267,7 +267,7 @@ Widget commonTextField({
   VoidCallback? onSuffixIconPressed,
   IconData? suffixIcon,
 }) {
-  return CustomTextfield(
+  return CustomTextField(
     labelText: labelText,
     prefixIcon: icon,
     suffixIcon: suffixIcon,
