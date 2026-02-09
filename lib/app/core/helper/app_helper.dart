@@ -3,16 +3,12 @@ import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 import '../../routes/app_pages.dart';
 import '../style/app_colors.dart';
 import 'auth_helper.dart';
 
 class AppHelper {
-  /// Displays a custom loading indicator with wave spinner animation.
-  /// 
-  /// [dismissOnTap] determines if the loader can be dismissed by tapping outside
   Future<void> showLoader({bool dismissOnTap = true}) {
     // Configure loading indicator appearance and behavior
     EasyLoading.instance
@@ -95,12 +91,6 @@ class AppHelper {
     }
   }
 
-  Future<void> openUrl(url) async {
-    final Uri uri = Uri.parse(url);
-    if (!await launchUrl(uri)) {
-      throw 'Could not launch $uri';
-    }
-  }
 
   bool isKeyBoardVisible(context) {
     return MediaQuery.of(context).viewInsets.bottom != 0 ? false : true;
