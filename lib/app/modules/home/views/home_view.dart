@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:skeletonizer/skeletonizer.dart';
+import 'package:shimmer/shimmer.dart';
 
 import '../../../core/style/app_colors.dart';
-import '../../../data/remote/model/home/trade_response.dart';
-import '../../../data/remote/model/profile/profile_response.dart';
 import '../controllers/home_controller.dart';
 import 'widgets/compact_header.dart';
 import 'widgets/profit_summary_card.dart';
@@ -94,179 +92,215 @@ class HomeView extends GetView<HomeController> {
         ],
       ),
       body: Obx(() {
-        return Skeletonizer(
-          enabled: controller.isLoading.value,
-          child: RefreshIndicator(
-            color: AppColors.primaryColor,
-            onRefresh: controller.refreshTrades,
-            child: CustomScrollView(
-              slivers: [
-                // Compact Header with balance info
-                SliverToBoxAdapter(
-                  child: Obx(() => CompactHeader(
-                        profile: controller.isLoading.value
-                            ? _getSkeletonProfile()
-                            : controller.profile.value,
-                      )),
-                ),
+        if (controller.isLoading.value) {
+          return _buildShimmerLoading();
+        }
 
-                // Profit Summary Card
-                SliverToBoxAdapter(
-                  child: Obx(() => ProfitSummaryCard(
-                        totalProfit: controller.isLoading.value
-                            ? 1234.56
-                            : controller.totalProfit.value,
-                        profitableCount: controller.isLoading.value
-                            ? 3
-                            : controller.getProfitableTradesCount(),
-                        losingCount: controller.isLoading.value
-                            ? 2
-                            : controller.getLosingTradesCount(),
-                        totalTrades: controller.isLoading.value
-                            ? 5
-                            : controller.trades.length,
-                      )),
-                ),
+        return RefreshIndicator(
+          color: AppColors.primaryColor,
+          onRefresh: controller.refreshTrades,
+          child: CustomScrollView(
+            slivers: [
+              // Compact Header with balance info
+              SliverToBoxAdapter(
+                child: Obx(() => CompactHeader(
+                      profile: controller.profile.value,
+                    )),
+              ),
 
-                // Section Title
-                SliverToBoxAdapter(
-                  child: Padding(
-                    padding: EdgeInsets.fromLTRB(16.w, 8.h, 16.w, 12.h),
-                    child: Row(
-                      children: [
-                        Container(
-                          padding: EdgeInsets.all(6.r),
-                          decoration: BoxDecoration(
-                            color: AppColors.primaryColor.withValues(alpha: 0.1),
-                            borderRadius: BorderRadius.circular(8.r),
-                          ),
-                          child: Icon(
-                            Icons.show_chart,
-                            color: AppColors.primaryColor,
-                            size: 16.r,
-                          ),
+              // Profit Summary Card
+              SliverToBoxAdapter(
+                child: Obx(() => ProfitSummaryCard(
+                      totalProfit: controller.totalProfit.value,
+                      profitableCount: controller.getProfitableTradesCount(),
+                      losingCount: controller.getLosingTradesCount(),
+                      totalTrades: controller.trades.length,
+                    )),
+              ),
+
+              // Section Title
+              SliverToBoxAdapter(
+                child: Padding(
+                  padding: EdgeInsets.fromLTRB(16.w, 8.h, 16.w, 12.h),
+                  child: Row(
+                    children: [
+                      Container(
+                        padding: EdgeInsets.all(6.r),
+                        decoration: BoxDecoration(
+                          color: AppColors.primaryColor.withValues(alpha: 0.1),
+                          borderRadius: BorderRadius.circular(8.r),
                         ),
-                        SizedBox(width: 10.w),
-                        Text(
-                          'Open Trades',
-                          style: TextStyle(
-                            fontSize: 16.sp,
-                            fontWeight: FontWeight.w700,
-                            color: AppColors.black,
-                          ),
-                        ),
-                        SizedBox(width: 8.w),
-                        Obx(() => Container(
-                              padding: EdgeInsets.symmetric(
-                                horizontal: 8.w,
-                                vertical: 3.h,
-                              ),
-                              decoration: BoxDecoration(
-                                color: AppColors.primaryColor,
-                                borderRadius: BorderRadius.circular(12.r),
-                              ),
-                              child: Text(
-                                '${controller.isLoading.value ? 5 : controller.trades.length}',
-                                style: TextStyle(
-                                  fontSize: 12.sp,
-                                  fontWeight: FontWeight.w700,
-                                  color: AppColors.white,
-                                ),
-                              ),
-                            )),
-                      ],
-                    ),
-                  ),
-                ),
-
-                // Trades List
-                Obx(() {
-                  final trades = controller.isLoading.value
-                      ? _getSkeletonTrades()
-                      : controller.trades;
-
-                  if (trades.isEmpty && !controller.isLoading.value) {
-                    return SliverFillRemaining(
-                      child: Center(
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Icon(
-                              Icons.trending_up,
-                              size: 64.r,
-                              color: AppColors.textColor.withValues(alpha: 0.3),
-                            ),
-                            SizedBox(height: 16.h),
-                            Text(
-                              'No Open Trades',
-                              style: TextStyle(
-                                fontSize: 18.sp,
-                                fontWeight: FontWeight.w600,
-                                color: AppColors.textColor,
-                              ),
-                            ),
-                            SizedBox(height: 8.h),
-                            Text(
-                              'Your trades will appear here',
-                              style: TextStyle(
-                                fontSize: 14.sp,
-                                color: AppColors.textColor.withValues(alpha: 0.7),
-                              ),
-                            ),
-                          ],
+                        child: Icon(
+                          Icons.show_chart,
+                          color: AppColors.primaryColor,
+                          size: 16.r,
                         ),
                       ),
-                    );
-                  }
+                      SizedBox(width: 10.w),
+                      Text(
+                        'Open Trades',
+                        style: TextStyle(
+                          fontSize: 16.sp,
+                          fontWeight: FontWeight.w700,
+                          color: AppColors.black,
+                        ),
+                      ),
+                      SizedBox(width: 8.w),
+                      Obx(() => Container(
+                            padding: EdgeInsets.symmetric(
+                              horizontal: 8.w,
+                              vertical: 3.h,
+                            ),
+                            decoration: BoxDecoration(
+                              color: AppColors.primaryColor,
+                              borderRadius: BorderRadius.circular(12.r),
+                            ),
+                            child: Text(
+                              '${controller.trades.length}',
+                              style: TextStyle(
+                                fontSize: 12.sp,
+                                fontWeight: FontWeight.w700,
+                                color: AppColors.white,
+                              ),
+                            ),
+                          )),
+                    ],
+                  ),
+                ),
+              ),
 
-                  return SliverPadding(
-                    padding: EdgeInsets.fromLTRB(16.w, 0, 16.w, 20.h),
-                    sliver: SliverList(
-                      delegate: SliverChildBuilderDelegate(
-                        (context, index) {
-                          final trade = trades[index];
-                          return Padding(
-                            padding: EdgeInsets.only(bottom: 10.h),
-                            child: TradeCard(trade: trade),
-                          );
-                        },
-                        childCount: trades.length,
+              // Trades List
+              Obx(() {
+                if (controller.trades.isEmpty) {
+                  return SliverFillRemaining(
+                    child: Center(
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Icon(
+                            Icons.trending_up,
+                            size: 64.r,
+                            color: AppColors.textColor.withValues(alpha: 0.3),
+                          ),
+                          SizedBox(height: 16.h),
+                          Text(
+                            'No Open Trades',
+                            style: TextStyle(
+                              fontSize: 18.sp,
+                              fontWeight: FontWeight.w600,
+                              color: AppColors.textColor,
+                            ),
+                          ),
+                          SizedBox(height: 8.h),
+                          Text(
+                            'Your trades will appear here',
+                            style: TextStyle(
+                              fontSize: 14.sp,
+                              color: AppColors.textColor.withValues(alpha: 0.7),
+                            ),
+                          ),
+                        ],
                       ),
                     ),
                   );
-                }),
-              ],
-            ),
+                }
+
+                return SliverPadding(
+                  padding: EdgeInsets.fromLTRB(16.w, 0, 16.w, 20.h),
+                  sliver: SliverList(
+                    delegate: SliverChildBuilderDelegate(
+                      (context, index) {
+                        final trade = controller.trades[index];
+                        return Padding(
+                          padding: EdgeInsets.only(bottom: 10.h),
+                          child: TradeCard(trade: trade),
+                        );
+                      },
+                      childCount: controller.trades.length,
+                    ),
+                  ),
+                );
+              }),
+            ],
           ),
         );
       }),
     );
   }
 
-  // Skeleton data for loading state
-  ProfileResponse _getSkeletonProfile() {
-    return ProfileResponse(
-      name: "Loading User",
-      balance: 10000.00,
-      equity: 10500.00,
-      freeMargin: 9500.00,
+  Widget _buildShimmerLoading() {
+    return SingleChildScrollView(
+      child: Column(
+        children: [
+          // Shimmer for Compact Header
+          _buildShimmerBox(
+            height: 80.h,
+            margin: EdgeInsets.fromLTRB(16.w, 16.h, 16.w, 16.h),
+          ),
+
+          // Shimmer for Profit Summary
+          _buildShimmerBox(
+            height: 120.h,
+            margin: EdgeInsets.fromLTRB(16.w, 0, 16.w, 16.h),
+          ),
+
+          // Section Title Shimmer
+          Padding(
+            padding: EdgeInsets.fromLTRB(16.w, 8.h, 16.w, 12.h),
+            child: Row(
+              children: [
+                _buildShimmerBox(
+                  width: 32.w,
+                  height: 32.h,
+                  margin: EdgeInsets.zero,
+                ),
+                SizedBox(width: 10.w),
+                _buildShimmerBox(
+                  width: 100.w,
+                  height: 20.h,
+                  margin: EdgeInsets.zero,
+                ),
+                SizedBox(width: 8.w),
+                _buildShimmerBox(
+                  width: 30.w,
+                  height: 24.h,
+                  margin: EdgeInsets.zero,
+                ),
+              ],
+            ),
+          ),
+
+          // Shimmer for Trade Cards
+          ...List.generate(
+            3,
+            (index) => _buildShimmerBox(
+              height: 140.h,
+              margin: EdgeInsets.fromLTRB(16.w, 0, 16.w, 10.h),
+            ),
+          ),
+        ],
+      ),
     );
   }
 
-  List<Trade> _getSkeletonTrades() {
-    return List.generate(
-      3,
-      (index) => Trade(
-        id: 12345 + index,
-        symbol: "EURUSD",
-        cmd: 0,
-        volume: 1.5,
-        openPrice: 1.0850,
-        currentPrice: 1.0920,
-        stopLoss: 1.0800,
-        takeProfit: 1.0950,
-        profit: 1050.00,
-        openTime: DateTime.now().toIso8601String(),
+  Widget _buildShimmerBox({
+    double? width,
+    required double height,
+    required EdgeInsets margin,
+  }) {
+    return Container(
+      width: width ?? double.infinity,
+      height: height,
+      margin: margin,
+      child: Shimmer.fromColors(
+        baseColor: AppColors.gray.withValues(alpha: 0.3),
+        highlightColor: AppColors.gray.withValues(alpha: 0.1),
+        child: Container(
+          decoration: BoxDecoration(
+            color: AppColors.white,
+            borderRadius: BorderRadius.circular(12.r),
+          ),
+        ),
       ),
     );
   }

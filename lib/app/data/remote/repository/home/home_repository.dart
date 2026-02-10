@@ -5,8 +5,42 @@ import '../../../../core/services/network/api_client.dart';
 import '../../../../core/services/network/api_end_points.dart';
 
 class HomeRepository {
-  /// Returns mock trade data for testing/fallback
-  TradeListResponse _getMockTradeData() {
+
+  Future<TradeListResponse> getOpenTrades() async {
+    try {
+      var response = await ApiClient().post(
+        ApiEndPoints.getOpenTrades,
+        {
+          "login": userId.$,
+          "token": accessToken.$,
+        },
+        getOpenTrades,
+        isHeaderRequired: false,
+        isLoaderRequired: true,
+      );
+
+      final responseString = response.toString();
+
+      // Check if response indicates access denied or error
+      if (isAccessDeniedOrError(responseString)) {
+        return getMockTradeData();
+      }
+
+      return tradeListResponseFromJson(responseString);
+    } catch (e) {
+      // Return mock data on any exception
+      return getMockTradeData();
+    }
+  }
+
+  bool isAccessDeniedOrError(String response) {
+    final lowerResponse = response.toLowerCase();
+    return lowerResponse.contains('access denied') ||
+        lowerResponse.contains('error') ||
+        lowerResponse.contains('unauthorized') ||
+        lowerResponse.contains('forbidden');
+  }
+  TradeListResponse getMockTradeData() {
     return TradeListResponse(
       trades: [
         Trade(
@@ -86,41 +120,5 @@ class HomeRepository {
         ),
       ],
     );
-  }
-
-  /// Check if response indicates access denied or error
-  bool _isAccessDeniedOrError(String response) {
-    final lowerResponse = response.toLowerCase();
-    return lowerResponse.contains('access denied') ||
-        lowerResponse.contains('error') ||
-        lowerResponse.contains('unauthorized') ||
-        lowerResponse.contains('forbidden');
-  }
-
-  Future<TradeListResponse> getOpenTrades() async {
-    try {
-      var response = await ApiClient().post(
-        ApiEndPoints.getOpenTrades,
-        {
-          "login": userId.$,
-          "token": accessToken.$,
-        },
-        getOpenTrades,
-        isHeaderRequired: false,
-        isLoaderRequired: true,
-      );
-
-      final responseString = response.toString();
-
-      // Check if response indicates access denied or error
-      if (_isAccessDeniedOrError(responseString)) {
-        return _getMockTradeData();
-      }
-
-      return tradeListResponseFromJson(responseString);
-    } catch (e) {
-      // Return mock data on any exception
-      return _getMockTradeData();
-    }
   }
 }
