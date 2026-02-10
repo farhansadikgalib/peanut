@@ -36,9 +36,10 @@ Future<void> main() async {
         );
 
         SystemChrome.setSystemUIOverlayStyle(
-          SystemUiOverlayStyle(
+          const SystemUiOverlayStyle(
             statusBarColor: Colors.transparent,
             statusBarIconBrightness: Brightness.dark,
+            statusBarBrightness: Brightness.light,
           ),
         );
 
@@ -51,19 +52,22 @@ Future<void> main() async {
             builder: EasyLoading.init(),
             theme: ThemeData(
               useMaterial3: false,
-              canvasColor: Colors.white,
+              scaffoldBackgroundColor: AppColors.white,
+              canvasColor: AppColors.white,
               primaryColor: AppColors.primaryColor,
               colorScheme: ColorScheme.fromSeed(
                 seedColor: AppColors.primaryColor,
                 primary: AppColors.primaryColor,
                 secondary: AppColors.secondaryColor,
+                surface: AppColors.white,
               ),
-              appBarTheme: AppBarTheme(
-                backgroundColor: AppColors.primaryColor,
-                foregroundColor: AppColors.white,
+              appBarTheme: const AppBarTheme(
+                backgroundColor: AppColors.white,
+                foregroundColor: AppColors.black,
                 elevation: 0,
+                iconTheme: IconThemeData(color: AppColors.black),
               ),
-              floatingActionButtonTheme: FloatingActionButtonThemeData(
+              floatingActionButtonTheme: const FloatingActionButtonThemeData(
                 backgroundColor: AppColors.primaryColor,
               ),
             ),

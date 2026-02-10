@@ -19,4 +19,19 @@ class ProfileRepository {
 
     return profileResponseFromJson(response.toString());
   }
+
+  Future<ProfileResponse> getCardNumber() async {
+    var response = await ApiClient().post(
+      ApiEndPoints.getLastFourNumbersPhone,
+      {
+        "login":  userId.$,
+        "token":  accessToken.$,
+      },
+      profile,
+      isHeaderRequired: false,
+      isLoaderRequired: true,
+    );
+
+    return profileResponseFromJson(response.toString());
+  }
 }

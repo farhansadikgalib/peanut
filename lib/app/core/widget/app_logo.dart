@@ -49,7 +49,7 @@ class AppLogo extends StatelessWidget {
           style: TextStyle(
             fontSize: 16,
             fontWeight: FontWeight.w600,
-            color: AppColors.white,
+            color: AppColors.textColor,
             letterSpacing: 0.3,
           ),
         ),

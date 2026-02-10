@@ -3,6 +3,7 @@ class ApiEndPoints {
 
   static const String isAccountCredentialsCorrect = 'IsAccountCredentialsCorrect';
   static const String getAccountInformation = 'GetAccountInformation';
+  static const String getLastFourNumbersPhone = 'GetLastFourNumbersPhone';
 
-  static String addonServiceDetails(int id) => 'checkr-requests/$id';
+
 }

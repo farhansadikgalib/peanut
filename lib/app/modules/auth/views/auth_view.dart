@@ -15,42 +15,34 @@ class AuthView extends GetView<AuthController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.black,
-      body: Container(
-        width: double.infinity,
-        height: double.infinity,
-        decoration: const BoxDecoration(
-          color: AppColors.black,
-        ),
-        child: SafeArea(
-          child: SingleChildScrollView(
-            child: Padding(
-              padding: EdgeInsets.symmetric(horizontal: 32.w, vertical: 60.h),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  // Header Section
-                  Hero(
-                    tag: 'app_logo',
-                    child: const AppLogo(
-                      slogan: 'Trade Smart, Trade Secure',
-                    ),
+      backgroundColor: AppColors.white,
+      body: SafeArea(
+        child: SingleChildScrollView(
+          child: Padding(
+            padding: EdgeInsets.symmetric(horizontal: 32.w, vertical: 60.h),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                // Header Section
+                Hero(
+                  tag: 'app_logo',
+                  child: const AppLogo(
+                    slogan: 'Trade Smart, Trade Secure',
                   ),
-                  AppWidgets().gapH(32),
+                ),
+                AppWidgets().gapH(32),
 
-                  // Login Form
-                  const AuthLoginForm(),
-                  AppWidgets().gapH(32),
+                // Login Form
+                const AuthLoginForm(),
+                AppWidgets().gapH(32),
 
-
-                  // Login Button
-                  CustomButton(
-                    text: 'Sign In',
-                    onTap: () => controller.signIn(),
-                  ),
-                ],
-              ),
+                // Login Button
+                CustomButton(
+                  text: 'Sign In',
+                  onTap: () => controller.signIn(),
+                ),
+              ],
             ),
           ),
         ),
