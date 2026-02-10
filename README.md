@@ -4,13 +4,41 @@ A modern Flutter trading application that provides real-time trade monitoring, p
 
 ## Download
 
-**Latest Release APK (v1.0.0)**
+**Latest Release APK (v0.0.1)**
 
-[Download Peanut APK (15.2 MB)](assets/apk/peanut.apk)
+[Download Peanut APK](assets/apk/peanut.apk)
 
-- Size: 15.2 MB
-- Android Version: 12 - 15
-- Architecture: armeabi-v7a (compatible with all devices)
+## Screenshots
+
+<table>
+  <tr>
+    <td align="center">
+      <img src="assets/screenshots/splash.png" alt="Splash Screen" width="300"/>
+      <br />
+      <b>Splash Screen</b>
+    </td>
+    <td align="center">
+      <img src="assets/screenshots/auth.png" alt="Authentication" width="300"/>
+      <br />
+      <b>Authentication</b>
+    </td>
+  </tr>
+  <tr>
+    <td align="center">
+      <img src="assets/screenshots/home.png" alt="Home Screen" width="300"/>
+      <br />
+      <b>Home Screen</b>
+    </td>
+    <td align="center">
+      <img src="assets/screenshots/profile.png" alt="Profile" width="300"/>
+      <br />
+      <b>Profile Menu</b>
+    </td>
+  </tr>
+</table>
+
+
+
 
 ## Features
 
@@ -101,62 +129,3 @@ lib/
 - **API Authentication** - Token-based authentication
 - **ProGuard Rules** - Custom rules for release builds
 - **SSL Pinning Ready** - Network security prepared
-
-
-
-## Getting Started
-
-### Prerequisites
-```bash
-Flutter SDK: >=3.10.8
-Dart SDK: >=3.0.0
-Android Studio / Xcode (for platform development)
-```
-
-### Installation
-
-1. **Clone the repository**
-```bash
-git clone https://github.com/farhansadikgalib/peanut.git
-cd peanut
-```
-
-2. **Install dependencies**
-```bash
-flutter pub get
-```
-## Screenshots
-
-<table>
-  <tr>
-    <td align="center">
-      <img src="assets/screenshots/splash.png" alt="Splash Screen" width="300"/>
-      <br />
-      <b>Splash Screen</b>
-    </td>
-    <td align="center">
-      <img src="assets/screenshots/auth.png" alt="Authentication" width="300"/>
-      <br />
-      <b>Authentication</b>
-    </td>
-  </tr>
-  <tr>
-    <td align="center">
-      <img src="assets/screenshots/home.png" alt="Home Screen" width="300"/>
-      <br />
-      <b>Home Screen</b>
-    </td>
-    <td align="center">
-      <img src="assets/screenshots/profile.png" alt="Profile" width="300"/>
-      <br />
-      <b>Profile Menu</b>
-    </td>
-  </tr>
-</table>
-
-## Author
-
-**Your Name**
-- GitHub: [@farhansadikgalib](https://github.com/farhansadikgalib)
-- Email: farhansadikgalib@gmail.com
-
