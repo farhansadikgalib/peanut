@@ -135,7 +135,7 @@ class ProfileMenuContent extends StatelessWidget {
                   // Logout Button
                   InkWell(
                     onTap: () {
-                      HapticHelper.medium();
+                      HapticHelper.heavy();
                       Navigator.pop(context);
                       DialogHelper().logoutDialog(
                         context,

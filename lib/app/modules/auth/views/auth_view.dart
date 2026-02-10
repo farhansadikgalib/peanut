@@ -43,7 +43,7 @@ class AuthView extends GetView<AuthController> {
                   CustomButton(
                     text: 'Sign In',
                     onTap: () {
-                      HapticHelper.medium();
+                      HapticHelper.heavy();
                       controller.signIn();
                     },
                   ),
