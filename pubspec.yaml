@@ -16,7 +16,7 @@ dependencies:
   flutter_easyloading: ^3.0.5
   flutter_screenutil: ^5.9.3
   logger: ^2.5.0
-  connectivity_plus: ^7.0.0
+  connectivity_plus: ^4.0.2
   shared_value: ^3.0.0
   intl: ^0.20.1
   easy_debounce: ^2.0.3

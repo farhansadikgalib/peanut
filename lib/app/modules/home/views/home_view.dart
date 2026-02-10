@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:shimmer/shimmer.dart';
 
+import '../../../core/helper/dialog_helper.dart';
 import '../../../core/style/app_colors.dart';
 import '../controllers/home_controller.dart';
 import 'widgets/compact_header.dart';
@@ -15,7 +16,14 @@ class HomeView extends GetView<HomeController> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return PopScope(
+      canPop: false,
+      onPopInvokedWithResult: (didPop, result) {
+        if (!didPop) {
+          DialogHelper().appExit(context);
+        }
+      },
+      child: Scaffold(
       backgroundColor: AppColors.white,
       appBar: AppBar(
         backgroundColor: AppColors.white,
@@ -225,6 +233,7 @@ class HomeView extends GetView<HomeController> {
           ),
         );
       }),
+      ),
     );
   }
 

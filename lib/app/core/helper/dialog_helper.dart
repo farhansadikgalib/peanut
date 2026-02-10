@@ -3,95 +3,209 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/svg.dart';
-
 import '../constants/app_constants.dart';
 import '../style/app_colors.dart';
 import '../style/app_style.dart';
 import 'app_widgets.dart';
 import 'debounce_helper.dart';
 
-/// Helper class for displaying custom dialogs throughout the application.
-/// 
-/// Provides reusable dialog implementations for common UI patterns.
 class DialogHelper {
-  /// Displays an app exit confirmation dialog.
-  /// 
-  /// Shows a confirmation dialog asking user if they want to exit the app.
+  /// Show app exit confirmation dialog
   void appExit(BuildContext context) {
     showDialog(
       context: context,
-      builder:
-          (context) => AlertDialog(
-            backgroundColor: AppColors.white,
-            titlePadding: const EdgeInsets.only(top: 5, left: 10, right: 10),
-            contentPadding: const EdgeInsets.only(left: 16, right: 16),
-            title: Padding(
-              padding: const EdgeInsets.only(top: 5.0, left: 5),
-              child: Row(
-                children: [
-                  Image.asset(
-                    'assets/icons/app_logo.png',
-                    height: 35,
-                    width: 35,
-                  ),
-                  const SizedBox(width: 5),
-                  Text("Alert!", style: textRegularStyle(color: AppColors.white)),
-                ],
+      barrierDismissible: false,
+      builder: (context) => AlertDialog(
+        backgroundColor: AppColors.white,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(16.r),
+        ),
+        contentPadding: EdgeInsets.all(24.w),
+        content: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            // Logo
+            Image.asset(
+              'assets/png/logo.png',
+              height: 60.r,
+              width: 60.r,
+            ),
+            SizedBox(height: 20.h),
+            // Title
+            Text(
+              'Exit App',
+              style: TextStyle(
+                fontSize: 20.sp,
+                fontWeight: FontWeight.w700,
+                color: AppColors.black,
               ),
             ),
-            content: Padding(
-              padding: const EdgeInsets.all(5.0),
-              child: Text(
-                'Are you sure want to exit?',
-                style: textRegularStyle(
-                  fontSize: 14,
-                  fontWeight: FontWeight.w400,
-                  color: AppColors.white,
-                ),
+            SizedBox(height: 12.h),
+            // Message
+            Text(
+              'Are you sure you want to exit?',
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                fontSize: 14.sp,
+                fontWeight: FontWeight.w400,
+                color: AppColors.textColor,
               ),
             ),
-            actions: <Widget>[
-              TextButton(
-                onPressed: () {
-                  DebounceHelper().debounce(
-                    time: 300,
-                    tag: DebounceHelper.buttonTag,
-                    onMethod: () {
+            SizedBox(height: 24.h),
+            // Buttons
+            Row(
+              children: [
+                Expanded(
+                  child: _modernButton(
+                    context: context,
+                    title: 'Cancel',
+                    isPrimary: false,
+                    onTap: () {
                       Navigator.of(context).pop();
-
-                      DebounceHelper().killAllDebounce();
                     },
-                  );
-                },
-                child: Text(
-                  'No',
-                  style: textRegularStyle(color: AppColors.white),
+                  ),
                 ),
-              ),
-              TextButton(
-                onPressed: () {
-                  DebounceHelper().debounce(
-                    time: 300,
-                    tag: DebounceHelper.buttonTag,
-                    onMethod: () {
+                SizedBox(width: 12.w),
+                Expanded(
+                  child: _modernButton(
+                    context: context,
+                    title: 'Exit',
+                    isPrimary: true,
+                    onTap: () {
                       if (Platform.isAndroid) {
                         SystemNavigator.pop();
                       } else {
                         exit(0);
                       }
-
-                      DebounceHelper().killAllDebounce();
                     },
-                  );
-                },
-                child: Text(
-                  'Yes',
-                  style: textRegularStyle(color: AppColors.white),
+                  ),
                 ),
+              ],
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  /// Show logout confirmation dialog
+  void logoutDialog(BuildContext context, {required VoidCallback onConfirm}) {
+    showDialog(
+      context: context,
+      barrierDismissible: false,
+      builder: (context) => AlertDialog(
+        backgroundColor: AppColors.white,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(16.r),
+        ),
+        contentPadding: EdgeInsets.all(24.w),
+        content: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            // Logo
+            Image.asset(
+              'assets/png/logo.png',
+              height: 60.r,
+              width: 60.r,
+            ),
+            SizedBox(height: 20.h),
+            // Title
+            Text(
+              'Logout',
+              style: TextStyle(
+                fontSize: 20.sp,
+                fontWeight: FontWeight.w700,
+                color: AppColors.black,
               ),
-            ],
+            ),
+            SizedBox(height: 12.h),
+            // Message
+            Text(
+              'Are you sure you want to logout?',
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                fontSize: 14.sp,
+                fontWeight: FontWeight.w400,
+                color: AppColors.textColor,
+              ),
+            ),
+            SizedBox(height: 24.h),
+            // Buttons
+            Row(
+              children: [
+                Expanded(
+                  child: _modernButton(
+                    context: context,
+                    title: 'Cancel',
+                    isPrimary: false,
+                    onTap: () {
+                      Navigator.of(context).pop();
+                    },
+                  ),
+                ),
+                SizedBox(width: 12.w),
+                Expanded(
+                  child: _modernButton(
+                    context: context,
+                    title: 'Logout',
+                    isPrimary: true,
+                    color: AppColors.dangerRed,
+                    onTap: () {
+                      Navigator.of(context).pop();
+                      onConfirm();
+                    },
+                  ),
+                ),
+              ],
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  /// Modern button widget for dialogs
+  Widget _modernButton({
+    required BuildContext context,
+    required String title,
+    required bool isPrimary,
+    required VoidCallback onTap,
+    Color? color,
+  }) {
+    final buttonColor = color ?? AppColors.primaryColor;
+    
+    return InkWell(
+      onTap: () {
+        DebounceHelper().debounce(
+          time: 300,
+          tag: DebounceHelper.buttonTag,
+          onMethod: () {
+            onTap();
+            DebounceHelper().killAllDebounce();
+          },
+        );
+      },
+      child: Container(
+        padding: EdgeInsets.symmetric(vertical: 12.h),
+        decoration: BoxDecoration(
+          color: isPrimary ? buttonColor : AppColors.white,
+          borderRadius: BorderRadius.circular(10.r),
+          border: Border.all(
+            color: isPrimary ? buttonColor : AppColors.gray.withValues(alpha: 0.3),
+            width: isPrimary ? 0 : 1.5,
           ),
+        ),
+        child: Center(
+          child: Text(
+            title,
+            style: TextStyle(
+              fontSize: 14.sp,
+              fontWeight: FontWeight.w700,
+              color: isPrimary ? AppColors.white : AppColors.textColor,
+            ),
+          ),
+        ),
+      ),
     );
   }
 
@@ -162,7 +276,7 @@ class DialogHelper {
                         !isSvgIcon && icon != null
                             ? Image.asset(icon, width: 40, height: 40)
                             : isSvgIcon && icon != null
-                            ? SvgPicture.asset(icon, width: 40, height: 40)
+                            ? Image.asset(icon, width: 40, height: 40)
                             : const SizedBox(),
                         icon != null ? AppWidgets().gapH8() : const SizedBox(),
                         Column(

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../core/helper/app_helper.dart';
+import '../../../../core/helper/dialog_helper.dart';
 import '../../../../core/helper/shared_value_helper.dart';
 import '../../../../core/style/app_colors.dart';
 import '../../../../data/remote/model/profile/profile_response.dart';
@@ -117,7 +118,7 @@ class ProfileMenuContent extends StatelessWidget {
                         ),
                         SizedBox(width: 8.w),
                         Text(
-                          'ID: ${userId.$ ?? 'N/A'}',
+                          'ID: ${userId.$}',
                           style: TextStyle(
                             fontSize: 14.sp,
                             fontWeight: FontWeight.w600,
@@ -134,7 +135,12 @@ class ProfileMenuContent extends StatelessWidget {
                   InkWell(
                     onTap: () {
                       Navigator.pop(context);
-                      AppHelper().logout();
+                      DialogHelper().logoutDialog(
+                        context,
+                        onConfirm: () {
+                          AppHelper().logout();
+                        },
+                      );
                     },
                     child: Container(
                       width: double.infinity,
