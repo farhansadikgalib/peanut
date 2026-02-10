@@ -23,7 +23,7 @@ dependencies:
   easy_debounce:
   font_awesome_flutter:
   flutter_spinkit:
-  skeletonizer:
+  shimmer: ^3.0.0
   dropdown_search:
   flutter_staggered_animations:
   flutter_dotenv:
