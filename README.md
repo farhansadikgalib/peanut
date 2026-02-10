@@ -1,15 +1,6 @@
-# Peanut Trading Platform
+# Peanut
 
 A modern Flutter trading application that provides real-time trade monitoring, portfolio management, and comprehensive trading analytics.
-
-## Download
-
-<div style="text-align: center;">
-  <a href="assets/apk/peanut.apk"
-     style="display: inline-block; padding: 12px 20px; background: #4CAF50; color: #fff; text-decoration: none; border-radius: 6px; font-weight: bold;">
-    ⬇️ Download Peanut APK
-  </a>
-</div>
 
 ## Screenshots
 
@@ -40,7 +31,25 @@ A modern Flutter trading application that provides real-time trade monitoring, p
   </tr>
 </table>
 
+## Download
 
+
+<div style="text-align:center; margin: 24px 0;">
+  <a href="assets/apk/peanut.apk"
+     style="
+       display:inline-block;
+       padding:14px 30px;
+       background:#2E7D32;
+       color:#fff;
+       text-decoration:none;
+       border-radius:50px;
+       font-size:16px;
+       font-weight:800;
+       letter-spacing:0.5px;
+     ">
+    ⬇ DOWNLOAD PEANUT APK
+  </a>
+</div>
 
 
 ## Features
