@@ -15,7 +15,7 @@ class SplashController extends GetxController {
 
   Future<void> initializeApp() async {
     await isLoggedIn.load().whenComplete(() async {
-      Future.delayed(2.seconds).then((v) {
+      Future.delayed(4.seconds).then((v) {
         if (isLoggedIn.$) {
           Get.offNamed(Routes.AUTH);
         } else {
