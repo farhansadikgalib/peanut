@@ -21,25 +21,11 @@ class AppLogo extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         // Logo icon - using actual logo asset
-        Container(
+        Image.asset(
+          'assets/png/logo.png',
           width: logoSize ?? 80.r,
           height: logoSize ?? 80.r,
-          decoration: BoxDecoration(
-            boxShadow: [
-              BoxShadow(
-                color: AppColors.primaryColor.withValues(alpha: 0.3),
-                blurRadius: 24,
-                spreadRadius: 0,
-                offset: const Offset(0, 8),
-              ),
-            ],
-          ),
-          child: Image.asset(
-            'assets/png/logo.png',
-            width: logoSize ?? 80.r,
-            height: logoSize ?? 80.r,
-            fit: BoxFit.contain,
-          ),
+          fit: BoxFit.contain,
         ),
         SizedBox(height: 16.h),
 
