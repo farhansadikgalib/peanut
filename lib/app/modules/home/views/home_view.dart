@@ -238,79 +238,84 @@ class HomeView extends GetView<HomeController> {
   }
 
   Widget _buildShimmerLoading() {
-    return SingleChildScrollView(
-      child: Column(
-        children: [
-          // Shimmer for Compact Header
-          _buildShimmerBox(
-            height: 80.h,
-            margin: EdgeInsets.fromLTRB(16.w, 16.h, 16.w, 16.h),
-          ),
-
-          // Shimmer for Profit Summary
-          _buildShimmerBox(
-            height: 120.h,
-            margin: EdgeInsets.fromLTRB(16.w, 0, 16.w, 16.h),
-          ),
-
-          // Section Title Shimmer
-          Padding(
-            padding: EdgeInsets.fromLTRB(16.w, 8.h, 16.w, 12.h),
-            child: Row(
-              children: [
-                _buildShimmerBox(
-                  width: 32.w,
-                  height: 32.h,
-                  margin: EdgeInsets.zero,
-                ),
-                SizedBox(width: 10.w),
-                _buildShimmerBox(
-                  width: 100.w,
-                  height: 20.h,
-                  margin: EdgeInsets.zero,
-                ),
-                SizedBox(width: 8.w),
-                _buildShimmerBox(
-                  width: 30.w,
-                  height: 24.h,
-                  margin: EdgeInsets.zero,
-                ),
-              ],
+    return Shimmer.fromColors(
+      baseColor: Colors.grey[300]!,
+      highlightColor: Colors.grey[100]!,
+      period: const Duration(milliseconds: 1500),
+      child: SingleChildScrollView(
+        child: Column(
+          children: [
+            // Shimmer for Compact Header
+            Container(
+              height: 80.h,
+              margin: EdgeInsets.fromLTRB(16.w, 16.h, 16.w, 16.h),
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(12.r),
+              ),
             ),
-          ),
 
-          // Shimmer for Trade Cards
-          ...List.generate(
-            3,
-            (index) => _buildShimmerBox(
-              height: 140.h,
-              margin: EdgeInsets.fromLTRB(16.w, 0, 16.w, 10.h),
+            // Shimmer for Profit Summary
+            Container(
+              height: 120.h,
+              margin: EdgeInsets.fromLTRB(16.w, 0, 16.w, 16.h),
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(12.r),
+              ),
             ),
-          ),
-        ],
-      ),
-    );
-  }
 
-  Widget _buildShimmerBox({
-    double? width,
-    required double height,
-    required EdgeInsets margin,
-  }) {
-    return Container(
-      width: width ?? double.infinity,
-      height: height,
-      margin: margin,
-      child: Shimmer.fromColors(
-        baseColor: AppColors.gray.withValues(alpha: 0.3),
-        highlightColor: AppColors.gray.withValues(alpha: 0.1),
-        child: Container(
-          decoration: BoxDecoration(
-            color: AppColors.white,
-            borderRadius: BorderRadius.circular(12.r),
-          ),
+            // Section Title Shimmer
+            Padding(
+              padding: EdgeInsets.fromLTRB(16.w, 8.h, 16.w, 12.h),
+              child: Row(
+                children: [
+                  Container(
+                    width: 32.w,
+                    height: 32.h,
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(8.r),
+                    ),
+                  ),
+                  SizedBox(width: 10.w),
+                  Container(
+                    width: 100.w,
+                    height: 20.h,
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(8.r),
+                    ),
+                  ),
+                  SizedBox(width: 8.w),
+                  Container(
+                    width: 30.w,
+                    height: 24.h,
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(12.r),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+
+            // Shimmer for Trade Cards
+            ...List.generate(
+              5,
+              (index) => Container(
+                height: 140.h,
+                margin: EdgeInsets.fromLTRB(16.w, 0, 16.w, 10.h),
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(12.r),
+                ),
+              ),
+            ),
+          ],
         ),
       ),
     );
   }
+
 }
