@@ -19,7 +19,6 @@ class SplashController extends GetxController {
         if (isLoggedIn.$) {
           Get.offNamed(Routes.HOME);
         } else {
-          AuthHelper().clearUserData();
           Get.offNamed(Routes.AUTH);
         }
       });

@@ -37,7 +37,6 @@ class CreditCardWidget extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          // Card Logo
           Row(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
@@ -50,7 +49,6 @@ class CreditCardWidget extends StatelessWidget {
           ),
           SizedBox(height: 16.h),
 
-          // Card Number (Masked)
           Row(
             children: [
               _buildDotGroup(),
@@ -72,7 +70,6 @@ class CreditCardWidget extends StatelessWidget {
           ),
           SizedBox(height: 20.h),
 
-          // Verified Badge
           Row(
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
