@@ -4,11 +4,13 @@ A modern Flutter trading application that provides real-time trade monitoring, p
 
 ## Download
 
-**Latest Release APK (v0.0.1)**
-
-<div align="center">
-**[⬇️ Download Peanut APK](assets/apk/peanut.apk)**
+<div style="text-align: center;">
+  <a href="assets/apk/peanut.apk"
+     style="display: inline-block; padding: 12px 20px; background: #4CAF50; color: #fff; text-decoration: none; border-radius: 6px; font-weight: bold;">
+    ⬇️ Download Peanut APK
+  </a>
 </div>
+
 ## Screenshots
 
 <table>
