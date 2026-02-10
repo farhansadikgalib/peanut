@@ -1,16 +1,162 @@
-# peanut
+# Peanut Trading Platform
 
-A new Flutter project.
+A modern Flutter trading application that provides real-time trade monitoring, portfolio management, and comprehensive trading analytics.
+
+## Download
+
+**Latest Release APK (v1.0.0)**
+
+[Download Peanut APK (15.2 MB)](assets/apk/peanut.apk)
+
+- Size: 15.2 MB
+- Android Version: 12 - 15
+- Architecture: armeabi-v7a (compatible with all devices)
+
+## Features
+
+### Core Functionality
+- Real-time Trade Monitoring - Track open trades with live profit/loss updates
+- Portfolio Overview - View balance, equity, and margin at a glance
+- Trade Analytics - Comprehensive statistics including win/loss ratios
+- Credit Card Integration - Secure payment method management
+- User Profile - Personalized user information and settings
+- Secure Authentication - Phone-based login system
+
+### UI/UX Highlights
+- Modern Design - Clean, intuitive interface with gradient accents
+- Dark/Light Themes - Adaptive color schemes for better readability
+- Smooth Animations - Shimmer loading states and haptic feedback
+- Responsive Layout - Optimized for all screen sizes using ScreenUtil
+- Pull-to-Refresh - Easy data updates with swipe gesture
+
+## Architecture
+
+### Project Structure
+```
+lib/
+├── app/
+│   ├── core/
+│   │   ├── base/              # Base classes and utilities
+│   │   ├── config/            # App configuration
+│   │   ├── constants/         # App constants
+│   │   ├── helper/            # Helper utilities
+│   │   │   ├── app_helper.dart
+│   │   │   ├── app_widgets.dart
+│   │   │   ├── auth_helper.dart
+│   │   │   ├── dialog_helper.dart
+│   │   │   ├── haptic_helper.dart
+│   │   │   └── shared_value_helper.dart
+│   │   ├── services/          # Network and API services
+│   │   ├── style/             # App styling (colors, text styles)
+│   │   └── widget/            # Reusable widgets
+│   ├── data/
+│   │   └── remote/
+│   │       ├── model/         # Data models
+│   │       └── repository/    # Repository pattern implementation
+│   ├── modules/
+│   │   ├── auth/              # Authentication module
+│   │   ├── home/              # Home/Trading module
+│   │   └── splash/            # Splash screen module
+│   └── routes/                # App navigation
+└── main.dart
+```
+
+### Design Patterns
+- **MVC Pattern** - Model-View-Controller architecture
+- **Repository Pattern** - Abstracted data layer
+- **Dependency Injection** - GetX dependency management
+- **State Management** - Reactive programming with GetX
+- **Singleton Pattern** - Shared instances for helpers
+
+## Tech Stack
+
+### Core
+- **Flutter SDK** (^3.10.8) - Cross-platform UI framework
+- **Dart** - Programming language
+
+### State Management & Navigation
+- **GetX** (^4.7.3) - State management, dependency injection, and routing
+
+### Networking
+- **Dio** (^5.7.0) - HTTP client for API calls
+- **Logger** (^2.5.0) - Beautiful logging
+- **Connectivity Plus** (^4.0.2) - Network connectivity monitoring
+
+### UI/UX
+- **Flutter ScreenUtil** (^5.9.3) - Responsive design
+- **Shimmer** (^3.0.0) - Loading animations
+- **Flutter EasyLoading** (^3.0.5) - Loading indicators
+
+### Utilities
+- **Shared Value** (^3.0.0) - Persistent storage
+- **Intl** (^0.20.1) - Internationalization
+- **Easy Debounce** (^2.0.3) - Debouncing utility
+- **Flutter Dotenv** (^5.2.1) - Environment configuration
+
+
+## Security Features
+
+- **Code Obfuscation** - Production builds are obfuscated
+- **Secure Storage** - Sensitive data encrypted
+- **API Authentication** - Token-based authentication
+- **ProGuard Rules** - Custom rules for release builds
+- **SSL Pinning Ready** - Network security prepared
+
+
 
 ## Getting Started
 
-This project is a starting point for a Flutter application.
+### Prerequisites
+```bash
+Flutter SDK: >=3.10.8
+Dart SDK: >=3.0.0
+Android Studio / Xcode (for platform development)
+```
 
-A few resources to get you started if this is your first Flutter project:
+### Installation
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+1. **Clone the repository**
+```bash
+git clone https://github.com/farhansadikgalib/peanut.git
+cd peanut
+```
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+2. **Install dependencies**
+```bash
+flutter pub get
+```
+## Screenshots
+
+<table>
+  <tr>
+    <td align="center">
+      <img src="assets/screenshots/splash.png" alt="Splash Screen" width="300"/>
+      <br />
+      <b>Splash Screen</b>
+    </td>
+    <td align="center">
+      <img src="assets/screenshots/auth.png" alt="Authentication" width="300"/>
+      <br />
+      <b>Authentication</b>
+    </td>
+  </tr>
+  <tr>
+    <td align="center">
+      <img src="assets/screenshots/home.png" alt="Home Screen" width="300"/>
+      <br />
+      <b>Home Screen</b>
+    </td>
+    <td align="center">
+      <img src="assets/screenshots/profile.png" alt="Profile" width="300"/>
+      <br />
+      <b>Profile Menu</b>
+    </td>
+  </tr>
+</table>
+
+## Author
+
+**Your Name**
+- GitHub: [@farhansadikgalib](https://github.com/farhansadikgalib)
+- Email: farhansadikgalib@gmail.com
+
