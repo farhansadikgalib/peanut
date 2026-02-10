@@ -23,118 +23,122 @@ class ProfitSummaryCard extends StatelessWidget {
     final profitColor = isProfitable ? AppColors.successGreen : AppColors.dangerRed;
 
     return Container(
-      margin: EdgeInsets.symmetric(horizontal: 16.w),
-      padding: EdgeInsets.all(16.w),
-      decoration: BoxDecoration(
-        color: AppColors.white,
-        borderRadius: BorderRadius.circular(14.r),
-        border: Border.all(
-          color: AppColors.primaryColor.withValues(alpha: 0.2),
-          width: 2,
-        ),
-        boxShadow: [
-          BoxShadow(
-            color: AppColors.black.withValues(alpha: 0.04),
-            blurRadius: 8,
-            offset: Offset(0, 2),
-            spreadRadius: 0,
+      margin: EdgeInsets.fromLTRB(16.w, 0, 16.w, 16.h),
+      child: Row(
+        children: [
+          // Total Profit Section
+          Expanded(
+            flex: 2,
+            child: Container(
+              padding: EdgeInsets.all(14.w),
+              decoration: BoxDecoration(
+                gradient: LinearGradient(
+                  colors: isProfitable
+                      ? [
+                          AppColors.successGreen.withValues(alpha: 0.1),
+                          AppColors.successGreen.withValues(alpha: 0.05),
+                        ]
+                      : [
+                          AppColors.dangerRed.withValues(alpha: 0.1),
+                          AppColors.dangerRed.withValues(alpha: 0.05),
+                        ],
+                  begin: Alignment.topLeft,
+                  end: Alignment.bottomRight,
+                ),
+                borderRadius: BorderRadius.circular(12.r),
+                border: Border.all(
+                  color: profitColor.withValues(alpha: 0.3),
+                  width: 1.5,
+                ),
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Row(
+                    children: [
+                      Icon(
+                        isProfitable ? Icons.trending_up : Icons.trending_down,
+                        color: profitColor,
+                        size: 18.r,
+                      ),
+                      SizedBox(width: 6.w),
+                      Text(
+                        'Total P/L',
+                        style: TextStyle(
+                          fontSize: 12.sp,
+                          fontWeight: FontWeight.w600,
+                          color: AppColors.textColor,
+                        ),
+                      ),
+                    ],
+                  ),
+                  SizedBox(height: 8.h),
+                  Text(
+                    _getFormattedProfit(),
+                    style: TextStyle(
+                      fontSize: 24.sp,
+                      fontWeight: FontWeight.w800,
+                      color: profitColor,
+                      letterSpacing: -0.5,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+          SizedBox(width: 10.w),
+          // Stats Section
+          Expanded(
+            child: Column(
+              children: [
+                _buildCompactStat(
+                  profitableCount.toString(),
+                  'Win',
+                  AppColors.successGreen,
+                ),
+                SizedBox(height: 8.h),
+                _buildCompactStat(
+                  losingCount.toString(),
+                  'Loss',
+                  AppColors.dangerRed,
+                ),
+              ],
+            ),
           ),
         ],
       ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+    );
+  }
+
+  Widget _buildCompactStat(String value, String label, Color color) {
+    return Container(
+      padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 10.h),
+      decoration: BoxDecoration(
+        color: color.withValues(alpha: 0.08),
+        borderRadius: BorderRadius.circular(10.r),
+        border: Border.all(
+          color: color.withValues(alpha: 0.2),
+          width: 1,
+        ),
+      ),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text(
-                'Total Profit/Loss',
-                style: TextStyle(
-                  fontSize: 14.sp,
-                  fontWeight: FontWeight.w600,
-                  color: AppColors.textColor,
-                ),
-              ),
-              Container(
-                padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 4.h),
-                decoration: BoxDecoration(
-                  color: profitColor.withValues(alpha: 0.1),
-                  borderRadius: BorderRadius.circular(8.r),
-                ),
-                child: Row(
-                  children: [
-                    Icon(
-                      isProfitable ? Icons.trending_up : Icons.trending_down,
-                      color: profitColor,
-                      size: 16.r,
-                    ),
-                    SizedBox(width: 4.w),
-                    Text(
-                      isProfitable ? 'Profit' : 'Loss',
-                      style: TextStyle(
-                        fontSize: 12.sp,
-                        fontWeight: FontWeight.w600,
-                        color: profitColor,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ],
-          ),
-          SizedBox(height: 8.h),
           Text(
-            _getFormattedProfit(),
+            label,
             style: TextStyle(
-              fontSize: 28.sp,
-              fontWeight: FontWeight.w800,
-              color: profitColor,
-              letterSpacing: -0.5,
+              fontSize: 11.sp,
+              fontWeight: FontWeight.w600,
+              color: AppColors.textColor,
             ),
           ),
-          SizedBox(height: 12.h),
-          Divider(
-            color: AppColors.gray.withValues(alpha: 0.3),
-            thickness: 1,
-          ),
-          SizedBox(height: 12.h),
-          Row(
-            children: [
-              Expanded(
-                child: _buildStatItem(
-                  'Winning',
-                  profitableCount.toString(),
-                  AppColors.successGreen,
-                  Icons.arrow_upward,
-                ),
-              ),
-              Container(
-                width: 1,
-                height: 40.h,
-                color: AppColors.gray.withValues(alpha: 0.3),
-              ),
-              Expanded(
-                child: _buildStatItem(
-                  'Losing',
-                  losingCount.toString(),
-                  AppColors.dangerRed,
-                  Icons.arrow_downward,
-                ),
-              ),
-              Container(
-                width: 1,
-                height: 40.h,
-                color: AppColors.gray.withValues(alpha: 0.3),
-              ),
-              Expanded(
-                child: _buildStatItem(
-                  'Total',
-                  totalTrades.toString(),
-                  AppColors.primaryColor,
-                  Icons.list_alt,
-                ),
-              ),
-            ],
+          Text(
+            value,
+            style: TextStyle(
+              fontSize: 16.sp,
+              fontWeight: FontWeight.w800,
+              color: color,
+            ),
           ),
         ],
       ),
@@ -148,35 +152,5 @@ class ProfitSummaryCard extends StatelessWidget {
       return '-\$${totalProfit.abs().toStringAsFixed(2)}';
     }
     return '\$0.00';
-  }
-
-  Widget _buildStatItem(String label, String value, Color color, IconData icon) {
-    return Column(
-      children: [
-        Icon(
-          icon,
-          color: color,
-          size: 20.r,
-        ),
-        SizedBox(height: 6.h),
-        Text(
-          value,
-          style: TextStyle(
-            fontSize: 18.sp,
-            fontWeight: FontWeight.w700,
-            color: AppColors.black,
-          ),
-        ),
-        SizedBox(height: 2.h),
-        Text(
-          label,
-          style: TextStyle(
-            fontSize: 12.sp,
-            fontWeight: FontWeight.w500,
-            color: AppColors.textColor,
-          ),
-        ),
-      ],
-    );
   }
 }

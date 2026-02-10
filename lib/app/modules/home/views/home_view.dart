@@ -124,24 +124,47 @@ class HomeView extends GetView<HomeController> {
               // Section Title
               SliverToBoxAdapter(
                 child: Padding(
-                  padding: EdgeInsets.fromLTRB(16.w, 20.h, 16.w, 12.h),
+                  padding: EdgeInsets.fromLTRB(16.w, 8.h, 16.w, 12.h),
                   child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
+                      Container(
+                        padding: EdgeInsets.all(6.r),
+                        decoration: BoxDecoration(
+                          color: AppColors.primaryColor.withValues(alpha: 0.1),
+                          borderRadius: BorderRadius.circular(8.r),
+                        ),
+                        child: Icon(
+                          Icons.show_chart,
+                          color: AppColors.primaryColor,
+                          size: 16.r,
+                        ),
+                      ),
+                      SizedBox(width: 10.w),
                       Text(
                         'Open Trades',
                         style: TextStyle(
-                          fontSize: 18.sp,
+                          fontSize: 16.sp,
                           fontWeight: FontWeight.w700,
                           color: AppColors.black,
                         ),
                       ),
-                      Obx(() => Text(
-                            '${controller.trades.length} ${controller.trades.length == 1 ? 'Trade' : 'Trades'}',
-                            style: TextStyle(
-                              fontSize: 14.sp,
-                              fontWeight: FontWeight.w500,
-                              color: AppColors.textColor,
+                      SizedBox(width: 8.w),
+                      Obx(() => Container(
+                            padding: EdgeInsets.symmetric(
+                              horizontal: 8.w,
+                              vertical: 3.h,
+                            ),
+                            decoration: BoxDecoration(
+                              color: AppColors.primaryColor,
+                              borderRadius: BorderRadius.circular(12.r),
+                            ),
+                            child: Text(
+                              '${controller.trades.length}',
+                              style: TextStyle(
+                                fontSize: 12.sp,
+                                fontWeight: FontWeight.w700,
+                                color: AppColors.white,
+                              ),
                             ),
                           )),
                     ],

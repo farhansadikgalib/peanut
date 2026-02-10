@@ -173,24 +173,15 @@ class ProfileMenuContent extends StatelessWidget {
                           width: 1.5,
                         ),
                       ),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Icon(
-                            Icons.logout,
+                      child: Center(
+                        child: Text(
+                          'Logout',
+                          style: TextStyle(
+                            fontSize: 16.sp,
+                            fontWeight: FontWeight.w700,
                             color: AppColors.dangerRed,
-                            size: 20.r,
                           ),
-                          SizedBox(width: 8.w),
-                          Text(
-                            'Logout',
-                            style: TextStyle(
-                              fontSize: 16.sp,
-                              fontWeight: FontWeight.w700,
-                              color: AppColors.dangerRed,
-                            ),
-                          ),
-                        ],
+                        ),
                       ),
                     ),
                   ),
