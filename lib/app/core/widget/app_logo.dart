@@ -27,9 +27,7 @@ class AppLogo extends StatelessWidget {
           height: logoSize ?? 80.r,
           fit: BoxFit.contain,
         ),
-        SizedBox(height: 16.h),
 
-        // Slogan
         Text(
           slogan,
           style: logoSloganStyle(),

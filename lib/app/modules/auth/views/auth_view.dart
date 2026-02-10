@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import '../../../core/helper/app_widgets.dart';
 import '../../../core/helper/haptic_helper.dart';
 import '../../../core/style/app_colors.dart';
+import '../../../core/style/app_style.dart';
 import '../../../core/widget/app_logo.dart';
 import '../../../core/widget/custom_button.dart';
 import '../controllers/auth_controller.dart';
@@ -28,7 +29,16 @@ class AuthView extends GetView<AuthController> {
                 children: [
                   Hero(
                     tag: 'app_logo',
-                    child: const AppLogo(slogan: 'Start Trading. Stay Winning.'),
+                    child: const AppLogo(slogan: ''),
+                  ),
+                  Text(
+                    'Peanut',
+                    style: appNameStyle(),
+                  ),
+                  AppWidgets().gapH(8),
+                  Text(
+                    'Start Trading. Stay Winning.',
+                    style: logoSloganStyle(),
                   ),
                   AppWidgets().gapH(32),
                   const AuthLoginForm(),

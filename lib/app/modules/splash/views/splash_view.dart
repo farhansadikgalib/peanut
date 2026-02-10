@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
 import '../../../core/style/app_colors.dart';
+import '../../../core/style/app_style.dart';
 import '../../../core/widget/app_logo.dart';
 import '../controllers/splash_controller.dart';
 
@@ -21,7 +23,17 @@ class SplashView extends GetView<SplashController> {
             children: [
               Hero(
                 tag: 'app_logo',
-                child: const AppLogo(slogan: 'Start Trading. Stay Winning.'),
+                child: const AppLogo(slogan: ''),
+              ),
+              SizedBox(height: 8.h),
+              Text(
+                'Peanut',
+                style: appNameStyle(),
+              ),
+              SizedBox(height: 8.h),
+              Text(
+                'Start Trading. Stay Winning.',
+                style: logoSloganStyle(),
               ),
             ],
           ),

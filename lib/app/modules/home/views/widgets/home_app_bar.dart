@@ -70,15 +70,13 @@ class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
               ),
             ),
             SizedBox(width: 12.w),
-            
-            // App Name
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(
                   'Peanut',
-                  style: appBarTitleStyle(fontSize: 18),
+                  style: appBarTitleStyle(fontSize: 18,color: AppColors.primaryColor),
                 ),
                 Text(
                   'Trading Platform',

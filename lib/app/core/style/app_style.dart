@@ -474,7 +474,7 @@ TextStyle inputHelperStyle({
 
 // Logo styles
 TextStyle logoSloganStyle({
-  color = AppColors.textColor,
+  color = AppColors.primaryColor,
   double fontSize = 16,
   fontWeight = FontWeight.w600,
 }) {
@@ -483,5 +483,18 @@ TextStyle logoSloganStyle({
     color: color,
     fontWeight: fontWeight,
     letterSpacing: 0.3,
+  );
+}
+
+TextStyle appNameStyle({
+  color = AppColors.primaryColor,
+  double fontSize = 28,
+  fontWeight = FontWeight.w800,
+}) {
+  return TextStyle(
+    fontSize: fontSize.sp,
+    color: color,
+    fontWeight: fontWeight,
+    letterSpacing: -0.5,
   );
 }
