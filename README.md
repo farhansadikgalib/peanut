@@ -6,8 +6,9 @@ A modern Flutter trading application that provides real-time trade monitoring, p
 
 **Latest Release APK (v0.0.1)**
 
-[Download Peanut APK](assets/apk/peanut.apk)
-
+<div align="center">
+**[⬇️ Download Peanut APK](assets/apk/peanut.apk)**
+</div>
 ## Screenshots
 
 <table>
