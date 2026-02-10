@@ -8,6 +8,7 @@ import '../../../../core/helper/haptic_helper.dart';
 import '../../../../core/helper/shared_value_helper.dart';
 import '../../../../core/style/app_colors.dart';
 import '../../../../core/style/app_style.dart';
+import '../../../../core/widget/custom_button.dart';
 import '../../../../data/remote/model/auth/last_four_number_response.dart';
 import '../../../../data/remote/model/profile/profile_response.dart';
 import 'credit_card_widget.dart';
@@ -143,7 +144,9 @@ class ProfileMenuContent extends StatelessWidget {
 
                   AppWidgets().gapH(24),
 
-                  InkWell(
+                  CustomButton(
+                    text: 'Logout',
+                    backgroundColor: AppColors.dangerRed,
                     onTap: () {
                       HapticHelper.heavy();
                       Navigator.pop(context);
@@ -154,26 +157,6 @@ class ProfileMenuContent extends StatelessWidget {
                         },
                       );
                     },
-                    child: Container(
-                      width: double.infinity,
-                      padding: EdgeInsets.symmetric(vertical: 16.h),
-                      decoration: BoxDecoration(
-                        color: AppColors.dangerRed.withValues(alpha: 0.1),
-                        borderRadius: BorderRadius.circular(12.r),
-                        border: Border.all(
-                          color: AppColors.dangerRed.withValues(alpha: 0.3),
-                          width: 1.5,
-                        ),
-                      ),
-                      child: Center(
-                        child: Text(
-                          'Logout',
-                          style: sectionHeaderStyle(
-                            color: AppColors.dangerRed,
-                          ),
-                        ),
-                      ),
-                    ),
                   ),
                 ],
               ),

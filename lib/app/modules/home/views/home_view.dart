@@ -48,37 +48,42 @@ class HomeView extends GetView<HomeController> {
                   ),
 
                 SliverToBoxAdapter(
-                  child: Padding(
-                    padding: EdgeInsets.fromLTRB(16.w, 8.h, 16.w, 12.h),
+                  child: Container(
+                    margin: EdgeInsets.fromLTRB(16.w, 8.h, 16.w, 12.h),
+                    padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 14.h),
+                    decoration: BoxDecoration(
+                      color: AppColors.white,
+                      borderRadius: BorderRadius.circular(16.r),
+                      border: Border.all(
+                        color: AppColors.primaryColor.withValues(alpha: 0.5),
+                        width: 1.5,
+                      ),
+                    ),
                     child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Container(
-                          padding: EdgeInsets.all(6.r),
-                          decoration: BoxDecoration(
-                            color: AppColors.primaryColor.withValues(
-                              alpha: 0.1,
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              'Open Trades',
+                              style: sectionHeaderStyle(fontSize: 16),
                             ),
-                            borderRadius: BorderRadius.circular(8.r),
-                          ),
-                          child: Icon(
-                            Icons.show_chart,
-                            color: AppColors.primaryColor,
-                            size: 16.r,
-                          ),
+                            AppWidgets().gapH(2),
+                            Text(
+                              'Active Positions',
+                              style: textRegularStyle(
+                                color: AppColors.textColor.withValues(alpha: 0.7),
+                                fontSize: 11,
+                                fontWeight: FontWeight.w500,
+                              ),
+                            ),
+                          ],
                         ),
-                        SizedBox(width: 10.w),
-                        Center(
-                          child: Text(
-                            'Open Trades',
-                            style: sectionHeaderStyle(),
-                          ),
-                        ),
-                        SizedBox(width: 8.w),
                         Container(
                           padding: EdgeInsets.symmetric(
-                            horizontal: 8.w,
-                            vertical: 3.h,
+                            horizontal: 16.w,
+                            vertical: 8.h,
                           ),
                           decoration: BoxDecoration(
                             color: AppColors.primaryColor,
@@ -86,7 +91,7 @@ class HomeView extends GetView<HomeController> {
                           ),
                           child: Text(
                             '${controller.trades.length}',
-                            style: badgeTextStyle(),
+                            style: badgeTextStyle(fontSize: 16, fontWeight: FontWeight.w700),
                           ),
                         ),
                       ],
@@ -122,7 +127,7 @@ class HomeView extends GetView<HomeController> {
                         ),
                       )
                       : SliverPadding(
-                    padding: EdgeInsets.fromLTRB(16.w, 0, 16.w, 20.h),
+                    padding: EdgeInsets.fromLTRB(16.w, 0, 16.w, 40.h),
                     sliver: SliverList(
                       delegate: SliverChildBuilderDelegate((context, index) {
                         final trade = controller.trades[index];

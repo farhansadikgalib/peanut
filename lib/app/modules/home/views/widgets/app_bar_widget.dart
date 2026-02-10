@@ -55,13 +55,6 @@ class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
                   end: Alignment.bottomRight,
                 ),
                 borderRadius: BorderRadius.circular(14.r),
-                boxShadow: [
-                  BoxShadow(
-                    color: AppColors.primaryColor.withValues(alpha: 0.3),
-                    blurRadius: 8,
-                    offset: const Offset(0, 3),
-                  ),
-                ],
               ),
               child: Icon(
                 Icons.trending_up,
@@ -106,13 +99,6 @@ class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
                   color: AppColors.primaryColor,
                   width: 2.5,
                 ),
-                boxShadow: [
-                  BoxShadow(
-                    color: AppColors.primaryColor.withValues(alpha: 0.2),
-                    blurRadius: 8,
-                    offset: const Offset(0, 2),
-                  ),
-                ],
               ),
               child: Container(
                 width: 38.r,

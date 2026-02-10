@@ -39,33 +39,43 @@ class ShimmerLoading extends StatelessWidget {
             ),
 
             // Section Header Shimmer
-            Padding(
-              padding: EdgeInsets.fromLTRB(16.w, 8.h, 16.w, 12.h),
+            Container(
+              margin: EdgeInsets.fromLTRB(16.w, 8.h, 16.w, 12.h),
+              padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 14.h),
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(16.r),
+              ),
               child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Container(
+                        width: 100.w,
+                        height: 16.h,
+                        decoration: BoxDecoration(
+                          color: Colors.grey[400],
+                          borderRadius: BorderRadius.circular(4.r),
+                        ),
+                      ),
+                      AppWidgets().gapH(6),
+                      Container(
+                        width: 80.w,
+                        height: 12.h,
+                        decoration: BoxDecoration(
+                          color: Colors.grey[400],
+                          borderRadius: BorderRadius.circular(4.r),
+                        ),
+                      ),
+                    ],
+                  ),
                   Container(
-                    width: 32.w,
+                    width: 50.w,
                     height: 32.h,
                     decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(8.r),
-                    ),
-                  ),
-                  AppWidgets().gapW(10),
-                  Container(
-                    width: 100.w,
-                    height: 20.h,
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(8.r),
-                    ),
-                  ),
-                  AppWidgets().gapW(8),
-                  Container(
-                    width: 30.w,
-                    height: 24.h,
-                    decoration: BoxDecoration(
-                      color: Colors.white,
+                      color: Colors.grey[400],
                       borderRadius: BorderRadius.circular(12.r),
                     ),
                   ),

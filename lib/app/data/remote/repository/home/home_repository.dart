@@ -40,7 +40,7 @@ class HomeRepository {
       trades: [
         Trade(
           id: 12345,
-          symbol: "EURUSD",
+          symbol: "EUR",
           cmd: 0, // BUY
           volume: 1.5,
           openPrice: 1.0850,
@@ -57,7 +57,7 @@ class HomeRepository {
         ),
         Trade(
           id: 12346,
-          symbol: "GBPUSD",
+          symbol: "GBP",
           cmd: 1, // SELL
           volume: 2.0,
           openPrice: 1.2650,
@@ -74,7 +74,7 @@ class HomeRepository {
         ),
         Trade(
           id: 12347,
-          symbol: "USDJPY",
+          symbol: "JPY",
           cmd: 0, // BUY
           volume: 1.0,
           openPrice: 149.50,
@@ -91,7 +91,7 @@ class HomeRepository {
         ),
         Trade(
           id: 12348,
-          symbol: "XAUUSD",
+          symbol: "XAU",
           cmd: 0, // BUY
           volume: 0.5,
           openPrice: 2050.00,
@@ -108,7 +108,7 @@ class HomeRepository {
         ),
         Trade(
           id: 12349,
-          symbol: "BTCUSD",
+          symbol: "BTC",
           cmd: 1, // SELL
           volume: 0.1,
           openPrice: 43500.00,
