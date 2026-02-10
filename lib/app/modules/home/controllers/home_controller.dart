@@ -1,5 +1,6 @@
 import 'package:get/get.dart';
 
+import '../../../data/remote/model/auth/last_four_number_response.dart';
 import '../../../data/remote/model/home/trade_response.dart';
 import '../../../data/remote/model/profile/profile_response.dart';
 import '../../../data/remote/repository/home/home_repository.dart';
@@ -14,6 +15,7 @@ class HomeController extends GetxController {
   final isRefreshing = false.obs;
   final trades = <Trade>[].obs;
   final profile = Rxn<ProfileResponse>();
+  final lastFourNumber = Rxn<LastFourNumberResponse>();
   final totalProfit = 0.0.obs;
 
   @override
@@ -22,48 +24,49 @@ class HomeController extends GetxController {
     loadInitialData();
   }
 
-  /// Load initial data (profile and trades)
+  /// Load initial data (profile, card number, and trades)
   Future<void> loadInitialData() async {
     isLoading.value = true;
-    try {
-      await Future.wait([fetchProfile(), fetchTrades()]);
-    } finally {
-      isLoading.value = false;
-    }
+    await Future.wait([
+      fetchProfile(),
+      fetchLastFourNumber(),
+      fetchTrades(),
+    ]);
+    isLoading.value = false;
   }
 
   /// Fetch user profile
   Future<void> fetchProfile() async {
-    try {
-      final response = await _profileRepository.profile();
-      profile.value = response;
-    } catch (e) {
-      // Error is already handled by the repository/API client
-      profile.value = null;
-    }
+    profile.value = null;
+    final response = await _profileRepository.profile();
+    profile.value = response;
+  }
+
+  /// Fetch last four digits of phone/card
+  Future<void> fetchLastFourNumber() async {
+    lastFourNumber.value = null;
+    final response = await _profileRepository.getLastFourNumber();
+    lastFourNumber.value = response;
   }
 
   /// Fetch open trades
   Future<void> fetchTrades() async {
-    try {
-      final response = await _homeRepository.getOpenTrades();
-      trades.value = response.trades ?? [];
-      calculateTotalProfit();
-    } catch (e) {
-      // Error is already handled by the repository/API client
-      trades.value = [];
-      totalProfit.value = 0.0;
-    }
+    trades.clear();
+    totalProfit.value = 0.0;
+    final response = await _homeRepository.getOpenTrades();
+    trades.value = response.trades ?? [];
+    calculateTotalProfit();
   }
 
   /// Refresh trades (pull to refresh)
   Future<void> refreshTrades() async {
     isRefreshing.value = true;
-    try {
-      await Future.wait([fetchProfile(), fetchTrades()]);
-    } finally {
-      isRefreshing.value = false;
-    }
+    await Future.wait([
+      fetchProfile(),
+      fetchLastFourNumber(),
+      fetchTrades(),
+    ]);
+    isRefreshing.value = false;
   }
 
   /// Calculate total profit from all trades

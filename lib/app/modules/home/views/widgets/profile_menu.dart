@@ -7,23 +7,37 @@ import '../../../../core/helper/haptic_helper.dart';
 import '../../../../core/helper/shared_value_helper.dart';
 import '../../../../core/style/app_colors.dart';
 import '../../../../core/style/app_style.dart';
+import '../../../../data/remote/model/auth/last_four_number_response.dart';
 import '../../../../data/remote/model/profile/profile_response.dart';
+import 'credit_card_widget.dart';
 
 class ProfileMenu {
-  static void show(BuildContext context, ProfileResponse? profile) {
+  static void show(
+    BuildContext context,
+    ProfileResponse? profile,
+    LastFourNumberResponse? lastFourNumber,
+  ) {
     showModalBottomSheet(
       context: context,
       backgroundColor: Colors.transparent,
       isScrollControlled: true,
-      builder: (context) => ProfileMenuContent(profile: profile),
+      builder: (context) => ProfileMenuContent(
+        profile: profile,
+        lastFourNumber: lastFourNumber,
+      ),
     );
   }
 }
 
 class ProfileMenuContent extends StatelessWidget {
   final ProfileResponse? profile;
+  final LastFourNumberResponse? lastFourNumber;
 
-  const ProfileMenuContent({super.key, this.profile});
+  const ProfileMenuContent({
+    super.key,
+    this.profile,
+    this.lastFourNumber,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -117,6 +131,13 @@ class ProfileMenuContent extends StatelessWidget {
                         ),
                       ],
                     ),
+                  ),
+
+                  SizedBox(height: 24.h),
+
+                  // Credit Card Widget
+                  CreditCardWidget(
+                    lastFourDigits: lastFourNumber?.getLastFourDigits(),
                   ),
 
                   SizedBox(height: 24.h),

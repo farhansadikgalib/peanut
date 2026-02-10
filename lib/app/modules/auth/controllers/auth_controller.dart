@@ -11,7 +11,6 @@ import '../../../routes/app_pages.dart';
 class AuthController extends GetxController {
   final loginController = TextEditingController();
   final passwordController = TextEditingController();
-
   final isPasswordVisible = false.obs;
 
   @override
@@ -35,7 +34,6 @@ class AuthController extends GetxController {
   }
 
   Future<void> signIn() async {
-    // Validate inputs
     if (loginController.text.trim().isEmpty) {
       AppWidgets().getSnackBar(
         title: "Error",

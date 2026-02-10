@@ -59,7 +59,11 @@ class HomeView extends GetView<HomeController> {
             GestureDetector(
               onTap: () {
                 HapticHelper.light();
-                ProfileMenu.show(context, controller.profile.value);
+                ProfileMenu.show(
+                  context,
+                  controller.profile.value,
+                  controller.lastFourNumber.value,
+                );
               },
               child: Container(
                 margin: EdgeInsets.only(right: 16.w),
