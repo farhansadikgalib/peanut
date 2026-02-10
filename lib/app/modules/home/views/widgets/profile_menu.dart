@@ -127,21 +127,7 @@ class ProfileMenuContent extends StatelessWidget {
                       ],
                     ),
                   ),
-                  SizedBox(height: 24.h),
-
-                  // Divider
-                  Divider(
-                    color: AppColors.gray.withValues(alpha: 0.3),
-                    thickness: 1,
-                  ),
-                  SizedBox(height: 16.h),
-
-                  // Account Info
-                  _buildInfoRow(
-                    'Phone',
-                    profile?.phone ?? 'Not available',
-                    Icons.phone,
-                  ),
+          
                   SizedBox(height: 24.h),
 
                   // Logout Button
@@ -179,50 +165,6 @@ class ProfileMenuContent extends StatelessWidget {
           ],
         ),
       ),
-    );
-  }
-
-  Widget _buildInfoRow(String label, String value, IconData icon) {
-    return Row(
-      children: [
-        Container(
-          padding: EdgeInsets.all(8.r),
-          decoration: BoxDecoration(
-            color: AppColors.inputBackground,
-            borderRadius: BorderRadius.circular(8.r),
-          ),
-          child: Icon(
-            icon,
-            color: AppColors.primaryColor,
-            size: 18.r,
-          ),
-        ),
-        SizedBox(width: 12.w),
-        Expanded(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                label,
-                style: TextStyle(
-                  fontSize: 12.sp,
-                  fontWeight: FontWeight.w500,
-                  color: AppColors.textColor,
-                ),
-              ),
-              SizedBox(height: 2.h),
-              Text(
-                value,
-                style: TextStyle(
-                  fontSize: 14.sp,
-                  fontWeight: FontWeight.w600,
-                  color: AppColors.black,
-                ),
-              ),
-            ],
-          ),
-        ),
-      ],
     );
   }
 }
