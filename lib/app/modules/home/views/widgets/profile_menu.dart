@@ -142,18 +142,6 @@ class ProfileMenuContent extends StatelessWidget {
                     profile?.phone ?? 'Not available',
                     Icons.phone,
                   ),
-                  SizedBox(height: 12.h),
-                  _buildInfoRow(
-                    'Country',
-                    profile?.country ?? 'Not available',
-                    Icons.location_on,
-                  ),
-                  SizedBox(height: 12.h),
-                  _buildInfoRow(
-                    'Leverage',
-                    '1:${profile?.leverage ?? 0}',
-                    Icons.trending_up,
-                  ),
                   SizedBox(height: 24.h),
 
                   // Logout Button
