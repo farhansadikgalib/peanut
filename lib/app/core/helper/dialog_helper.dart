@@ -24,14 +24,6 @@ class DialogHelper {
         content: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            // Logo
-            Image.asset(
-              'assets/png/logo.png',
-              height: 60.r,
-              width: 60.r,
-            ),
-            SizedBox(height: 20.h),
-            // Title
             Text(
               'Exit App',
               style: TextStyle(
@@ -102,14 +94,6 @@ class DialogHelper {
         content: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            // Logo
-            Image.asset(
-              'assets/png/logo.png',
-              height: 60.r,
-              width: 60.r,
-            ),
-            SizedBox(height: 20.h),
-            // Title
             Text(
               'Logout',
               style: TextStyle(
