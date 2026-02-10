@@ -8,6 +8,7 @@ import '../style/app_colors.dart';
 import '../style/app_style.dart';
 import 'app_widgets.dart';
 import 'debounce_helper.dart';
+import 'haptic_helper.dart';
 
 class DialogHelper {
   /// Show app exit confirmation dialog
@@ -160,6 +161,7 @@ class DialogHelper {
     
     return InkWell(
       onTap: () {
+        HapticHelper.light();
         DebounceHelper().debounce(
           time: 300,
           tag: DebounceHelper.buttonTag,

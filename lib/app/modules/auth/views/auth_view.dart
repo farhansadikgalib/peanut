@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
 import '../../../core/helper/app_widgets.dart';
+import '../../../core/helper/haptic_helper.dart';
 import '../../../core/style/app_colors.dart';
 import '../../../core/widget/app_logo.dart';
 import '../../../core/widget/custom_button.dart';
@@ -41,7 +42,10 @@ class AuthView extends GetView<AuthController> {
                   // Login Button
                   CustomButton(
                     text: 'Sign In',
-                    onTap: () => controller.signIn(),
+                    onTap: () {
+                      HapticHelper.medium();
+                      controller.signIn();
+                    },
                   ),
                 ],
               ),

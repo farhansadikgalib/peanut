@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../core/helper/app_helper.dart';
 import '../../../../core/helper/dialog_helper.dart';
+import '../../../../core/helper/haptic_helper.dart';
 import '../../../../core/helper/shared_value_helper.dart';
 import '../../../../core/style/app_colors.dart';
 import '../../../../data/remote/model/profile/profile_response.dart';
@@ -134,6 +135,7 @@ class ProfileMenuContent extends StatelessWidget {
                   // Logout Button
                   InkWell(
                     onTap: () {
+                      HapticHelper.medium();
                       Navigator.pop(context);
                       DialogHelper().logoutDialog(
                         context,

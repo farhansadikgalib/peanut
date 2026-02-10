@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:shimmer/shimmer.dart';
 
 import '../../../core/helper/dialog_helper.dart';
+import '../../../core/helper/haptic_helper.dart';
 import '../../../core/style/app_colors.dart';
 import '../controllers/home_controller.dart';
 import 'widgets/compact_header.dart';
@@ -63,6 +64,7 @@ class HomeView extends GetView<HomeController> {
         actions: [
           GestureDetector(
             onTap: () {
+              HapticHelper.light();
               ProfileMenu.show(context, controller.profile.value);
             },
             child: Container(
