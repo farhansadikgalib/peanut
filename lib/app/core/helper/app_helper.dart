@@ -23,8 +23,6 @@ class AppHelper {
           color: AppColors.primaryColor,
           size: 50.0,
         ),
-        // child: Lottie.asset(Assets.lottieLoader,
-        //     height: 120, width: 120, fit: BoxFit.fill),
       )
       ..loadingStyle = EasyLoadingStyle.custom
       ..textColor = Colors.white
@@ -48,19 +46,16 @@ class AppHelper {
     if (EasyLoading.isShow) {
       EasyLoading.dismiss();
     }
-    // Navigator.of(context, rootNavigator: true).pop();
   }
 
   /// Logs out the current user and navigates to onboarding screen.
   /// Clears all user data and removes all previous routes from navigation stack.
   void logout() {
-    // Get.find<CartController>().cartProducts.clear();
     // Clear stored authentication data
     AuthHelper().clearUserData();
     // Navigate to onboarding screen and remove all previous routes
     Get.offAllNamed(Routes.AUTH);
   }
-
 
   String getDayNameAndDateYearOnly(DateTime dateTime) {
     //Input: "2022-11-14 12:15:20"
@@ -84,13 +79,11 @@ class AppHelper {
   }
 
   void hideKeyboard() {
-    // FocusManager.instance.primaryFocus?.unfocus();
     FocusScopeNode currentFocus = FocusScope.of(Get.context!);
     if (!currentFocus.hasPrimaryFocus && currentFocus.focusedChild != null) {
       currentFocus.focusedChild?.unfocus();
     }
   }
-
 
   bool isKeyBoardVisible(context) {
     return MediaQuery.of(context).viewInsets.bottom != 0 ? false : true;
@@ -129,12 +122,4 @@ class AppHelper {
       );
     }
   }
-
-  // pickImageFromDevice({isCamera = false}) async {
-  //   final ImagePicker picker = ImagePicker();
-  //   final XFile? image = isCamera
-  //       ? await picker.pickImage(source: ImageSource.camera)
-  //       : await picker.pickImage(source: ImageSource.gallery);
-  //   return image?.path ?? null;
-  // }
 }

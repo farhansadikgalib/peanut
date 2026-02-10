@@ -18,9 +18,6 @@ class AuthLoginForm extends GetView<AuthController> {
           controller: controller.loginController,
           keyboardType: TextInputType.number,
           textInputAction: TextInputAction.next,
-          onChanged: (value) {
-            // Trigger validation if needed
-          },
         ),
         SizedBox(height: 20.h),
 

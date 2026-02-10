@@ -11,7 +11,6 @@ import 'debounce_helper.dart';
 import 'haptic_helper.dart';
 
 class DialogHelper {
-  /// Show app exit confirmation dialog
   void appExit(BuildContext context) {
     showDialog(
       context: context,
@@ -25,6 +24,12 @@ class DialogHelper {
         content: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
+            Image.asset(
+              'assets/png/logo.png',
+              height: 60.r,
+              width: 60.r,
+            ),
+            SizedBox(height: 20.h),
             Text(
               'Exit App',
               style: TextStyle(
@@ -34,7 +39,6 @@ class DialogHelper {
               ),
             ),
             SizedBox(height: 12.h),
-            // Message
             Text(
               'Are you sure you want to exit?',
               textAlign: TextAlign.center,
@@ -45,7 +49,6 @@ class DialogHelper {
               ),
             ),
             SizedBox(height: 24.h),
-            // Buttons
             Row(
               children: [
                 Expanded(
@@ -81,7 +84,6 @@ class DialogHelper {
     );
   }
 
-  /// Show logout confirmation dialog
   void logoutDialog(BuildContext context, {required VoidCallback onConfirm}) {
     showDialog(
       context: context,
@@ -95,6 +97,12 @@ class DialogHelper {
         content: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
+            Image.asset(
+              'assets/png/logo.png',
+              height: 60.r,
+              width: 60.r,
+            ),
+            SizedBox(height: 20.h),
             Text(
               'Logout',
               style: TextStyle(
@@ -104,7 +112,6 @@ class DialogHelper {
               ),
             ),
             SizedBox(height: 12.h),
-            // Message
             Text(
               'Are you sure you want to logout?',
               textAlign: TextAlign.center,
@@ -115,7 +122,6 @@ class DialogHelper {
               ),
             ),
             SizedBox(height: 24.h),
-            // Buttons
             Row(
               children: [
                 Expanded(
@@ -149,7 +155,6 @@ class DialogHelper {
     );
   }
 
-  /// Modern button widget for dialogs
   Widget _modernButton({
     required BuildContext context,
     required String title,
@@ -195,18 +200,6 @@ class DialogHelper {
     );
   }
 
-  /// Displays a customizable dialog box with optional icon and action buttons.
-  /// 
-  /// [title] The main message to display
-  /// [icon] Optional icon asset path (image or SVG)
-  /// [leftButtonTitle] Text for left button (default: "No")
-  /// [rightButtonTitle] Text for right button (default: "Yes")
-  /// [leftButtonOnTap] Callback for left button tap
-  /// [rightButtonOnTap] Callback for right button tap
-  /// [isSvgIcon] Whether the icon is an SVG (default: false)
-  /// [hasCustomBody] Whether to use a custom body widget (default: false)
-  /// [body] Custom body widget if hasCustomBody is true
-  /// [isCenter] Whether to center action buttons (default: true)
   Future customDialogBox(
     BuildContext context,
     title, {
@@ -482,162 +475,4 @@ class DialogHelper {
     );
   }
 
-  /*  customWarningDialog(
-    BuildContext context,
-    String title,
-    String subTitle, {
-    leftButtonOnTap,
-    rightButtonOnTap,
-  }) {
-    return showDialog(
-        context: context,
-        barrierDismissible: false,
-        builder: (context) => AlertDialog(
-            insetPadding: EdgeInsets.zero, // Remove default padding
-
-            backgroundColor: AppColors.transparentPure,
-            surfaceTintColor: Colors.transparent,
-            shape: const RoundedRectangleBorder(
-              borderRadius: BorderRadius.all(Radius.circular(cornerRadius)),
-            ),
-            content: Container(
-              height: 300.h,
-              margin: const EdgeInsets.all(16),
-              decoration: BoxDecoration(
-                  boxShadow: [
-                    BoxShadow(
-                      color: AppColors.white.withOpacity(0.1),
-                      spreadRadius: 5,
-                      blurRadius: 7,
-                      offset: const Offset(0, 3), // changes position of shadow
-                    ),
-                  ],
-                  color: AppColors.buttonColor,
-                  borderRadius: BorderRadius.circular(20)),
-              child: Stack(
-                fit: StackFit.loose,
-                clipBehavior: Clip.antiAlias,
-                // alignment: Alignment.center,
-                children: [
-                  Column(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      Container(
-                        height: 200.h,
-                        width: Get.width,
-                        decoration: const BoxDecoration(
-                            color: AppColors.white,
-                            borderRadius: BorderRadius.only(
-                              bottomLeft: Radius.circular(19),
-                              bottomRight: Radius.circular(19),
-                            )),
-                        child: Column(
-                          children: [
-                            AppWidgets().gapH(45),
-                            Text(
-                              title,
-                              style: textRegularStyle(
-                                  fontWeight: FontWeight.bold, fontSize: 18),
-                            ),
-                            AppWidgets().gapH8(),
-                            Padding(
-                              padding: REdgeInsets.symmetric(horizontal: 12.0),
-                              child: Text(
-                                subTitle,
-                                textAlign: TextAlign.center,
-                                style: textRegularStyle(),
-                              ),
-                            ),
-                            AppWidgets().gapH(15),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              children: [
-                                InkWell(
-                                  onTap: leftButtonOnTap ?? () {},
-                                  child: Container(
-                                    padding: REdgeInsets.symmetric(
-                                        horizontal: 30.0, vertical: 10),
-                                    decoration: BoxDecoration(
-                                      color: AppColors.filterSectionColor,
-                                      borderRadius: BorderRadius.circular(6.r),
-                                      // border: Border.all(color: AppColors.primaryColor, width: 1.r)
-                                    ),
-                                    child: const Text(
-                                      "No",
-                                      textAlign: TextAlign.center,
-                                      style: TextStyle(
-                                          fontSize: 15,
-                                          fontWeight: FontWeight.w500,
-                                          color: AppColors.textColor),
-                                    ),
-                                  ),
-                                ),
-                                AppWidgets().gapW(20),
-                                InkWell(
-                                  onTap: rightButtonOnTap ?? () {},
-                                  child: Container(
-                                    padding: REdgeInsets.symmetric(
-                                        horizontal: 30.0, vertical: 10),
-                                    decoration: BoxDecoration(
-                                      color: AppColors.buttonColor,
-                                      borderRadius: BorderRadius.circular(6.r),
-                                      // border: Border.all(color: AppColors.primaryColor, width: 1.r)
-                                    ),
-                                    child: const Text(
-                                      "Yes",
-                                      textAlign: TextAlign.center,
-                                      style: TextStyle(
-                                          fontSize: 15,
-                                          fontWeight: FontWeight.w500,
-                                          color: AppColors.white),
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            )
-                          ],
-                        ),
-                      )
-                    ],
-                  ),
-                  Align(
-                    alignment: Alignment.topCenter,
-                    child: Container(
-                      margin: REdgeInsets.only(top: 60),
-                      height: 85.h,
-                      padding: REdgeInsets.all(5),
-                      width: 85.h,
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(
-                            85,
-                          ),
-                          border: Border.all(
-                            color: AppColors.white,
-                            // Custom border color
-                            width: 2.0, // Custom border width
-                          ),
-                          color: AppColors.transparent),
-                      child: Container(
-                        alignment: Alignment.center,
-                        height: 75.h,
-                        width: 75.h,
-                        decoration: BoxDecoration(
-                          color: AppColors.white,
-                          borderRadius: BorderRadius.circular(50)
-                              .r, // Half of the height for a fully rounded container
-                        ),
-                        child: AnyImageView(
-                          imagePath: Assets.svgWarning,
-                          boxFit: BoxFit.fitHeight,
-                          height: 30.h,
-                        ),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            )));
-  }*/
 }

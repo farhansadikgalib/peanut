@@ -7,10 +7,7 @@ import '../../../../data/remote/model/profile/profile_response.dart';
 class CompactHeader extends StatelessWidget {
   final ProfileResponse? profile;
 
-  const CompactHeader({
-    super.key,
-    this.profile,
-  });
+  const CompactHeader({super.key, this.profile});
 
   @override
   Widget build(BuildContext context) {
@@ -19,10 +16,7 @@ class CompactHeader extends StatelessWidget {
       padding: EdgeInsets.all(16.w),
       decoration: BoxDecoration(
         gradient: LinearGradient(
-          colors: [
-            AppColors.primaryColor,
-            AppColors.secondaryColor,
-          ],
+          colors: [AppColors.primaryColor, AppColors.secondaryColor],
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
         ),
@@ -77,11 +71,7 @@ class CompactHeader extends StatelessWidget {
   Widget _buildBalanceItem(String label, String value, IconData icon) {
     return Column(
       children: [
-        Icon(
-          icon,
-          color: AppColors.white.withValues(alpha: 0.9),
-          size: 18.r,
-        ),
+        Icon(icon, color: AppColors.white.withValues(alpha: 0.9), size: 18.r),
         SizedBox(height: 6.h),
         Text(
           label,

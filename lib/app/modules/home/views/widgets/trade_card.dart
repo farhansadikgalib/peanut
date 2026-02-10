@@ -8,17 +8,18 @@ import '../../../../data/remote/model/home/trade_response.dart';
 class TradeCard extends StatelessWidget {
   final Trade trade;
 
-  const TradeCard({
-    super.key,
-    required this.trade,
-  });
+  const TradeCard({super.key, required this.trade});
 
   @override
   Widget build(BuildContext context) {
     final isProfitable = (trade.profit ?? 0.0) >= 0;
-    final profitColor = isProfitable ? AppColors.successGreen : AppColors.dangerRed;
+    final profitColor = isProfitable
+        ? AppColors.successGreen
+        : AppColors.dangerRed;
     final tradeType = trade.getTradeType();
-    final tradeTypeColor = tradeType == "BUY" ? AppColors.successGreen : AppColors.dangerRed;
+    final tradeTypeColor = tradeType == "BUY"
+        ? AppColors.successGreen
+        : AppColors.dangerRed;
 
     return Container(
       padding: EdgeInsets.all(14.w),

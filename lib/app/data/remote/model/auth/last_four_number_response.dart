@@ -9,21 +9,13 @@ String lastFourNumberResponseToJson(LastFourNumberResponse data) =>
 class LastFourNumberResponse {
   String? lastFourNumber;
 
-  LastFourNumberResponse({
-    this.lastFourNumber,
-  });
+  LastFourNumberResponse({this.lastFourNumber});
 
   factory LastFourNumberResponse.fromJson(Map<String, dynamic> json) =>
-      LastFourNumberResponse(
-        lastFourNumber: json["lastFourNumber"],
-      );
+      LastFourNumberResponse(lastFourNumber: json["lastFourNumber"]);
 
-  Map<String, dynamic> toJson() => {
-        "lastFourNumber": lastFourNumber,
-      };
+  Map<String, dynamic> toJson() => {"lastFourNumber": lastFourNumber};
 
-  /// Helper method to get masked display format
-  /// Example: "********5520"
   String getMaskedDisplay() {
     if (lastFourNumber == null || lastFourNumber!.isEmpty) {
       return '';
@@ -31,8 +23,6 @@ class LastFourNumberResponse {
     return '********$lastFourNumber';
   }
 
-  /// Helper method to get just the last 4 digits
-  /// Example: "5520"
   String getLastFourDigits() {
     return lastFourNumber ?? '';
   }

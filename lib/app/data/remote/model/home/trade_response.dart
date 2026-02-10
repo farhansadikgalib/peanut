@@ -9,9 +9,7 @@ String tradeListResponseToJson(TradeListResponse data) =>
 class TradeListResponse {
   List<Trade>? trades;
 
-  TradeListResponse({
-    this.trades,
-  });
+  TradeListResponse({this.trades});
 
   factory TradeListResponse.fromJson(Map<String, dynamic> json) =>
       TradeListResponse(
@@ -21,24 +19,21 @@ class TradeListResponse {
       );
 
   Map<String, dynamic> toJson() => {
-        "trades": trades == null
-            ? []
-            : List<dynamic>.from(trades!.map((x) => x.toJson())),
-      };
+    "trades": trades == null
+        ? []
+        : List<dynamic>.from(trades!.map((x) => x.toJson())),
+  };
 
-  /// Calculate total profit from all trades
   double getTotalProfit() {
     if (trades == null || trades!.isEmpty) return 0.0;
     return trades!.fold(0.0, (sum, trade) => sum + (trade.profit ?? 0.0));
   }
 
-  /// Get count of profitable trades
   int getProfitableTradesCount() {
     if (trades == null || trades!.isEmpty) return 0;
     return trades!.where((trade) => (trade.profit ?? 0.0) > 0).length;
   }
 
-  /// Get count of losing trades
   int getLosingTradesCount() {
     if (trades == null || trades!.isEmpty) return 0;
     return trades!.where((trade) => (trade.profit ?? 0.0) < 0).length;
@@ -77,49 +72,46 @@ class Trade {
   });
 
   factory Trade.fromJson(Map<String, dynamic> json) => Trade(
-        id: json["id"],
-        symbol: json["symbol"],
-        cmd: json["cmd"],
-        volume: json["volume"]?.toDouble(),
-        openPrice: json["openPrice"]?.toDouble(),
-        currentPrice: json["currentPrice"]?.toDouble(),
-        stopLoss: json["stopLoss"]?.toDouble(),
-        takeProfit: json["takeProfit"]?.toDouble(),
-        profit: json["profit"]?.toDouble(),
-        commission: json["commission"]?.toDouble(),
-        swap: json["swap"]?.toDouble(),
-        openTime: json["openTime"],
-        comment: json["comment"],
-      );
+    id: json["id"],
+    symbol: json["symbol"],
+    cmd: json["cmd"],
+    volume: json["volume"]?.toDouble(),
+    openPrice: json["openPrice"]?.toDouble(),
+    currentPrice: json["currentPrice"]?.toDouble(),
+    stopLoss: json["stopLoss"]?.toDouble(),
+    takeProfit: json["takeProfit"]?.toDouble(),
+    profit: json["profit"]?.toDouble(),
+    commission: json["commission"]?.toDouble(),
+    swap: json["swap"]?.toDouble(),
+    openTime: json["openTime"],
+    comment: json["comment"],
+  );
 
   Map<String, dynamic> toJson() => {
-        "id": id,
-        "symbol": symbol,
-        "cmd": cmd,
-        "volume": volume,
-        "openPrice": openPrice,
-        "currentPrice": currentPrice,
-        "stopLoss": stopLoss,
-        "takeProfit": takeProfit,
-        "profit": profit,
-        "commission": commission,
-        "swap": swap,
-        "openTime": openTime,
-        "comment": comment,
-      };
+    "id": id,
+    "symbol": symbol,
+    "cmd": cmd,
+    "volume": volume,
+    "openPrice": openPrice,
+    "currentPrice": currentPrice,
+    "stopLoss": stopLoss,
+    "takeProfit": takeProfit,
+    "profit": profit,
+    "commission": commission,
+    "swap": swap,
+    "openTime": openTime,
+    "comment": comment,
+  };
 
-  /// Get trade type as string
   String getTradeType() {
     if (cmd == null) return "Unknown";
     return cmd == 0 ? "BUY" : "SELL";
   }
 
-  /// Check if trade is profitable
   bool isProfitable() {
     return (profit ?? 0.0) > 0;
   }
 
-  /// Get profit with sign
   String getProfitWithSign() {
     final profitValue = profit ?? 0.0;
     if (profitValue > 0) {

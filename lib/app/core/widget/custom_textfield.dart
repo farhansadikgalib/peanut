@@ -86,7 +86,6 @@ class _CustomTextFieldState extends State<CustomTextField>
     try {
       final theme = Theme.of(context);
       final scaffold = theme.scaffoldBackgroundColor;
-      // Check if scaffold background is black or very dark
       if (scaffold == AppColors.black || scaffold.computeLuminance() < 0.1) {
         return true;
       }
@@ -104,20 +103,16 @@ class _CustomTextFieldState extends State<CustomTextField>
         AnimatedBuilder(
           animation: _colorAnimation,
           builder: (context, child) {
-            // Check if we're in a dark context (black background)
             final isDarkTheme = _isDarkContext(context);
-            
+
             return Container(
               height: 56.h,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(14.r),
-                color: isDarkTheme 
+                color: isDarkTheme
                     ? Color(0xFF151920).withValues(alpha: 0.6)
                     : AppColors.inputBackground,
-                border: Border.all(
-                  color: AppColors.primaryColor,
-                  width: 2,
-                ),
+                border: Border.all(color: AppColors.primaryColor, width: 2),
                 boxShadow: [
                   BoxShadow(
                     color: AppColors.primaryColor.withValues(alpha: 0.3),
@@ -158,16 +153,16 @@ class _CustomTextFieldState extends State<CustomTextField>
                   hintText: widget.hintText ?? widget.labelText,
                   hintStyle: TextStyle(
                     fontSize: 16.sp,
-                    color: isDarkTheme 
-                        ? AppColors.darkTextMuted 
+                    color: isDarkTheme
+                        ? AppColors.darkTextMuted
                         : AppColors.subtleGray,
                     fontWeight: FontWeight.w400,
                   ),
                   labelText: widget.labelText,
                   labelStyle: TextStyle(
                     fontSize: 14.sp,
-                    color: isDarkTheme 
-                        ? AppColors.darkTextSecondary 
+                    color: isDarkTheme
+                        ? AppColors.darkTextSecondary
                         : AppColors.subtleGray,
                     fontWeight: FontWeight.w400,
                   ),
@@ -176,8 +171,8 @@ class _CustomTextFieldState extends State<CustomTextField>
                     color: AppColors.primaryColor,
                     fontWeight: FontWeight.w600,
                   ),
-                  floatingLabelBehavior: widget.labelText != null 
-                      ? FloatingLabelBehavior.auto 
+                  floatingLabelBehavior: widget.labelText != null
+                      ? FloatingLabelBehavior.auto
                       : FloatingLabelBehavior.never,
                   prefixIcon: widget.prefixIcon != null
                       ? Padding(
@@ -224,8 +219,8 @@ class _CustomTextFieldState extends State<CustomTextField>
                   helperText: widget.helperText,
                   helperStyle: TextStyle(
                     fontSize: 12.sp,
-                    color: isDarkTheme 
-                        ? AppColors.darkTextSecondary 
+                    color: isDarkTheme
+                        ? AppColors.darkTextSecondary
                         : AppColors.subtleGray,
                     fontWeight: FontWeight.w400,
                   ),
@@ -251,7 +246,6 @@ class _CustomTextFieldState extends State<CustomTextField>
   }
 }
 
-/// Legacy function-based widget for backward compatibility
 Widget commonTextField({
   required String labelText,
   required IconData icon,

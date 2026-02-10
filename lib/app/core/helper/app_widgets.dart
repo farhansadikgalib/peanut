@@ -102,8 +102,9 @@ class AppWidgets {
     bool isCenterAlign = true,
   }) {
     return Row(
-      mainAxisAlignment:
-          isCenterAlign ? MainAxisAlignment.center : MainAxisAlignment.end,
+      mainAxisAlignment: isCenterAlign
+          ? MainAxisAlignment.center
+          : MainAxisAlignment.end,
       children: [
         Text(
           isPrefixTextRequired ? prefixText : "",
@@ -119,14 +120,16 @@ class AppWidgets {
           },
           child: Text(
             title,
-            style: textRegularStyle(
-              color: textColor,
-              fontWeight: fontWeight,
-              fontSize: fontSize.sp,
-            ).copyWith(
-              decoration:
-                  isUnderline ? TextDecoration.underline : TextDecoration.none,
-            ),
+            style:
+                textRegularStyle(
+                  color: textColor,
+                  fontWeight: fontWeight,
+                  fontSize: fontSize.sp,
+                ).copyWith(
+                  decoration: isUnderline
+                      ? TextDecoration.underline
+                      : TextDecoration.none,
+                ),
           ),
         ),
       ],
@@ -208,7 +211,6 @@ class AppWidgets {
       ),
     );
   }
-
 
   Widget settingScreenFocusedTextWithSwitch(text, switchValue) {
     return Container(
@@ -348,7 +350,9 @@ class AppWidgets {
       radius: 10,
       actions: [
         TextButton(
-          style: TextButton.styleFrom(backgroundColor: AppColors.splashBlueButton),
+          style: TextButton.styleFrom(
+            backgroundColor: AppColors.splashBlueButton,
+          ),
           child: const Text("Ok", style: TextStyle(color: AppColors.white)),
           onPressed: () => Get.back(),
         ),

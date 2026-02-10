@@ -20,7 +20,9 @@ class ProfitSummaryCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final isProfitable = totalProfit >= 0;
-    final profitColor = isProfitable ? AppColors.successGreen : AppColors.dangerRed;
+    final profitColor = isProfitable
+        ? AppColors.successGreen
+        : AppColors.dangerRed;
 
     return Container(
       margin: EdgeInsets.fromLTRB(16.w, 0, 16.w, 16.h),
@@ -116,10 +118,7 @@ class ProfitSummaryCard extends StatelessWidget {
       decoration: BoxDecoration(
         color: color.withValues(alpha: 0.08),
         borderRadius: BorderRadius.circular(10.r),
-        border: Border.all(
-          color: color.withValues(alpha: 0.2),
-          width: 1,
-        ),
+        border: Border.all(color: color.withValues(alpha: 0.2), width: 1),
       ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,

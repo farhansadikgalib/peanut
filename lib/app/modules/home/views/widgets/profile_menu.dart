@@ -22,10 +22,7 @@ class ProfileMenu {
 class ProfileMenuContent extends StatelessWidget {
   final ProfileResponse? profile;
 
-  const ProfileMenuContent({
-    super.key,
-    this.profile,
-  });
+  const ProfileMenuContent({super.key, this.profile});
 
   @override
   Widget build(BuildContext context) {
@@ -41,7 +38,6 @@ class ProfileMenuContent extends StatelessWidget {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            // Handle bar
             Container(
               margin: EdgeInsets.only(top: 12.h),
               width: 40.w,
@@ -56,7 +52,6 @@ class ProfileMenuContent extends StatelessWidget {
               padding: EdgeInsets.all(24.w),
               child: Column(
                 children: [
-                  // Profile Icon
                   Container(
                     width: 80.r,
                     height: 80.r,
@@ -87,7 +82,6 @@ class ProfileMenuContent extends StatelessWidget {
                   ),
                   SizedBox(height: 16.h),
 
-                  // User Name
                   Text(
                     profile?.name ?? 'Trader',
                     style: TextStyle(
@@ -98,9 +92,11 @@ class ProfileMenuContent extends StatelessWidget {
                   ),
                   SizedBox(height: 8.h),
 
-                  // User ID
                   Container(
-                    padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 8.h),
+                    padding: EdgeInsets.symmetric(
+                      horizontal: 16.w,
+                      vertical: 8.h,
+                    ),
                     decoration: BoxDecoration(
                       color: AppColors.primaryColor.withValues(alpha: 0.1),
                       borderRadius: BorderRadius.circular(20.r),
@@ -129,10 +125,9 @@ class ProfileMenuContent extends StatelessWidget {
                       ],
                     ),
                   ),
-          
+
                   SizedBox(height: 24.h),
 
-                  // Logout Button
                   InkWell(
                     onTap: () {
                       HapticHelper.heavy();

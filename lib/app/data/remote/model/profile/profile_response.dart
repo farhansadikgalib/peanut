@@ -1,8 +1,10 @@
 import 'dart:convert';
 
-ProfileResponse profileResponseFromJson(String str) => ProfileResponse.fromJson(json.decode(str));
+ProfileResponse profileResponseFromJson(String str) =>
+    ProfileResponse.fromJson(json.decode(str));
 
-String profileResponseToJson(ProfileResponse data) => json.encode(data.toJson());
+String profileResponseToJson(ProfileResponse data) =>
+    json.encode(data.toJson());
 
 class ProfileResponse {
   ExtensionData? extensionData;
@@ -49,28 +51,31 @@ class ProfileResponse {
     this.zipCode,
   });
 
-  factory ProfileResponse.fromJson(Map<String, dynamic> json) => ProfileResponse(
-    extensionData: json["extensionData"] == null ? null : ExtensionData.fromJson(json["extensionData"]),
-    address: json["address"],
-    balance: json["balance"]?.toDouble(),
-    city: json["city"],
-    country: json["country"],
-    currency: json["currency"],
-    currentTradesCount: json["currentTradesCount"],
-    currentTradesVolume: json["currentTradesVolume"],
-    equity: json["equity"]?.toDouble(),
-    freeMargin: json["freeMargin"]?.toDouble(),
-    isAnyOpenTrades: json["isAnyOpenTrades"],
-    isSwapFree: json["isSwapFree"],
-    leverage: json["leverage"],
-    name: json["name"],
-    phone: json["phone"],
-    totalTradesCount: json["totalTradesCount"],
-    totalTradesVolume: json["totalTradesVolume"],
-    type: json["type"],
-    verificationLevel: json["verificationLevel"],
-    zipCode: json["zipCode"],
-  );
+  factory ProfileResponse.fromJson(Map<String, dynamic> json) =>
+      ProfileResponse(
+        extensionData: json["extensionData"] == null
+            ? null
+            : ExtensionData.fromJson(json["extensionData"]),
+        address: json["address"],
+        balance: json["balance"]?.toDouble(),
+        city: json["city"],
+        country: json["country"],
+        currency: json["currency"],
+        currentTradesCount: json["currentTradesCount"],
+        currentTradesVolume: json["currentTradesVolume"],
+        equity: json["equity"]?.toDouble(),
+        freeMargin: json["freeMargin"]?.toDouble(),
+        isAnyOpenTrades: json["isAnyOpenTrades"],
+        isSwapFree: json["isSwapFree"],
+        leverage: json["leverage"],
+        name: json["name"],
+        phone: json["phone"],
+        totalTradesCount: json["totalTradesCount"],
+        totalTradesVolume: json["totalTradesVolume"],
+        type: json["type"],
+        verificationLevel: json["verificationLevel"],
+        zipCode: json["zipCode"],
+      );
 
   Map<String, dynamic> toJson() => {
     "extensionData": extensionData?.toJson(),
@@ -99,9 +104,7 @@ class ProfileResponse {
 class ExtensionData {
   ExtensionData();
 
-  factory ExtensionData.fromJson(Map<String, dynamic> json) => ExtensionData(
-  );
+  factory ExtensionData.fromJson(Map<String, dynamic> json) => ExtensionData();
 
-  Map<String, dynamic> toJson() => {
-  };
+  Map<String, dynamic> toJson() => {};
 }

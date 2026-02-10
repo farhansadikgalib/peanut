@@ -14,5 +14,4 @@ class AppConfig {
   static String get imageBasePath =>
       dotenv.get('IMAGE_BASE_PATH', fallback: '');
   static String get releaseDate => dotenv.get('RELEASE_DATE', fallback: '');
-
 }

@@ -79,9 +79,9 @@ class ApiClient {
 
     (dio!.httpClientAdapter as IOHttpClientAdapter).onHttpClientCreate =
         (client) {
-      client.badCertificateCallback = (cert, host, port) => true;
-      return client;
-    };
+          client.badCertificateCallback = (cert, host, port) => true;
+          return client;
+        };
 
     dio!.interceptors.add(_createInterceptor());
   }
@@ -119,9 +119,9 @@ class ApiClient {
 
   /// Handle errors in the interceptor
   Future<void> _handleError(
-      DioException err,
-      ErrorInterceptorHandler handler,
-      ) async {
+    DioException err,
+    ErrorInterceptorHandler handler,
+  ) async {
     try {
       // Handle connection errors
       if (_isConnectionError(err.type)) {
@@ -209,7 +209,7 @@ class ApiClient {
           AppWidgets().getSnackBar(
             title: _infoTitle,
             message:
-            message ?? "Server temporarily unavailable. Please try again.",
+                message ?? "Server temporarily unavailable. Please try again.",
           );
           return handler.reject(err);
 
@@ -261,13 +261,13 @@ class ApiClient {
   }
 
   Future<Object?> get(
-      String url,
-      retry, {
-        Map<String, dynamic>? mQueryParameters,
-        Map<String, dynamic>? headers,
-        bool isLoaderRequired = false,
-        bool isHeaderRequired = false,
-      }) async {
+    String url,
+    retry, {
+    Map<String, dynamic>? mQueryParameters,
+    Map<String, dynamic>? headers,
+    bool isLoaderRequired = false,
+    bool isHeaderRequired = false,
+  }) async {
     if (isLoaderRequired) {
       AppHelper().showLoader();
     }
@@ -365,20 +365,20 @@ class ApiClient {
   }
 
   Future<Response?> post(
-      String url,
-      data,
-      retry, {
-        Map<String, dynamic>? headers,
-        bool isHeaderRequired = false,
-        bool isLoaderRequired = false,
-        bool isFormData = false,
-        bool isJsonEncodeRequired = true,
-        bool isFileUpload = false,
-        bool isMultipleFileUpload = false,
-        bool isMultipart = false,
-        bool isServiceCode = false,
-        Map<String, dynamic>? mQueryParameters,
-      }) async {
+    String url,
+    data,
+    retry, {
+    Map<String, dynamic>? headers,
+    bool isHeaderRequired = false,
+    bool isLoaderRequired = false,
+    bool isFormData = false,
+    bool isJsonEncodeRequired = true,
+    bool isFileUpload = false,
+    bool isMultipleFileUpload = false,
+    bool isMultipart = false,
+    bool isServiceCode = false,
+    Map<String, dynamic>? mQueryParameters,
+  }) async {
     if (isLoaderRequired) {
       AppHelper().showLoader();
     }
@@ -479,14 +479,14 @@ class ApiClient {
   }
 
   Future<Object?> put(
-      String url,
-      data,
-      retry, {
-        Map<String, dynamic>? headers,
-        bool isHeaderRequired = true,
-        bool isLoaderRequired = false,
-        Map<String, dynamic>? mQueryParameters,
-      }) async {
+    String url,
+    data,
+    retry, {
+    Map<String, dynamic>? headers,
+    bool isHeaderRequired = true,
+    bool isLoaderRequired = false,
+    Map<String, dynamic>? mQueryParameters,
+  }) async {
     if (isLoaderRequired) {
       AppHelper().showLoader();
     }
@@ -549,16 +549,16 @@ class ApiClient {
   }
 
   Future<Response?> delete(
-      String url,
-      data,
-      retry, {
-        Map<String, dynamic>? mQueryParameters,
-        Map<String, dynamic>? headers,
-        bool isHeaderRequired = false,
-        bool isLoaderRequired = false,
-        bool isFormData = false,
-        bool isJsonEncodeRequired = true,
-      }) async {
+    String url,
+    data,
+    retry, {
+    Map<String, dynamic>? mQueryParameters,
+    Map<String, dynamic>? headers,
+    bool isHeaderRequired = false,
+    bool isLoaderRequired = false,
+    bool isFormData = false,
+    bool isJsonEncodeRequired = true,
+  }) async {
     if (isLoaderRequired) {
       AppHelper().showLoader();
     }

@@ -7,10 +7,7 @@ import '../../../../data/remote/model/profile/profile_response.dart';
 class HomeHeader extends StatelessWidget {
   final ProfileResponse? profile;
 
-  const HomeHeader({
-    super.key,
-    this.profile,
-  });
+  const HomeHeader({super.key, this.profile});
 
   @override
   Widget build(BuildContext context) {
@@ -19,10 +16,7 @@ class HomeHeader extends StatelessWidget {
       padding: EdgeInsets.all(20.w),
       decoration: BoxDecoration(
         gradient: LinearGradient(
-          colors: [
-            AppColors.primaryColor,
-            AppColors.secondaryColor,
-          ],
+          colors: [AppColors.primaryColor, AppColors.secondaryColor],
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
         ),
@@ -70,19 +64,12 @@ class HomeHeader extends StatelessWidget {
                   color: AppColors.white.withValues(alpha: 0.2),
                   borderRadius: BorderRadius.circular(12.r),
                 ),
-                child: Icon(
-                  Icons.person,
-                  color: AppColors.white,
-                  size: 28.r,
-                ),
+                child: Icon(Icons.person, color: AppColors.white, size: 28.r),
               ),
             ],
           ),
           SizedBox(height: 20.h),
-          Divider(
-            color: AppColors.white.withValues(alpha: 0.3),
-            thickness: 1,
-          ),
+          Divider(color: AppColors.white.withValues(alpha: 0.3), thickness: 1),
           SizedBox(height: 16.h),
           Row(
             children: [

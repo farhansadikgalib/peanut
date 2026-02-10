@@ -22,24 +22,11 @@ class HomeController extends GetxController {
     loadInitialData();
   }
 
-  @override
-  void onReady() {
-    super.onReady();
-  }
-
-  @override
-  void onClose() {
-    super.onClose();
-  }
-
   /// Load initial data (profile and trades)
   Future<void> loadInitialData() async {
     isLoading.value = true;
     try {
-      await Future.wait([
-        fetchProfile(),
-        fetchTrades(),
-      ]);
+      await Future.wait([fetchProfile(), fetchTrades()]);
     } finally {
       isLoading.value = false;
     }
@@ -51,7 +38,8 @@ class HomeController extends GetxController {
       final response = await _profileRepository.profile();
       profile.value = response;
     } catch (e) {
-      print('Error fetching profile: $e');
+      // Error is already handled by the repository/API client
+      profile.value = null;
     }
   }
 
@@ -62,7 +50,7 @@ class HomeController extends GetxController {
       trades.value = response.trades ?? [];
       calculateTotalProfit();
     } catch (e) {
-      print('Error fetching trades: $e');
+      // Error is already handled by the repository/API client
       trades.value = [];
       totalProfit.value = 0.0;
     }
@@ -72,10 +60,7 @@ class HomeController extends GetxController {
   Future<void> refreshTrades() async {
     isRefreshing.value = true;
     try {
-      await Future.wait([
-        fetchProfile(),
-        fetchTrades(),
-      ]);
+      await Future.wait([fetchProfile(), fetchTrades()]);
     } finally {
       isRefreshing.value = false;
     }
@@ -87,7 +72,10 @@ class HomeController extends GetxController {
       totalProfit.value = 0.0;
       return;
     }
-    totalProfit.value = trades.fold(0.0, (sum, trade) => sum + (trade.profit ?? 0.0));
+    totalProfit.value = trades.fold(
+      0.0,
+      (sum, trade) => sum + (trade.profit ?? 0.0),
+    );
   }
 
   /// Get count of profitable trades

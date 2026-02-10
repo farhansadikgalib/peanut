@@ -15,10 +15,4 @@ final SharedValue<String> accessToken = SharedValue(
 
 // User Profile Data
 /// User's email address
-final SharedValue<String> userId = SharedValue(
-  value: "",
-  key: "userId",
-);
-
-
-
+final SharedValue<String> userId = SharedValue(value: "", key: "userId");

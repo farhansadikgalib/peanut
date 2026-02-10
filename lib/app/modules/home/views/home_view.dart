@@ -25,138 +25,130 @@ class HomeView extends GetView<HomeController> {
         }
       },
       child: Scaffold(
-      backgroundColor: AppColors.white,
-      appBar: AppBar(
         backgroundColor: AppColors.white,
-        elevation: 0,
-        title: Row(
-          children: [
-            Container(
-              padding: EdgeInsets.all(8.r),
-              decoration: BoxDecoration(
-                gradient: LinearGradient(
-                  colors: [
-                    AppColors.primaryColor,
-                    AppColors.secondaryColor,
-                  ],
-                  begin: Alignment.topLeft,
-                  end: Alignment.bottomRight,
-                ),
-                borderRadius: BorderRadius.circular(12.r),
-              ),
-              child: Icon(
-                Icons.trending_up,
-                color: AppColors.white,
-                size: 20.r,
-              ),
-            ),
-            SizedBox(width: 12.w),
-            Text(
-              'Peanut',
-              style: TextStyle(
-                fontSize: 20.sp,
-                fontWeight: FontWeight.w700,
-                color: AppColors.black,
-              ),
-            ),
-          ],
-        ),
-        actions: [
-          GestureDetector(
-            onTap: () {
-              HapticHelper.light();
-              ProfileMenu.show(context, controller.profile.value);
-            },
-            child: Container(
-              margin: EdgeInsets.only(right: 16.w),
-              padding: EdgeInsets.all(2.r),
-              decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                border: Border.all(
-                  color: AppColors.primaryColor,
-                  width: 2,
-                ),
-              ),
-              child: Container(
-                width: 36.r,
-                height: 36.r,
+        appBar: AppBar(
+          backgroundColor: AppColors.white,
+          elevation: 0,
+          title: Row(
+            children: [
+              Container(
+                padding: EdgeInsets.all(8.r),
                 decoration: BoxDecoration(
                   gradient: LinearGradient(
-                    colors: [
-                      AppColors.primaryColor,
-                      AppColors.secondaryColor,
-                    ],
+                    colors: [AppColors.primaryColor, AppColors.secondaryColor],
                     begin: Alignment.topLeft,
                     end: Alignment.bottomRight,
                   ),
-                  shape: BoxShape.circle,
+                  borderRadius: BorderRadius.circular(12.r),
                 ),
                 child: Icon(
-                  Icons.person,
+                  Icons.trending_up,
                   color: AppColors.white,
                   size: 20.r,
                 ),
               ),
-            ),
-          ),
-        ],
-      ),
-      body: Obx(() {
-        if (controller.isLoading.value) {
-          return _buildShimmerLoading();
-        }
-
-        return RefreshIndicator(
-          color: AppColors.primaryColor,
-          onRefresh: controller.refreshTrades,
-          child: CustomScrollView(
-            slivers: [
-              // Compact Header with balance info
-              SliverToBoxAdapter(
-                child: Obx(() => CompactHeader(
-                      profile: controller.profile.value,
-                    )),
+              SizedBox(width: 12.w),
+              Text(
+                'Peanut',
+                style: TextStyle(
+                  fontSize: 20.sp,
+                  fontWeight: FontWeight.w700,
+                  color: AppColors.black,
+                ),
               ),
+            ],
+          ),
+          actions: [
+            GestureDetector(
+              onTap: () {
+                HapticHelper.light();
+                ProfileMenu.show(context, controller.profile.value);
+              },
+              child: Container(
+                margin: EdgeInsets.only(right: 16.w),
+                padding: EdgeInsets.all(2.r),
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  border: Border.all(color: AppColors.primaryColor, width: 2),
+                ),
+                child: Container(
+                  width: 36.r,
+                  height: 36.r,
+                  decoration: BoxDecoration(
+                    gradient: LinearGradient(
+                      colors: [
+                        AppColors.primaryColor,
+                        AppColors.secondaryColor,
+                      ],
+                      begin: Alignment.topLeft,
+                      end: Alignment.bottomRight,
+                    ),
+                    shape: BoxShape.circle,
+                  ),
+                  child: Icon(Icons.person, color: AppColors.white, size: 20.r),
+                ),
+              ),
+            ),
+          ],
+        ),
+        body: Obx(() {
+          if (controller.isLoading.value) {
+            return _buildShimmerLoading();
+          }
 
-              // Profit Summary Card
-              SliverToBoxAdapter(
-                child: Obx(() => ProfitSummaryCard(
+          return RefreshIndicator(
+            color: AppColors.primaryColor,
+            onRefresh: controller.refreshTrades,
+            child: CustomScrollView(
+              slivers: [
+                SliverToBoxAdapter(
+                  child: Obx(
+                    () => CompactHeader(profile: controller.profile.value),
+                  ),
+                ),
+
+                SliverToBoxAdapter(
+                  child: Obx(
+                    () => ProfitSummaryCard(
                       totalProfit: controller.totalProfit.value,
                       profitableCount: controller.getProfitableTradesCount(),
                       losingCount: controller.getLosingTradesCount(),
                       totalTrades: controller.trades.length,
-                    )),
-              ),
+                    ),
+                  ),
+                ),
 
-              // Section Title
-              SliverToBoxAdapter(
-                child: Padding(
-                  padding: EdgeInsets.fromLTRB(16.w, 8.h, 16.w, 12.h),
-                  child: Row(
-                    children: [
-                      Container(
-                        padding: EdgeInsets.all(6.r),
-                        decoration: BoxDecoration(
-                          color: AppColors.primaryColor.withValues(alpha: 0.1),
-                          borderRadius: BorderRadius.circular(8.r),
+                SliverToBoxAdapter(
+                  child: Padding(
+                    padding: EdgeInsets.fromLTRB(16.w, 8.h, 16.w, 12.h),
+                    child: Row(
+                      children: [
+                        Container(
+                          padding: EdgeInsets.all(6.r),
+                          decoration: BoxDecoration(
+                            color: AppColors.primaryColor.withValues(
+                              alpha: 0.1,
+                            ),
+                            borderRadius: BorderRadius.circular(8.r),
+                          ),
+                          child: Icon(
+                            Icons.show_chart,
+                            color: AppColors.primaryColor,
+                            size: 16.r,
+                          ),
                         ),
-                        child: Icon(
-                          Icons.show_chart,
-                          color: AppColors.primaryColor,
-                          size: 16.r,
+                        SizedBox(width: 10.w),
+                        Text(
+                          'Open Trades',
+                          style: TextStyle(
+                            fontSize: 16.sp,
+                            fontWeight: FontWeight.w700,
+                            color: AppColors.black,
+                          ),
                         ),
-                      ),
-                      SizedBox(width: 10.w),
-                      Text(
-                        'Open Trades',
-                        style: TextStyle(
-                          fontSize: 16.sp,
-                          fontWeight: FontWeight.w700,
-                          color: AppColors.black,
-                        ),
-                      ),
-                      SizedBox(width: 8.w),
-                      Obx(() => Container(
+                        SizedBox(width: 8.w),
+                        Obx(
+                          () => Container(
                             padding: EdgeInsets.symmetric(
                               horizontal: 8.w,
                               vertical: 3.h,
@@ -173,68 +165,67 @@ class HomeView extends GetView<HomeController> {
                                 color: AppColors.white,
                               ),
                             ),
-                          )),
-                    ],
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
-              ),
 
-              // Trades List
-              Obx(() {
-                if (controller.trades.isEmpty) {
-                  return SliverFillRemaining(
-                    child: Center(
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Icon(
-                            Icons.trending_up,
-                            size: 64.r,
-                            color: AppColors.textColor.withValues(alpha: 0.3),
-                          ),
-                          SizedBox(height: 16.h),
-                          Text(
-                            'No Open Trades',
-                            style: TextStyle(
-                              fontSize: 18.sp,
-                              fontWeight: FontWeight.w600,
-                              color: AppColors.textColor,
+                Obx(() {
+                  if (controller.trades.isEmpty) {
+                    return SliverFillRemaining(
+                      child: Center(
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Icon(
+                              Icons.trending_up,
+                              size: 64.r,
+                              color: AppColors.textColor.withValues(alpha: 0.3),
                             ),
-                          ),
-                          SizedBox(height: 8.h),
-                          Text(
-                            'Your trades will appear here',
-                            style: TextStyle(
-                              fontSize: 14.sp,
-                              color: AppColors.textColor.withValues(alpha: 0.7),
+                            SizedBox(height: 16.h),
+                            Text(
+                              'No Open Trades',
+                              style: TextStyle(
+                                fontSize: 18.sp,
+                                fontWeight: FontWeight.w600,
+                                color: AppColors.textColor,
+                              ),
                             ),
-                          ),
-                        ],
+                            SizedBox(height: 8.h),
+                            Text(
+                              'Your trades will appear here',
+                              style: TextStyle(
+                                fontSize: 14.sp,
+                                color: AppColors.textColor.withValues(
+                                  alpha: 0.7,
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
-                    ),
-                  );
-                }
+                    );
+                  }
 
-                return SliverPadding(
-                  padding: EdgeInsets.fromLTRB(16.w, 0, 16.w, 20.h),
-                  sliver: SliverList(
-                    delegate: SliverChildBuilderDelegate(
-                      (context, index) {
+                  return SliverPadding(
+                    padding: EdgeInsets.fromLTRB(16.w, 0, 16.w, 20.h),
+                    sliver: SliverList(
+                      delegate: SliverChildBuilderDelegate((context, index) {
                         final trade = controller.trades[index];
                         return Padding(
                           padding: EdgeInsets.only(bottom: 10.h),
                           child: TradeCard(trade: trade),
                         );
-                      },
-                      childCount: controller.trades.length,
+                      }, childCount: controller.trades.length),
                     ),
-                  ),
-                );
-              }),
-            ],
-          ),
-        );
-      }),
+                  );
+                }),
+              ],
+            ),
+          );
+        }),
       ),
     );
   }
@@ -247,7 +238,6 @@ class HomeView extends GetView<HomeController> {
       child: SingleChildScrollView(
         child: Column(
           children: [
-            // Shimmer for Compact Header
             Container(
               height: 80.h,
               margin: EdgeInsets.fromLTRB(16.w, 16.h, 16.w, 16.h),
@@ -257,7 +247,6 @@ class HomeView extends GetView<HomeController> {
               ),
             ),
 
-            // Shimmer for Profit Summary
             Container(
               height: 120.h,
               margin: EdgeInsets.fromLTRB(16.w, 0, 16.w, 16.h),
@@ -267,7 +256,6 @@ class HomeView extends GetView<HomeController> {
               ),
             ),
 
-            // Section Title Shimmer
             Padding(
               padding: EdgeInsets.fromLTRB(16.w, 8.h, 16.w, 12.h),
               child: Row(
@@ -302,7 +290,6 @@ class HomeView extends GetView<HomeController> {
               ),
             ),
 
-            // Shimmer for Trade Cards
             ...List.generate(
               5,
               (index) => Container(
@@ -319,5 +306,4 @@ class HomeView extends GetView<HomeController> {
       ),
     );
   }
-
 }

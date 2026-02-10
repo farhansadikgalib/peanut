@@ -6,10 +6,7 @@ class AuthRepository {
   Future<LoginResponse> login(String login, String password) async {
     var response = await ApiClient().post(
       ApiEndPoints.isAccountCredentialsCorrect,
-      {
-        "login":  login,
-        "password": password,
-      },
+      {"login": login, "password": password},
       login,
       isHeaderRequired: false,
       isLoaderRequired: true,

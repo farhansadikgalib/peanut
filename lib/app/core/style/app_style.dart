@@ -8,11 +8,7 @@ TextStyle textHeaderStyle({
   double fontSize = 30,
   fontWeight = FontWeight.w700,
 }) {
-  return TextStyle(
-    fontSize: fontSize.sp,
-    color: color,
-    fontWeight: fontWeight,
-  );
+  return TextStyle(fontSize: fontSize.sp, color: color, fontWeight: fontWeight);
 }
 
 TextStyle textAppBarStyle({
@@ -71,11 +67,7 @@ TextStyle textButtonStyle({
   double fontSize = 18,
   fontWeight = FontWeight.w600,
 }) {
-  return TextStyle(
-    fontSize: fontSize.sp,
-    color: color,
-    fontWeight: fontWeight,
-  );
+  return TextStyle(fontSize: fontSize.sp, color: color, fontWeight: fontWeight);
 }
 
 TextStyle textLineStyle({
@@ -83,11 +75,7 @@ TextStyle textLineStyle({
   double fontSize = 13,
   fontWeight = FontWeight.w600,
 }) {
-  return TextStyle(
-    fontSize: fontSize.sp,
-    color: color,
-    fontWeight: fontWeight,
-  );
+  return TextStyle(fontSize: fontSize.sp, color: color, fontWeight: fontWeight);
 }
 
 final hintStyle = TextStyle(
@@ -129,11 +117,7 @@ TextStyle splashButtonTextStyle({
   double fontSize = 14,
   fontWeight = FontWeight.w600,
 }) {
-  return TextStyle(
-    fontSize: fontSize.sp,
-    color: color,
-    fontWeight: fontWeight,
-  );
+  return TextStyle(fontSize: fontSize.sp, color: color, fontWeight: fontWeight);
 }
 
 // Pricing screen text styles
@@ -142,11 +126,7 @@ TextStyle pricingTitleStyle({
   double fontSize = 18,
   fontWeight = FontWeight.w700,
 }) {
-  return TextStyle(
-    fontSize: fontSize.sp,
-    color: color,
-    fontWeight: fontWeight,
-  );
+  return TextStyle(fontSize: fontSize.sp, color: color, fontWeight: fontWeight);
 }
 
 TextStyle pricingSubtitleStyle({
@@ -167,11 +147,7 @@ TextStyle pricingTierNameStyle({
   double fontSize = 16,
   fontWeight = FontWeight.w700,
 }) {
-  return TextStyle(
-    fontSize: fontSize.sp,
-    color: color,
-    fontWeight: fontWeight,
-  );
+  return TextStyle(fontSize: fontSize.sp, color: color, fontWeight: fontWeight);
 }
 
 TextStyle pricingTierPriceStyle({
@@ -179,11 +155,7 @@ TextStyle pricingTierPriceStyle({
   double fontSize = 16,
   fontWeight = FontWeight.w600,
 }) {
-  return TextStyle(
-    fontSize: fontSize.sp,
-    color: color,
-    fontWeight: fontWeight,
-  );
+  return TextStyle(fontSize: fontSize.sp, color: color, fontWeight: fontWeight);
 }
 
 TextStyle pricingFeatureTextStyle({
@@ -204,9 +176,5 @@ TextStyle pricingFeatureBoldStyle({
   double fontSize = 13,
   fontWeight = FontWeight.w600,
 }) {
-  return TextStyle(
-    fontSize: fontSize.sp,
-    color: color,
-    fontWeight: fontWeight,
-  );
+  return TextStyle(fontSize: fontSize.sp, color: color, fontWeight: fontWeight);
 }

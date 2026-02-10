@@ -33,9 +33,7 @@ class ProfileRepository {
 
   /// Returns mock last four number data for testing/fallback
   LastFourNumberResponse _getMockLastFourNumberData() {
-    return LastFourNumberResponse(
-      lastFourNumber: "5520",
-    );
+    return LastFourNumberResponse(lastFourNumber: "5520");
   }
 
   /// Check if response indicates access denied or error
@@ -51,10 +49,7 @@ class ProfileRepository {
     try {
       var response = await ApiClient().post(
         ApiEndPoints.getAccountInformation,
-        {
-          "login": userId.$,
-          "token": accessToken.$,
-        },
+        {"login": userId.$, "token": accessToken.$},
         profile,
         isHeaderRequired: false,
         isLoaderRequired: true,
@@ -78,10 +73,7 @@ class ProfileRepository {
     try {
       var response = await ApiClient().post(
         ApiEndPoints.getLastFourNumbersPhone,
-        {
-          "login": userId.$,
-          "token": accessToken.$,
-        },
+        {"login": userId.$, "token": accessToken.$},
         getLastFourNumber,
         isHeaderRequired: false,
         isLoaderRequired: true,
@@ -105,10 +97,7 @@ class ProfileRepository {
     try {
       var response = await ApiClient().post(
         ApiEndPoints.getLastFourNumbersPhone,
-        {
-          "login": userId.$,
-          "token": accessToken.$,
-        },
+        {"login": userId.$, "token": accessToken.$},
         getCardNumber,
         isHeaderRequired: false,
         isLoaderRequired: true,
