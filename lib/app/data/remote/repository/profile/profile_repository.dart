@@ -7,7 +7,7 @@ import '../../../../core/services/network/api_end_points.dart';
 class ProfileRepository {
   Future<ProfileResponse> profile() async {
     var response = await ApiClient().post(
-      ApiEndPoints.login,
+      ApiEndPoints.getAccountInformation,
       {
         "login":  userId.$,
         "token":  accessToken.$,

@@ -20,32 +20,25 @@ class AppLogo extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        // Logo icon
+        // Logo icon - using actual logo asset
         Container(
           width: logoSize ?? 80.r,
           height: logoSize ?? 80.r,
           decoration: BoxDecoration(
-            gradient: LinearGradient(
-              colors: [
-                AppColors.primaryColor,
-                AppColors.infoCyan,
-              ],
-              begin: Alignment.topLeft,
-              end: Alignment.bottomRight,
-            ),
-            borderRadius: BorderRadius.circular(16.r),
             boxShadow: [
               BoxShadow(
-                color: AppColors.primaryColor.withValues(alpha: 0.4),
-                blurRadius: 20,
+                color: AppColors.primaryColor.withValues(alpha: 0.3),
+                blurRadius: 24,
                 spreadRadius: 0,
+                offset: const Offset(0, 8),
               ),
             ],
           ),
-          child: Icon(
-            Icons.trending_up_rounded,
-            color: AppColors.white,
-            size: iconSize ?? 48.r,
+          child: Image.asset(
+            'assets/png/logo.png',
+            width: logoSize ?? 80.r,
+            height: logoSize ?? 80.r,
+            fit: BoxFit.contain,
           ),
         ),
         SizedBox(height: 16.h),

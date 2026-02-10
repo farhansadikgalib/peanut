@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
 
 class AppColors {
-  // Primary Brand Colors
-  /// Main brand color - blue (#0066FF)
-  static const primaryColor = Color(0xFF0066FF);
+  // Primary Brand Colors - Based on Logo Red
+  /// Main brand color - vibrant red from logo (#E63946)
+  static const primaryColor = Color(0xFFE63946);
   
-  /// Secondary brand color - light green (#F4FCEF)
-  static const secondaryColor = Color(0xffF4fcef);
+  /// Secondary brand color - lighter red (#FF6B6B)
+  static const secondaryColor = Color(0xFFFF6B6B);
   
-  /// Accent color for highlights (#EAFFCD)
-  static const primaryAccentColor = Color(0xFFEAFFCD);
+  /// Accent color for highlights - deep red (#D62828)
+  static const primaryAccentColor = Color(0xFFD62828);
   
   /// Default button color (matches primary)
-  static const buttonColor = Color(0xFF0066FF);
+  static const buttonColor = Color(0xFFE63946);
   
   // Text Colors
   /// Secondary text color - gray (#919199)
@@ -33,8 +33,8 @@ class AppColors {
   static const gray = Color(0xFFE5E5E5);
 
   // Splash Screen Colors
-  /// Blue button on splash screen
-  static const splashBlueButton = Color(0xFF0066FF);
+  /// Primary red button on splash screen
+  static const splashBlueButton = Color(0xFFE63946);
   
   /// Dark button on splash screen (#2C3E40)
   static const splashDarkButton = Color(0xFF2C3E40);
@@ -80,14 +80,14 @@ class AppColors {
   /// Border color for input fields (#E2E8F0)
   static const inputBorder = Color(0xFFE2E8F0);
 
-  /// Focus border color (#0066FF)
-  static const focusBorder = Color(0xFF0066FF);
+  /// Focus border color - primary red
+  static const focusBorder = Color(0xFFE63946);
 
   /// Error color (#DC2626)
   static const errorColor = Color(0xFFDC2626);
 
-  /// Light blue background (#EFF6FF)
-  static const lightBlue = Color(0xFFEFF6FF);
+  /// Light red background for cards and sections
+  static const lightRed = Color(0xFFFFF0F0);
 
   /// Subtle gray for secondary elements (#71717A)
   static const subtleGray = Color(0xFF71717A);

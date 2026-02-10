@@ -1,8 +1,8 @@
 class ApiEndPoints {
   ApiEndPoints._();
 
-  static const String login = 'IsAccountCredentialsCorrect';
-  static const String profile = 'GetAccountInformation';
+  static const String isAccountCredentialsCorrect = 'IsAccountCredentialsCorrect';
+  static const String getAccountInformation = 'GetAccountInformation';
 
   static String addonServiceDetails(int id) => 'checkr-requests/$id';
 }

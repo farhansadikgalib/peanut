@@ -53,6 +53,19 @@ Future<void> main() async {
               useMaterial3: false,
               canvasColor: Colors.white,
               primaryColor: AppColors.primaryColor,
+              colorScheme: ColorScheme.fromSeed(
+                seedColor: AppColors.primaryColor,
+                primary: AppColors.primaryColor,
+                secondary: AppColors.secondaryColor,
+              ),
+              appBarTheme: AppBarTheme(
+                backgroundColor: AppColors.primaryColor,
+                foregroundColor: AppColors.white,
+                elevation: 0,
+              ),
+              floatingActionButtonTheme: FloatingActionButtonThemeData(
+                backgroundColor: AppColors.primaryColor,
+              ),
             ),
             defaultTransition: transition,
             getPages: AppPages.routes,

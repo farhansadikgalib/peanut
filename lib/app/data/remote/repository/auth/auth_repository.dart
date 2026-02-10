@@ -5,7 +5,7 @@ import '../../model/auth/login_response.dart';
 class AuthRepository {
   Future<LoginResponse> login(String login, String password) async {
     var response = await ApiClient().post(
-      ApiEndPoints.login,
+      ApiEndPoints.isAccountCredentialsCorrect,
       {
         "login":  login,
         "password": password,

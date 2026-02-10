@@ -209,58 +209,6 @@ class AppWidgets {
     );
   }
 
-  // Widget settingScreenFocusedTextWithSwitch(text,switchValue){
-  //   return  Container(
-  //     width: Get.width,
-  //     height: 35.h,
-  //     decoration: const BoxDecoration(
-  //         color: AppColors.white
-  //     ),
-  //     child: Row(
-  //       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-  //       children: [
-  //         Padding(
-  //           padding: const EdgeInsets.only(left: 12),
-  //           child: Text(text,style: textRegularStyle(isWhiteColor: false,fontSize: 16),textAlign: TextAlign.start,),
-  //         ),
-  //         Switch(
-  //           inactiveTrackColor: AppColors.grayDark,
-  //           activeColor: AppColors.textDeepBlue,
-  //           value: switchValue,
-  //           onChanged: (value) {
-  //            switchValue = value;
-  //           },
-  //         ),
-  //       ],
-  //     ),
-  //   );
-
-  // }
-  // Widget settingScreenFocusedTextWithIcon(text){
-  //   return Container(
-  //     width: double.infinity,
-  //     height: 35.h,
-  //     decoration: const BoxDecoration(
-  //         color: AppColors.white
-  //     ),
-  //     child: Column(
-  //       mainAxisAlignment: MainAxisAlignment.center,
-  //       crossAxisAlignment: CrossAxisAlignment.start,
-  //       children: [
-  //         Padding(
-  //           padding: const EdgeInsets.only(left: 12,right: 12),
-  //           child: Row(
-  //             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-  //             children: [
-  //                Text(text,style: textRegularStyle(isWhiteColor: false,fontSize: 15,fontWeight: FontWeight.normal),textAlign: TextAlign.start,),
-  //               const Icon(Icons.arrow_forward_ios,color: AppColors.white,size: 16,)
-  //             ],
-  //           ),
-  //         ),
-  //       ],
-  //     ),
-  //   );
-  // }
 
   Widget settingScreenFocusedTextWithSwitch(text, switchValue) {
     return Container(
