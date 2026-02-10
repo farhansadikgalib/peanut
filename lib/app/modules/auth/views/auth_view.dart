@@ -17,32 +17,34 @@ class AuthView extends GetView<AuthController> {
     return Scaffold(
       backgroundColor: AppColors.white,
       body: SafeArea(
-        child: SingleChildScrollView(
-          child: Padding(
-            padding: EdgeInsets.symmetric(horizontal: 32.w, vertical: 60.h),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                // Header Section
-                Hero(
-                  tag: 'app_logo',
-                  child: const AppLogo(
-                    slogan: 'Trade Smart, Trade Secure',
+        child: Center(
+          child: SingleChildScrollView(
+            child: Padding(
+              padding: EdgeInsets.symmetric(horizontal: 32.w, vertical: 60.h),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  // Header Section
+                  Hero(
+                    tag: 'app_logo',
+                    child: const AppLogo(
+                      slogan: 'Trade Smart, Trade Secure',
+                    ),
                   ),
-                ),
-                AppWidgets().gapH(32),
+                  AppWidgets().gapH(32),
 
-                // Login Form
-                const AuthLoginForm(),
-                AppWidgets().gapH(32),
+                  // Login Form
+                  const AuthLoginForm(),
+                  AppWidgets().gapH(32),
 
-                // Login Button
-                CustomButton(
-                  text: 'Sign In',
-                  onTap: () => controller.signIn(),
-                ),
-              ],
+                  // Login Button
+                  CustomButton(
+                    text: 'Sign In',
+                    onTap: () => controller.signIn(),
+                  ),
+                ],
+              ),
             ),
           ),
         ),
