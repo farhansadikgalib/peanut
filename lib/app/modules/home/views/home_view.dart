@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
-import '../../../core/helper/app_helper.dart';
 import '../../../core/style/app_colors.dart';
 import '../controllers/home_controller.dart';
-import 'widgets/home_header.dart';
+import 'widgets/compact_header.dart';
 import 'widgets/profit_summary_card.dart';
+import 'widgets/profile_menu.dart';
 import 'widgets/trade_card.dart';
 
 class HomeView extends GetView<HomeController> {
@@ -19,24 +19,74 @@ class HomeView extends GetView<HomeController> {
       appBar: AppBar(
         backgroundColor: AppColors.white,
         elevation: 0,
-        title: Text(
-          'Trading Dashboard',
-          style: TextStyle(
-            fontSize: 20.sp,
-            fontWeight: FontWeight.w700,
-            color: AppColors.black,
-          ),
+        title: Row(
+          children: [
+            Container(
+              padding: EdgeInsets.all(8.r),
+              decoration: BoxDecoration(
+                gradient: LinearGradient(
+                  colors: [
+                    AppColors.primaryColor,
+                    AppColors.secondaryColor,
+                  ],
+                  begin: Alignment.topLeft,
+                  end: Alignment.bottomRight,
+                ),
+                borderRadius: BorderRadius.circular(12.r),
+              ),
+              child: Icon(
+                Icons.trending_up,
+                color: AppColors.white,
+                size: 20.r,
+              ),
+            ),
+            SizedBox(width: 12.w),
+            Text(
+              'Peanut',
+              style: TextStyle(
+                fontSize: 20.sp,
+                fontWeight: FontWeight.w700,
+                color: AppColors.black,
+              ),
+            ),
+          ],
         ),
         actions: [
-          IconButton(
-            icon: Icon(
-              Icons.logout,
-              color: AppColors.primaryColor,
-              size: 24.r,
-            ),
-            onPressed: () {
-              AppHelper().logout();
+          GestureDetector(
+            onTap: () {
+              ProfileMenu.show(context, controller.profile.value);
             },
+            child: Container(
+              margin: EdgeInsets.only(right: 16.w),
+              padding: EdgeInsets.all(2.r),
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                border: Border.all(
+                  color: AppColors.primaryColor,
+                  width: 2,
+                ),
+              ),
+              child: Container(
+                width: 36.r,
+                height: 36.r,
+                decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                    colors: [
+                      AppColors.primaryColor,
+                      AppColors.secondaryColor,
+                    ],
+                    begin: Alignment.topLeft,
+                    end: Alignment.bottomRight,
+                  ),
+                  shape: BoxShape.circle,
+                ),
+                child: Icon(
+                  Icons.person,
+                  color: AppColors.white,
+                  size: 20.r,
+                ),
+              ),
+            ),
           ),
         ],
       ),
@@ -54,11 +104,11 @@ class HomeView extends GetView<HomeController> {
           onRefresh: controller.refreshTrades,
           child: CustomScrollView(
             slivers: [
-              // Header with user info
+              // Compact Header with balance info
               SliverToBoxAdapter(
-                child: HomeHeader(
-                  profile: controller.profile.value,
-                ),
+                child: Obx(() => CompactHeader(
+                      profile: controller.profile.value,
+                    )),
               ),
 
               // Profit Summary Card
@@ -74,7 +124,7 @@ class HomeView extends GetView<HomeController> {
               // Section Title
               SliverToBoxAdapter(
                 child: Padding(
-                  padding: EdgeInsets.fromLTRB(20.w, 24.h, 20.w, 12.h),
+                  padding: EdgeInsets.fromLTRB(16.w, 20.h, 16.w, 12.h),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -136,13 +186,13 @@ class HomeView extends GetView<HomeController> {
                 }
 
                 return SliverPadding(
-                  padding: EdgeInsets.fromLTRB(20.w, 0, 20.w, 20.h),
+                  padding: EdgeInsets.fromLTRB(16.w, 0, 16.w, 20.h),
                   sliver: SliverList(
                     delegate: SliverChildBuilderDelegate(
                       (context, index) {
                         final trade = controller.trades[index];
                         return Padding(
-                          padding: EdgeInsets.only(bottom: 12.h),
+                          padding: EdgeInsets.only(bottom: 10.h),
                           child: TradeCard(trade: trade),
                         );
                       },

@@ -23,20 +23,20 @@ class ProfitSummaryCard extends StatelessWidget {
     final profitColor = isProfitable ? AppColors.successGreen : AppColors.dangerRed;
 
     return Container(
-      margin: EdgeInsets.symmetric(horizontal: 20.w),
-      padding: EdgeInsets.all(20.w),
+      margin: EdgeInsets.symmetric(horizontal: 16.w),
+      padding: EdgeInsets.all(16.w),
       decoration: BoxDecoration(
         color: AppColors.white,
-        borderRadius: BorderRadius.circular(16.r),
+        borderRadius: BorderRadius.circular(14.r),
         border: Border.all(
-          color: AppColors.gray.withValues(alpha: 0.3),
-          width: 1.5,
+          color: AppColors.primaryColor.withValues(alpha: 0.2),
+          width: 2,
         ),
         boxShadow: [
           BoxShadow(
-            color: AppColors.black.withValues(alpha: 0.05),
-            blurRadius: 10,
-            offset: Offset(0, 4),
+            color: AppColors.black.withValues(alpha: 0.04),
+            blurRadius: 8,
+            offset: Offset(0, 2),
             spreadRadius: 0,
           ),
         ],
@@ -82,22 +82,22 @@ class ProfitSummaryCard extends StatelessWidget {
               ),
             ],
           ),
-          SizedBox(height: 12.h),
+          SizedBox(height: 8.h),
           Text(
             _getFormattedProfit(),
             style: TextStyle(
-              fontSize: 32.sp,
+              fontSize: 28.sp,
               fontWeight: FontWeight.w800,
               color: profitColor,
               letterSpacing: -0.5,
             ),
           ),
-          SizedBox(height: 16.h),
+          SizedBox(height: 12.h),
           Divider(
             color: AppColors.gray.withValues(alpha: 0.3),
             thickness: 1,
           ),
-          SizedBox(height: 16.h),
+          SizedBox(height: 12.h),
           Row(
             children: [
               Expanded(

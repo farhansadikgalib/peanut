@@ -23,15 +23,15 @@ class TradeCard extends StatelessWidget {
     return Container(
       decoration: BoxDecoration(
         color: AppColors.white,
-        borderRadius: BorderRadius.circular(16.r),
+        borderRadius: BorderRadius.circular(14.r),
         border: Border.all(
           color: AppColors.primaryColor.withValues(alpha: 0.2),
           width: 2,
         ),
         boxShadow: [
           BoxShadow(
-            color: AppColors.black.withValues(alpha: 0.05),
-            blurRadius: 8,
+            color: AppColors.black.withValues(alpha: 0.04),
+            blurRadius: 6,
             offset: Offset(0, 2),
             spreadRadius: 0,
           ),
@@ -41,12 +41,12 @@ class TradeCard extends StatelessWidget {
         children: [
           // Header
           Container(
-            padding: EdgeInsets.all(16.w),
+            padding: EdgeInsets.all(12.w),
             decoration: BoxDecoration(
               color: AppColors.primaryColor.withValues(alpha: 0.05),
               borderRadius: BorderRadius.only(
-                topLeft: Radius.circular(14.r),
-                topRight: Radius.circular(14.r),
+                topLeft: Radius.circular(12.r),
+                topRight: Radius.circular(12.r),
               ),
             ),
             child: Row(
@@ -98,7 +98,7 @@ class TradeCard extends StatelessWidget {
 
           // Body
           Padding(
-            padding: EdgeInsets.all(16.w),
+            padding: EdgeInsets.all(12.w),
             child: Column(
               children: [
                 // Profit/Loss
@@ -108,7 +108,7 @@ class TradeCard extends StatelessWidget {
                     Text(
                       'Profit/Loss',
                       style: TextStyle(
-                        fontSize: 14.sp,
+                        fontSize: 13.sp,
                         fontWeight: FontWeight.w600,
                         color: AppColors.textColor,
                       ),
@@ -118,13 +118,13 @@ class TradeCard extends StatelessWidget {
                         Icon(
                           isProfitable ? Icons.arrow_upward : Icons.arrow_downward,
                           color: profitColor,
-                          size: 18.r,
+                          size: 16.r,
                         ),
                         SizedBox(width: 4.w),
                         Text(
                           trade.getProfitWithSign(),
                           style: TextStyle(
-                            fontSize: 20.sp,
+                            fontSize: 18.sp,
                             fontWeight: FontWeight.w800,
                             color: profitColor,
                           ),
@@ -133,7 +133,7 @@ class TradeCard extends StatelessWidget {
                     ),
                   ],
                 ),
-                SizedBox(height: 16.h),
+                SizedBox(height: 12.h),
 
                 // Price Info
                 Row(
@@ -155,7 +155,7 @@ class TradeCard extends StatelessWidget {
                     ),
                   ],
                 ),
-                SizedBox(height: 12.h),
+                SizedBox(height: 10.h),
 
                 Row(
                   children: [
@@ -166,7 +166,7 @@ class TradeCard extends StatelessWidget {
                         Icons.show_chart,
                       ),
                     ),
-                    SizedBox(width: 12.w),
+                    SizedBox(width: 10.w),
                     Expanded(
                       child: _buildInfoRow(
                         'S/L',
@@ -179,7 +179,7 @@ class TradeCard extends StatelessWidget {
 
                 // Open Time
                 if (trade.openTime != null) ...[
-                  SizedBox(height: 12.h),
+                  SizedBox(height: 10.h),
                   Divider(
                     color: AppColors.gray.withValues(alpha: 0.3),
                     thickness: 1,
