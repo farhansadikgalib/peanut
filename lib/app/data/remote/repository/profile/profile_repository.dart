@@ -3,6 +3,7 @@ import 'package:peanut/app/data/remote/model/profile/profile_response.dart';
 
 import '../../../../core/services/network/api_client.dart';
 import '../../../../core/services/network/api_end_points.dart';
+import '../../model/auth/last_four_number_response.dart';
 
 class ProfileRepository {
   Future<ProfileResponse> profile() async {
@@ -20,6 +21,21 @@ class ProfileRepository {
     return profileResponseFromJson(response.toString());
   }
 
+  Future<LastFourNumberResponse> getLastFourNumber() async {
+    var response = await ApiClient().post(
+      ApiEndPoints.getLastFourNumbersPhone,
+      {
+        "login":  userId.$,
+        "token":  accessToken.$,
+      },
+      getLastFourNumber,
+      isHeaderRequired: false,
+      isLoaderRequired: true,
+    );
+
+    return lastFourNumberResponseFromJson(response.toString());
+  }
+
   Future<ProfileResponse> getCardNumber() async {
     var response = await ApiClient().post(
       ApiEndPoints.getLastFourNumbersPhone,
@@ -27,7 +43,7 @@ class ProfileRepository {
         "login":  userId.$,
         "token":  accessToken.$,
       },
-      profile,
+      getCardNumber,
       isHeaderRequired: false,
       isLoaderRequired: true,
     );
