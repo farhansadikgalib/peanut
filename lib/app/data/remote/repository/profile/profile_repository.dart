@@ -61,8 +61,8 @@ class ProfileRepository {
         ApiEndPoints.getLastFourNumbersPhone,
         {"login": userId.$, "token": accessToken.$},
         getCardNumber,
-        isHeaderRequired: false,
-        isLoaderRequired: true,
+        isHeaderRequired: true,
+        isLoaderRequired: false,
       );
 
       final responseString = response.toString();

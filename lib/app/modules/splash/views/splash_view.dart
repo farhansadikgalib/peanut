@@ -21,7 +21,7 @@ class SplashView extends GetView<SplashController> {
             children: [
               Hero(
                 tag: 'app_logo',
-                child: const AppLogo(slogan: 'Trade Smart, Trade Secure'),
+                child: const AppLogo(slogan: 'Start Trading. Stay Winning.'),
               ),
             ],
           ),

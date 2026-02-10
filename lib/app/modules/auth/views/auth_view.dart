@@ -28,7 +28,7 @@ class AuthView extends GetView<AuthController> {
                 children: [
                   Hero(
                     tag: 'app_logo',
-                    child: const AppLogo(slogan: 'Trade Smart, Trade Secure'),
+                    child: const AppLogo(slogan: 'Start Trading. Stay Winning.'),
                   ),
                   AppWidgets().gapH(32),
                   const AuthLoginForm(),

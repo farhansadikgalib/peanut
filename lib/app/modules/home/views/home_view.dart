@@ -1,16 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:shimmer/shimmer.dart';
 
 import '../../../core/helper/dialog_helper.dart';
-import '../../../core/helper/haptic_helper.dart';
 import '../../../core/style/app_colors.dart';
 import '../../../core/style/app_style.dart';
 import '../controllers/home_controller.dart';
 import 'widgets/compact_header.dart';
+import 'widgets/home_app_bar.dart';
+import 'widgets/home_shimmer_loading.dart';
 import 'widgets/profit_summary_card.dart';
-import 'widgets/profile_menu.dart';
 import 'widgets/trade_card.dart';
 
 class HomeView extends GetView<HomeController> {
@@ -25,99 +24,31 @@ class HomeView extends GetView<HomeController> {
           DialogHelper().appExit(context);
         }
       },
-      child: Scaffold(
-        backgroundColor: AppColors.white,
-        appBar: AppBar(
+      child: Obx(
+        () => Scaffold(
           backgroundColor: AppColors.white,
-          elevation: 0,
-          title: Row(
-            children: [
-              Container(
-                padding: EdgeInsets.all(8.r),
-                decoration: BoxDecoration(
-                  gradient: LinearGradient(
-                    colors: [AppColors.primaryColor, AppColors.secondaryColor],
-                    begin: Alignment.topLeft,
-                    end: Alignment.bottomRight,
-                  ),
-                  borderRadius: BorderRadius.circular(12.r),
-                ),
-                child: Icon(
-                  Icons.trending_up,
-                  color: AppColors.white,
-                  size: 20.r,
-                ),
-              ),
-              SizedBox(width: 12.w),
-              Text(
-                'Peanut',
-                style: appBarTitleStyle(),
-              ),
-            ],
+          appBar: HomeAppBar(
+            profile: controller.profile.value,
+            lastFourNumber: controller.lastFourNumber.value,
           ),
-          actions: [
-            GestureDetector(
-              onTap: () {
-                HapticHelper.light();
-                ProfileMenu.show(
-                  context,
-                  controller.profile.value,
-                  controller.lastFourNumber.value,
-                );
-              },
-              child: Container(
-                margin: EdgeInsets.only(right: 16.w),
-                padding: EdgeInsets.all(2.r),
-                decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  border: Border.all(color: AppColors.primaryColor, width: 2),
-                ),
-                child: Container(
-                  width: 36.r,
-                  height: 36.r,
-                  decoration: BoxDecoration(
-                    gradient: LinearGradient(
-                      colors: [
-                        AppColors.primaryColor,
-                        AppColors.secondaryColor,
-                      ],
-                      begin: Alignment.topLeft,
-                      end: Alignment.bottomRight,
-                    ),
-                    shape: BoxShape.circle,
+          body: controller.isLoading.value
+              ? const HomeShimmerLoading()
+              : RefreshIndicator(
+                  color: AppColors.primaryColor,
+                  onRefresh: controller.refreshTrades,
+                  child: CustomScrollView(
+                    slivers: [
+                  SliverToBoxAdapter(
+                    child: CompactHeader(profile: controller.profile.value),
                   ),
-                  child: Icon(Icons.person, color: AppColors.white, size: 20.r),
-                ),
-              ),
-            ),
-          ],
-        ),
-        body: Obx(() {
-          if (controller.isLoading.value) {
-            return _buildShimmerLoading();
-          }
-
-          return RefreshIndicator(
-            color: AppColors.primaryColor,
-            onRefresh: controller.refreshTrades,
-            child: CustomScrollView(
-              slivers: [
-                SliverToBoxAdapter(
-                  child: Obx(
-                    () => CompactHeader(profile: controller.profile.value),
-                  ),
-                ),
-
-                SliverToBoxAdapter(
-                  child: Obx(
-                    () => ProfitSummaryCard(
+                  SliverToBoxAdapter(
+                    child: ProfitSummaryCard(
                       totalProfit: controller.totalProfit.value,
                       profitableCount: controller.getProfitableTradesCount(),
                       losingCount: controller.getLosingTradesCount(),
                       totalTrades: controller.trades.length,
                     ),
                   ),
-                ),
 
                 SliverToBoxAdapter(
                   child: Padding(
@@ -144,20 +75,18 @@ class HomeView extends GetView<HomeController> {
                           style: sectionHeaderStyle(),
                         ),
                         SizedBox(width: 8.w),
-                        Obx(
-                          () => Container(
-                            padding: EdgeInsets.symmetric(
-                              horizontal: 8.w,
-                              vertical: 3.h,
-                            ),
-                            decoration: BoxDecoration(
-                              color: AppColors.primaryColor,
-                              borderRadius: BorderRadius.circular(12.r),
-                            ),
-                            child: Text(
-                              '${controller.trades.length}',
-                              style: badgeTextStyle(),
-                            ),
+                        Container(
+                          padding: EdgeInsets.symmetric(
+                            horizontal: 8.w,
+                            vertical: 3.h,
+                          ),
+                          decoration: BoxDecoration(
+                            color: AppColors.primaryColor,
+                            borderRadius: BorderRadius.circular(12.r),
+                          ),
+                          child: Text(
+                            '${controller.trades.length}',
+                            style: badgeTextStyle(),
                           ),
                         ),
                       ],
@@ -165,9 +94,8 @@ class HomeView extends GetView<HomeController> {
                   ),
                 ),
 
-                Obx(() {
-                  if (controller.trades.isEmpty) {
-                    return SliverFillRemaining(
+                  controller.trades.isEmpty
+                      ? SliverFillRemaining(
                       child: Center(
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
@@ -191,11 +119,9 @@ class HomeView extends GetView<HomeController> {
                             ),
                           ],
                         ),
-                      ),
-                    );
-                  }
-
-                  return SliverPadding(
+                        ),
+                      )
+                      : SliverPadding(
                     padding: EdgeInsets.fromLTRB(16.w, 0, 16.w, 20.h),
                     sliver: SliverList(
                       delegate: SliverChildBuilderDelegate((context, index) {
@@ -206,88 +132,10 @@ class HomeView extends GetView<HomeController> {
                         );
                       }, childCount: controller.trades.length),
                     ),
-                  );
-                }),
-              ],
-            ),
-          );
-        }),
-      ),
-    );
-  }
-
-  Widget _buildShimmerLoading() {
-    return Shimmer.fromColors(
-      baseColor: Colors.grey[300]!,
-      highlightColor: Colors.grey[100]!,
-      period: const Duration(milliseconds: 1500),
-      child: SingleChildScrollView(
-        child: Column(
-          children: [
-            Container(
-              height: 80.h,
-              margin: EdgeInsets.fromLTRB(16.w, 16.h, 16.w, 16.h),
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(12.r),
-              ),
-            ),
-
-            Container(
-              height: 120.h,
-              margin: EdgeInsets.fromLTRB(16.w, 0, 16.w, 16.h),
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(12.r),
-              ),
-            ),
-
-            Padding(
-              padding: EdgeInsets.fromLTRB(16.w, 8.h, 16.w, 12.h),
-              child: Row(
-                children: [
-                  Container(
-                    width: 32.w,
-                    height: 32.h,
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(8.r),
-                    ),
                   ),
-                  SizedBox(width: 10.w),
-                  Container(
-                    width: 100.w,
-                    height: 20.h,
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(8.r),
-                    ),
+                    ],
                   ),
-                  SizedBox(width: 8.w),
-                  Container(
-                    width: 30.w,
-                    height: 24.h,
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(12.r),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-
-            ...List.generate(
-              5,
-              (index) => Container(
-                height: 140.h,
-                margin: EdgeInsets.fromLTRB(16.w, 0, 16.w, 10.h),
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(12.r),
                 ),
-              ),
-            ),
-          ],
         ),
       ),
     );

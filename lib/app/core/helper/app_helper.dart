@@ -10,7 +10,6 @@ import 'auth_helper.dart';
 
 class AppHelper {
   Future<void> showLoader({bool dismissOnTap = true}) {
-    // Configure loading indicator appearance and behavior
     EasyLoading.instance
       // Custom wave spinner widget
       ..indicatorWidget = Container(

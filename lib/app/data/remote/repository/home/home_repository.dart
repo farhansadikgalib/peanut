@@ -11,8 +11,8 @@ class HomeRepository {
         ApiEndPoints.getOpenTrades,
         {"login": userId.$, "token": accessToken.$},
         getOpenTrades,
-        isHeaderRequired: false,
-        isLoaderRequired: true,
+        isHeaderRequired: true,
+        isLoaderRequired: false,
       );
 
       final responseString = response.toString();
