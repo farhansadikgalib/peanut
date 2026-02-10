@@ -26,15 +26,15 @@ class DialogHelper {
           children: [
             Text(
               'Exit App',
-              style: dialogTitleStyle(),
+              style: dialogTitleStyle(color: AppColors.primaryColor),
             ),
-            SizedBox(height: 12.h),
+            AppWidgets().gapH(12),
             Text(
               'Are you sure you want to exit?',
               textAlign: TextAlign.center,
-              style: dialogBodyStyle(),
+              style: dialogBodyStyle(color: AppColors.black),
             ),
-            SizedBox(height: 24.h),
+            AppWidgets().gapH(24),
             Row(
               children: [
                 Expanded(
@@ -47,7 +47,7 @@ class DialogHelper {
                     },
                   ),
                 ),
-                SizedBox(width: 12.w),
+                AppWidgets().gapW(12),
                 Expanded(
                   child: _modernButton(
                     context: context,
@@ -85,15 +85,15 @@ class DialogHelper {
           children: [
             Text(
               'Logout',
-              style: dialogTitleStyle(),
+              style: dialogTitleStyle(color: AppColors.primaryColor),
             ),
-            SizedBox(height: 12.h),
+            AppWidgets().gapH(12),
             Text(
               'Are you sure you want to logout?',
               textAlign: TextAlign.center,
-              style: dialogBodyStyle(),
+              style: dialogBodyStyle(color: AppColors.black),
             ),
-            SizedBox(height: 24.h),
+            AppWidgets().gapH(24),
             Row(
               children: [
                 Expanded(
@@ -106,7 +106,7 @@ class DialogHelper {
                     },
                   ),
                 ),
-                SizedBox(width: 12.w),
+                AppWidgets().gapW(12),
                 Expanded(
                   child: _modernButton(
                     context: context,

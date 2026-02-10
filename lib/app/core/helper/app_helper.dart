@@ -10,13 +10,10 @@ import 'auth_helper.dart';
 class AppHelper {
   Future<void> showLoader({bool dismissOnTap = true}) {
     EasyLoading.instance
-      // Custom wave spinner widget
-      ..indicatorWidget = Container(
-        height: 120,
-        width: 120,
-        color: Colors.transparent,
-        padding: EdgeInsets.zero,
-        margin: EdgeInsets.zero,
+      // Use built-in circular progress indicator
+      ..indicatorWidget = const SizedBox(
+        height: 50,
+        width: 50,
         child: const SpinKitWaveSpinner(
           color: AppColors.primaryColor,
           size: 50.0,
@@ -30,7 +27,7 @@ class AppHelper {
       ..boxShadow = []
       ..contentPadding = EdgeInsets.zero
       ..radius = 5
-      ..indicatorSize = 80.0
+      ..indicatorSize = 50.0
       // Disable user interactions while loading
       ..userInteractions = false
       ..dismissOnTap = dismissOnTap;

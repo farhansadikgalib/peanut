@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
+import '../../../core/helper/app_widgets.dart';
 import '../../../core/helper/dialog_helper.dart';
 import '../../../core/style/app_colors.dart';
 import '../../../core/style/app_style.dart';
 import '../controllers/home_controller.dart';
-import 'widgets/compact_header.dart';
-import 'widgets/home_app_bar.dart';
-import 'widgets/home_shimmer_loading.dart';
-import 'widgets/profit_summary_card.dart';
+import 'widgets/app_bar_widget.dart';
+import 'widgets/shimmer_widget.dart';
+import 'widgets/summary_card.dart';
 import 'widgets/trade_card.dart';
 
 class HomeView extends GetView<HomeController> {
@@ -32,21 +32,18 @@ class HomeView extends GetView<HomeController> {
             lastFourNumber: controller.lastFourNumber.value,
           ),
           body: controller.isLoading.value
-              ? const HomeShimmerLoading()
+              ? const ShimmerLoading()
               : RefreshIndicator(
                   color: AppColors.primaryColor,
                   onRefresh: controller.refreshTrades,
                   child: CustomScrollView(
                     slivers: [
                   SliverToBoxAdapter(
-                    child: CompactHeader(profile: controller.profile.value),
-                  ),
-                  SliverToBoxAdapter(
-                    child: ProfitSummaryCard(
+                    child: MergedSummaryCard(
+                      profile: controller.profile.value,
                       totalProfit: controller.totalProfit.value,
                       profitableCount: controller.getProfitableTradesCount(),
                       losingCount: controller.getLosingTradesCount(),
-                      totalTrades: controller.trades.length,
                     ),
                   ),
 
@@ -54,6 +51,7 @@ class HomeView extends GetView<HomeController> {
                   child: Padding(
                     padding: EdgeInsets.fromLTRB(16.w, 8.h, 16.w, 12.h),
                     child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Container(
                           padding: EdgeInsets.all(6.r),
@@ -70,9 +68,11 @@ class HomeView extends GetView<HomeController> {
                           ),
                         ),
                         SizedBox(width: 10.w),
-                        Text(
-                          'Open Trades',
-                          style: sectionHeaderStyle(),
+                        Center(
+                          child: Text(
+                            'Open Trades',
+                            style: sectionHeaderStyle(),
+                          ),
                         ),
                         SizedBox(width: 8.w),
                         Container(
@@ -105,12 +105,12 @@ class HomeView extends GetView<HomeController> {
                               size: 64.r,
                               color: AppColors.textColor.withValues(alpha: 0.3),
                             ),
-                            SizedBox(height: 16.h),
+                            AppWidgets().gapH(16),
                             Text(
                               'No Open Trades',
                               style: emptyStateTitleStyle(),
                             ),
-                            SizedBox(height: 8.h),
+                            AppWidgets().gapH(8),
                             Text(
                               'Your trades will appear here',
                               style: emptyStateSubtitleStyle(

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import '../../../../core/helper/app_widgets.dart';
 import '../../../../core/style/app_colors.dart';
 import '../../../../core/style/app_style.dart';
 
@@ -47,16 +48,16 @@ class CreditCardWidget extends StatelessWidget {
               ),
             ],
           ),
-          SizedBox(height: 16.h),
+          AppWidgets().gapH(16),
 
           Row(
             children: [
               _buildDotGroup(),
-              SizedBox(width: 12.w),
+              AppWidgets().gapW(12),
               _buildDotGroup(),
-              SizedBox(width: 12.w),
+              AppWidgets().gapW(12),
               _buildDotGroup(),
-              SizedBox(width: 12.w),
+              AppWidgets().gapW(12),
               Text(
                 lastFourDigits ?? '****',
                 style: TextStyle(
@@ -68,7 +69,7 @@ class CreditCardWidget extends StatelessWidget {
               ),
             ],
           ),
-          SizedBox(height: 20.h),
+          AppWidgets().gapH(20),
 
           Row(
             mainAxisAlignment: MainAxisAlignment.end,
@@ -86,7 +87,7 @@ class CreditCardWidget extends StatelessWidget {
                       color: AppColors.white,
                       size: 16.r,
                     ),
-                    SizedBox(width: 6.w),
+                    AppWidgets().gapW(6),
                     Text(
                       'VERIFIED',
                       style: textRegularStyle(

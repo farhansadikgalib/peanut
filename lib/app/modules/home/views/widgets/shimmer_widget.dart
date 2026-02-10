@@ -2,8 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:shimmer/shimmer.dart';
 
-class HomeShimmerLoading extends StatelessWidget {
-  const HomeShimmerLoading({super.key});
+import '../../../../core/helper/app_widgets.dart';
+
+import '../../../../core/helper/app_widgets.dart';
+
+class ShimmerLoading extends StatelessWidget {
+  const ShimmerLoading({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -47,7 +51,7 @@ class HomeShimmerLoading extends StatelessWidget {
                       borderRadius: BorderRadius.circular(8.r),
                     ),
                   ),
-                  SizedBox(width: 10.w),
+                  AppWidgets().gapW(10),
                   Container(
                     width: 100.w,
                     height: 20.h,
@@ -56,7 +60,7 @@ class HomeShimmerLoading extends StatelessWidget {
                       borderRadius: BorderRadius.circular(8.r),
                     ),
                   ),
-                  SizedBox(width: 8.w),
+                  AppWidgets().gapW(8),
                   Container(
                     width: 30.w,
                     height: 24.h,

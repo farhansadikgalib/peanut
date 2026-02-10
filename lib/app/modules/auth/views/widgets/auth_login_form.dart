@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
+import '../../../../core/helper/app_widgets.dart';
 import '../../../../core/widget/custom_textfield.dart';
 import '../../controllers/auth_controller.dart';
 
@@ -19,7 +20,7 @@ class AuthLoginForm extends GetView<AuthController> {
           keyboardType: TextInputType.number,
           textInputAction: TextInputAction.next,
         ),
-        SizedBox(height: 20.h),
+        AppWidgets().gapH(20),
 
         Obx(
           () => CustomTextField(

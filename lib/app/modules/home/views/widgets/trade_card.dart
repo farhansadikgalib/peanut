@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:intl/intl.dart';
 
+import '../../../../core/helper/app_widgets.dart';
 import '../../../../core/style/app_colors.dart';
 import '../../../../core/style/app_style.dart';
 import '../../../../data/remote/model/home/trade_response.dart';
@@ -57,7 +58,7 @@ class TradeCard extends StatelessWidget {
                   style: smallBadgeTextStyle(),
                 ),
               ),
-              SizedBox(width: 10.w),
+              AppWidgets().gapW(10),
               // Symbol
               Expanded(
                 child: Text(
@@ -73,16 +74,16 @@ class TradeCard extends StatelessWidget {
                     color: profitColor,
                     size: 18.r,
                   ),
-                  SizedBox(width: 4.w),
+                  AppWidgets().gapW(4),
                   Text(
                     trade.getProfitWithSign(),
                     style: tradeProfitStyle(color: profitColor),
                   ),
                 ],
-              ),
-            ],
           ),
-          SizedBox(height: 12.h),
+        ],
+      ),
+      AppWidgets().gapH(12),
 
           // Price Grid
           Row(
@@ -94,7 +95,7 @@ class TradeCard extends StatelessWidget {
                   Icons.bar_chart_rounded,
                 ),
               ),
-              SizedBox(width: 8.w),
+              AppWidgets().gapW(8),
               Expanded(
                 child: _buildCompactInfo(
                   'Open',
@@ -102,7 +103,7 @@ class TradeCard extends StatelessWidget {
                   Icons.arrow_circle_up_outlined,
                 ),
               ),
-              SizedBox(width: 8.w),
+              AppWidgets().gapW(8),
               Expanded(
                 child: _buildCompactInfo(
                   'Current',
@@ -110,7 +111,7 @@ class TradeCard extends StatelessWidget {
                   Icons.show_chart,
                 ),
               ),
-              SizedBox(width: 8.w),
+              AppWidgets().gapW(8),
               Expanded(
                 child: _buildCompactInfo(
                   'S/L',
@@ -123,7 +124,7 @@ class TradeCard extends StatelessWidget {
 
           // Footer with time and ID
           if (trade.openTime != null || trade.id != null) ...[
-            SizedBox(height: 10.h),
+            AppWidgets().gapH(10),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -167,14 +168,14 @@ class TradeCard extends StatelessWidget {
           color: AppColors.primaryColor.withValues(alpha: 0.7),
           size: 14.r,
         ),
-        SizedBox(height: 4.h),
+        AppWidgets().gapH(4),
         Text(
           label,
           style: tradeInfoLabelStyle(
             color: AppColors.textColor.withValues(alpha: 0.7),
           ),
         ),
-        SizedBox(height: 2.h),
+        AppWidgets().gapH(2),
         Text(
           value,
           style: tradeInfoValueStyle(),

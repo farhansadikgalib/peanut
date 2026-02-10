@@ -116,15 +116,9 @@ class _CustomTextFieldState extends State<CustomTextField>
                 border: Border.all(color: AppColors.primaryColor, width: 2),
                 boxShadow: [
                   BoxShadow(
-                    color: AppColors.primaryColor.withValues(alpha: 0.3),
-                    blurRadius: 12,
-                    offset: const Offset(0, 0),
-                    spreadRadius: 0,
-                  ),
-                  BoxShadow(
-                    color: AppColors.primaryColor.withValues(alpha: 0.15),
-                    blurRadius: 20,
-                    offset: const Offset(0, 0),
+                    color: AppColors.primaryColor.withValues(alpha: 0.1),
+                    blurRadius: 4,
+                    offset: const Offset(0, 2),
                     spreadRadius: 0,
                   ),
                 ],

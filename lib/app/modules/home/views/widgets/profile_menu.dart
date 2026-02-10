@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../core/helper/app_helper.dart';
+import '../../../../core/helper/app_widgets.dart';
 import '../../../../core/helper/dialog_helper.dart';
 import '../../../../core/helper/haptic_helper.dart';
 import '../../../../core/helper/shared_value_helper.dart';
@@ -95,13 +96,13 @@ class ProfileMenuContent extends StatelessWidget {
                       size: 40.r,
                     ),
                   ),
-                  SizedBox(height: 16.h),
+                  AppWidgets().gapH(16),
 
                   Text(
                     profile?.name ?? 'Trader',
                     style: profileNameStyle(),
                   ),
-                  SizedBox(height: 8.h),
+                  AppWidgets().gapH(8),
 
                   Container(
                     padding: EdgeInsets.symmetric(
@@ -122,10 +123,10 @@ class ProfileMenuContent extends StatelessWidget {
                         Icon(
                           Icons.badge,
                           color: AppColors.primaryColor,
-                          size: 16.r,
-                        ),
-                        SizedBox(width: 8.w),
-                        Text(
+                        size: 16.r,
+                      ),
+                      AppWidgets().gapW(8),
+                      Text(
                           'ID: ${userId.$}',
                           style: profileBadgeStyle(),
                         ),
@@ -140,7 +141,7 @@ class ProfileMenuContent extends StatelessWidget {
                     lastFourDigits: lastFourNumber?.getLastFourDigits(),
                   ),
 
-                  SizedBox(height: 24.h),
+                  AppWidgets().gapH(24),
 
                   InkWell(
                     onTap: () {
