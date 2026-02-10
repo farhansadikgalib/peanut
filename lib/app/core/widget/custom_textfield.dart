@@ -115,29 +115,23 @@ class _CustomTextFieldState extends State<CustomTextField>
                     ? Color(0xFF151920).withValues(alpha: 0.6)
                     : AppColors.inputBackground,
                 border: Border.all(
-                  color: _focusNode.hasFocus
-                      ? AppColors.primaryColor
-                      : (_colorAnimation.value ?? (isDarkTheme 
-                          ? AppColors.darkBorder 
-                          : AppColors.inputBorder)),
-                  width: _focusNode.hasFocus ? 2 : 1.5,
+                  color: AppColors.primaryColor,
+                  width: 2,
                 ),
-                boxShadow: _focusNode.hasFocus
-                    ? [
-                        BoxShadow(
-                          color: AppColors.primaryColor.withValues(alpha: 0.3),
-                          blurRadius: 12,
-                          offset: const Offset(0, 0),
-                          spreadRadius: 0,
-                        ),
-                        BoxShadow(
-                          color: AppColors.primaryColor.withValues(alpha: 0.15),
-                          blurRadius: 20,
-                          offset: const Offset(0, 0),
-                          spreadRadius: 0,
-                        ),
-                      ]
-                    : [],
+                boxShadow: [
+                  BoxShadow(
+                    color: AppColors.primaryColor.withValues(alpha: 0.3),
+                    blurRadius: 12,
+                    offset: const Offset(0, 0),
+                    spreadRadius: 0,
+                  ),
+                  BoxShadow(
+                    color: AppColors.primaryColor.withValues(alpha: 0.15),
+                    blurRadius: 20,
+                    offset: const Offset(0, 0),
+                    spreadRadius: 0,
+                  ),
+                ],
               ),
               child: TextFormField(
                 controller: widget.controller,
