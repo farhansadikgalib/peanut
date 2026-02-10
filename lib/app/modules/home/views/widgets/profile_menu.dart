@@ -6,6 +6,7 @@ import '../../../../core/helper/dialog_helper.dart';
 import '../../../../core/helper/haptic_helper.dart';
 import '../../../../core/helper/shared_value_helper.dart';
 import '../../../../core/style/app_colors.dart';
+import '../../../../core/style/app_style.dart';
 import '../../../../data/remote/model/profile/profile_response.dart';
 
 class ProfileMenu {
@@ -84,11 +85,7 @@ class ProfileMenuContent extends StatelessWidget {
 
                   Text(
                     profile?.name ?? 'Trader',
-                    style: TextStyle(
-                      fontSize: 22.sp,
-                      fontWeight: FontWeight.w700,
-                      color: AppColors.black,
-                    ),
+                    style: profileNameStyle(),
                   ),
                   SizedBox(height: 8.h),
 
@@ -116,11 +113,7 @@ class ProfileMenuContent extends StatelessWidget {
                         SizedBox(width: 8.w),
                         Text(
                           'ID: ${userId.$}',
-                          style: TextStyle(
-                            fontSize: 14.sp,
-                            fontWeight: FontWeight.w600,
-                            color: AppColors.primaryColor,
-                          ),
+                          style: profileBadgeStyle(),
                         ),
                       ],
                     ),
@@ -153,9 +146,7 @@ class ProfileMenuContent extends StatelessWidget {
                       child: Center(
                         child: Text(
                           'Logout',
-                          style: TextStyle(
-                            fontSize: 16.sp,
-                            fontWeight: FontWeight.w700,
+                          style: sectionHeaderStyle(
                             color: AppColors.dangerRed,
                           ),
                         ),

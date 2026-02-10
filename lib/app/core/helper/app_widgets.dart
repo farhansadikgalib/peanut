@@ -341,7 +341,7 @@ class AppWidgets {
     Get.defaultDialog(
       title: 'Attention',
       titlePadding: EdgeInsets.only(top: 10.h),
-      titleStyle: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+      titleStyle: sectionHeaderStyle(color: AppColors.white),
       backgroundColor: AppColors.darkSurface,
       cancelTextColor: AppColors.darkTextSecondary,
       confirmTextColor: AppColors.splashBlueButton,
@@ -353,7 +353,7 @@ class AppWidgets {
           style: TextButton.styleFrom(
             backgroundColor: AppColors.splashBlueButton,
           ),
-          child: const Text("Ok", style: TextStyle(color: AppColors.white)),
+          child: Text("Ok", style: textButtonStyle()),
           onPressed: () => Get.back(),
         ),
       ],
@@ -365,7 +365,7 @@ class AppWidgets {
             message,
             maxLines: 5,
             overflow: TextOverflow.ellipsis,
-            style: const TextStyle(fontSize: 14, color: AppColors.white),
+            style: dialogBodyStyle(color: AppColors.white),
           ),
         ),
       ),

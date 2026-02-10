@@ -26,21 +26,13 @@ class DialogHelper {
           children: [
             Text(
               'Exit App',
-              style: TextStyle(
-                fontSize: 20.sp,
-                fontWeight: FontWeight.w700,
-                color: AppColors.black,
-              ),
+              style: dialogTitleStyle(),
             ),
             SizedBox(height: 12.h),
             Text(
               'Are you sure you want to exit?',
               textAlign: TextAlign.center,
-              style: TextStyle(
-                fontSize: 14.sp,
-                fontWeight: FontWeight.w400,
-                color: AppColors.textColor,
-              ),
+              style: dialogBodyStyle(),
             ),
             SizedBox(height: 24.h),
             Row(
@@ -93,21 +85,13 @@ class DialogHelper {
           children: [
             Text(
               'Logout',
-              style: TextStyle(
-                fontSize: 20.sp,
-                fontWeight: FontWeight.w700,
-                color: AppColors.black,
-              ),
+              style: dialogTitleStyle(),
             ),
             SizedBox(height: 12.h),
             Text(
               'Are you sure you want to logout?',
               textAlign: TextAlign.center,
-              style: TextStyle(
-                fontSize: 14.sp,
-                fontWeight: FontWeight.w400,
-                color: AppColors.textColor,
-              ),
+              style: dialogBodyStyle(),
             ),
             SizedBox(height: 24.h),
             Row(
@@ -177,9 +161,7 @@ class DialogHelper {
         child: Center(
           child: Text(
             title,
-            style: TextStyle(
-              fontSize: 14.sp,
-              fontWeight: FontWeight.w700,
+            style: dialogButtonStyle(
               color: isPrimary ? AppColors.white : AppColors.textColor,
             ),
           ),

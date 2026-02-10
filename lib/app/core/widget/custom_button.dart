@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../style/app_colors.dart';
+import '../style/app_style.dart';
 
 class CustomButton extends StatelessWidget {
   final String text;
@@ -48,11 +49,9 @@ class CustomButton extends StatelessWidget {
           child: Center(
             child: Text(
               text,
-              style: TextStyle(
-                fontSize: fontSize ?? 16.sp,
-                fontWeight: FontWeight.w600,
-                color: textColor ?? AppColors.white,
-                letterSpacing: 0.5,
+              style: buttonTextStyle(
+                color: textColor,
+                fontSize: fontSize,
               ),
             ),
           ),

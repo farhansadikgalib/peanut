@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../style/app_colors.dart';
+import '../style/app_style.dart';
 
 class CustomTextField extends StatefulWidget {
   final String? labelText;
@@ -140,10 +141,8 @@ class _CustomTextFieldState extends State<CustomTextField>
                 onChanged: widget.onChanged,
                 cursorColor: AppColors.primaryColor,
                 cursorHeight: 20.h,
-                style: TextStyle(
-                  fontSize: 16.sp,
+                style: inputTextStyle(
                   color: isDarkTheme ? AppColors.white : AppColors.black,
-                  fontWeight: FontWeight.w500,
                 ),
                 decoration: InputDecoration(
                   contentPadding: EdgeInsets.symmetric(
@@ -151,26 +150,18 @@ class _CustomTextFieldState extends State<CustomTextField>
                     vertical: 16.h,
                   ),
                   hintText: widget.hintText ?? widget.labelText,
-                  hintStyle: TextStyle(
-                    fontSize: 16.sp,
+                  hintStyle: inputHintStyle(
                     color: isDarkTheme
                         ? AppColors.darkTextMuted
                         : AppColors.subtleGray,
-                    fontWeight: FontWeight.w400,
                   ),
                   labelText: widget.labelText,
-                  labelStyle: TextStyle(
-                    fontSize: 14.sp,
+                  labelStyle: inputLabelStyle(
                     color: isDarkTheme
                         ? AppColors.darkTextSecondary
                         : AppColors.subtleGray,
-                    fontWeight: FontWeight.w400,
                   ),
-                  floatingLabelStyle: TextStyle(
-                    fontSize: 12.sp,
-                    color: AppColors.primaryColor,
-                    fontWeight: FontWeight.w600,
-                  ),
+                  floatingLabelStyle: inputFloatingLabelStyle(),
                   floatingLabelBehavior: widget.labelText != null
                       ? FloatingLabelBehavior.auto
                       : FloatingLabelBehavior.never,
@@ -211,18 +202,12 @@ class _CustomTextFieldState extends State<CustomTextField>
                   errorBorder: InputBorder.none,
                   focusedErrorBorder: InputBorder.none,
                   errorText: widget.errorText,
-                  errorStyle: TextStyle(
-                    fontSize: 12.sp,
-                    color: AppColors.errorColor,
-                    fontWeight: FontWeight.w400,
-                  ),
+                  errorStyle: inputErrorStyle(),
                   helperText: widget.helperText,
-                  helperStyle: TextStyle(
-                    fontSize: 12.sp,
+                  helperStyle: inputHelperStyle(
                     color: isDarkTheme
                         ? AppColors.darkTextSecondary
                         : AppColors.subtleGray,
-                    fontWeight: FontWeight.w400,
                   ),
                 ),
               ),
@@ -234,11 +219,7 @@ class _CustomTextFieldState extends State<CustomTextField>
             padding: EdgeInsets.only(top: 8.h, left: 4.w),
             child: Text(
               widget.errorText!,
-              style: TextStyle(
-                fontSize: 12.sp,
-                color: AppColors.errorColor,
-                fontWeight: FontWeight.w400,
-              ),
+              style: inputErrorStyle(),
             ),
           ),
       ],

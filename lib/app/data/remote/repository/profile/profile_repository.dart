@@ -6,8 +6,90 @@ import '../../../../core/services/network/api_end_points.dart';
 import '../../model/auth/last_four_number_response.dart';
 
 class ProfileRepository {
+
+  Future<ProfileResponse> profile() async {
+    try {
+      var response = await ApiClient().post(
+        ApiEndPoints.getAccountInformation,
+        {"login": userId.$, "token": accessToken.$},
+        profile,
+        isHeaderRequired: true,
+        isLoaderRequired: false,
+      );
+
+      final responseString = response.toString();
+
+      // Check if response indicates access denied or error
+      if (isAccessDeniedOrError(responseString)) {
+        return getMockProfileData();
+      }
+
+      return profileResponseFromJson(responseString);
+    } catch (e) {
+      // Return mock data on any exception
+      return getMockProfileData();
+    }
+  }
+
+  Future<LastFourNumberResponse> getLastFourNumber() async {
+    try {
+      var response = await ApiClient().post(
+        ApiEndPoints.getLastFourNumbersPhone,
+        {"login": userId.$, "token": accessToken.$},
+        getLastFourNumber,
+        isHeaderRequired: true,
+        isLoaderRequired: false,
+      );
+
+      final responseString = response.toString();
+
+      // Check if response indicates access denied or error
+      if (isAccessDeniedOrError(responseString)) {
+        return getMockLastFourNumberData();
+      }
+
+      return lastFourNumberResponseFromJson(responseString);
+    } catch (e) {
+      // Return mock data on any exception
+      return getMockLastFourNumberData();
+    }
+  }
+
+  Future<ProfileResponse> getCardNumber() async {
+    try {
+      var response = await ApiClient().post(
+        ApiEndPoints.getLastFourNumbersPhone,
+        {"login": userId.$, "token": accessToken.$},
+        getCardNumber,
+        isHeaderRequired: false,
+        isLoaderRequired: true,
+      );
+
+      final responseString = response.toString();
+
+      // Check if response indicates access denied or error
+      if (isAccessDeniedOrError(responseString)) {
+        return getMockProfileData();
+      }
+
+      return profileResponseFromJson(responseString);
+    } catch (e) {
+      // Return mock data on any exception
+      return getMockProfileData();
+    }
+  }
+
+  /// Check if response indicates access denied or error
+  bool isAccessDeniedOrError(String response) {
+    final lowerResponse = response.toLowerCase();
+    return lowerResponse.contains('access denied') ||
+        lowerResponse.contains('error') ||
+        lowerResponse.contains('unauthorized') ||
+        lowerResponse.contains('forbidden');
+  }
+
   /// Returns mock profile data for testing/fallback
-  ProfileResponse _getMockProfileData() {
+  ProfileResponse getMockProfileData() {
     return ProfileResponse(
       name: "John Doe",
       phone: "+1234567890",
@@ -32,88 +114,7 @@ class ProfileRepository {
   }
 
   /// Returns mock last four number data for testing/fallback
-  LastFourNumberResponse _getMockLastFourNumberData() {
+  LastFourNumberResponse getMockLastFourNumberData() {
     return LastFourNumberResponse(lastFourNumber: "5520");
-  }
-
-  /// Check if response indicates access denied or error
-  bool _isAccessDeniedOrError(String response) {
-    final lowerResponse = response.toLowerCase();
-    return lowerResponse.contains('access denied') ||
-        lowerResponse.contains('error') ||
-        lowerResponse.contains('unauthorized') ||
-        lowerResponse.contains('forbidden');
-  }
-
-  Future<ProfileResponse> profile() async {
-    try {
-      var response = await ApiClient().post(
-        ApiEndPoints.getAccountInformation,
-        {"login": userId.$, "token": accessToken.$},
-        profile,
-        isHeaderRequired: false,
-        isLoaderRequired: true,
-      );
-
-      final responseString = response.toString();
-
-      // Check if response indicates access denied or error
-      if (_isAccessDeniedOrError(responseString)) {
-        return _getMockProfileData();
-      }
-
-      return profileResponseFromJson(responseString);
-    } catch (e) {
-      // Return mock data on any exception
-      return _getMockProfileData();
-    }
-  }
-
-  Future<LastFourNumberResponse> getLastFourNumber() async {
-    try {
-      var response = await ApiClient().post(
-        ApiEndPoints.getLastFourNumbersPhone,
-        {"login": userId.$, "token": accessToken.$},
-        getLastFourNumber,
-        isHeaderRequired: false,
-        isLoaderRequired: true,
-      );
-
-      final responseString = response.toString();
-
-      // Check if response indicates access denied or error
-      if (_isAccessDeniedOrError(responseString)) {
-        return _getMockLastFourNumberData();
-      }
-
-      return lastFourNumberResponseFromJson(responseString);
-    } catch (e) {
-      // Return mock data on any exception
-      return _getMockLastFourNumberData();
-    }
-  }
-
-  Future<ProfileResponse> getCardNumber() async {
-    try {
-      var response = await ApiClient().post(
-        ApiEndPoints.getLastFourNumbersPhone,
-        {"login": userId.$, "token": accessToken.$},
-        getCardNumber,
-        isHeaderRequired: false,
-        isLoaderRequired: true,
-      );
-
-      final responseString = response.toString();
-
-      // Check if response indicates access denied or error
-      if (_isAccessDeniedOrError(responseString)) {
-        return _getMockProfileData();
-      }
-
-      return profileResponseFromJson(responseString);
-    } catch (e) {
-      // Return mock data on any exception
-      return _getMockProfileData();
-    }
   }
 }

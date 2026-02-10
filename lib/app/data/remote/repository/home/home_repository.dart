@@ -17,14 +17,12 @@ class HomeRepository {
 
       final responseString = response.toString();
 
-      // Check if response indicates access denied or error
       if (isAccessDeniedOrError(responseString)) {
         return getMockTradeData();
       }
 
       return tradeListResponseFromJson(responseString);
     } catch (e) {
-      // Return mock data on any exception
       return getMockTradeData();
     }
   }

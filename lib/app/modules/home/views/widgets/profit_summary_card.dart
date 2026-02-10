@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../core/style/app_colors.dart';
+import '../../../../core/style/app_style.dart';
 
 class ProfitSummaryCard extends StatelessWidget {
   final double totalProfit;
@@ -66,23 +67,14 @@ class ProfitSummaryCard extends StatelessWidget {
                       SizedBox(width: 6.w),
                       Text(
                         'Total P/L',
-                        style: TextStyle(
-                          fontSize: 12.sp,
-                          fontWeight: FontWeight.w600,
-                          color: AppColors.textColor,
-                        ),
+                        style: profitLabelStyle(),
                       ),
                     ],
                   ),
                   SizedBox(height: 8.h),
                   Text(
                     _getFormattedProfit(),
-                    style: TextStyle(
-                      fontSize: 24.sp,
-                      fontWeight: FontWeight.w800,
-                      color: profitColor,
-                      letterSpacing: -0.5,
-                    ),
+                    style: profitValueStyle(color: profitColor),
                   ),
                 ],
               ),
@@ -125,19 +117,11 @@ class ProfitSummaryCard extends StatelessWidget {
         children: [
           Text(
             label,
-            style: TextStyle(
-              fontSize: 11.sp,
-              fontWeight: FontWeight.w600,
-              color: AppColors.textColor,
-            ),
+            style: statLabelStyle(),
           ),
           Text(
             value,
-            style: TextStyle(
-              fontSize: 16.sp,
-              fontWeight: FontWeight.w800,
-              color: color,
-            ),
+            style: statValueStyle(color: color),
           ),
         ],
       ),

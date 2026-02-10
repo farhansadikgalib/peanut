@@ -5,7 +5,5 @@ class InitialBinding extends Bindings {
   @override
   void dependencies() {
     ConnectionManagerBinding().dependencies();
-    // Get.put(HomeController(), permanent: true);
-    // Get.put(SignUpController(), permanent: true);
   }
 }

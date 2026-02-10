@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../core/style/app_colors.dart';
+import '../../../../core/style/app_style.dart';
 import '../../../../data/remote/model/profile/profile_response.dart';
 
 class HomeHeader extends StatelessWidget {
@@ -41,20 +42,14 @@ class HomeHeader extends StatelessWidget {
                 children: [
                   Text(
                     'Welcome Back',
-                    style: TextStyle(
-                      fontSize: 14.sp,
-                      fontWeight: FontWeight.w500,
+                    style: headerWelcomeStyle(
                       color: AppColors.white.withValues(alpha: 0.9),
                     ),
                   ),
                   SizedBox(height: 4.h),
                   Text(
                     profile?.name ?? 'Trader',
-                    style: TextStyle(
-                      fontSize: 22.sp,
-                      fontWeight: FontWeight.w700,
-                      color: AppColors.white,
-                    ),
+                    style: headerNameStyle(),
                   ),
                 ],
               ),
@@ -113,9 +108,7 @@ class HomeHeader extends StatelessWidget {
             SizedBox(width: 6.w),
             Text(
               label,
-              style: TextStyle(
-                fontSize: 12.sp,
-                fontWeight: FontWeight.w500,
+              style: headerInfoLabelStyle(
                 color: AppColors.white.withValues(alpha: 0.8),
               ),
             ),
@@ -124,11 +117,7 @@ class HomeHeader extends StatelessWidget {
         SizedBox(height: 6.h),
         Text(
           value,
-          style: TextStyle(
-            fontSize: 18.sp,
-            fontWeight: FontWeight.w700,
-            color: AppColors.white,
-          ),
+          style: headerInfoValueStyle(),
         ),
       ],
     );

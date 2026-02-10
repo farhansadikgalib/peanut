@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:intl/intl.dart';
 
 import '../../../../core/style/app_colors.dart';
+import '../../../../core/style/app_style.dart';
 import '../../../../data/remote/model/home/trade_response.dart';
 
 class TradeCard extends StatelessWidget {
@@ -53,11 +54,7 @@ class TradeCard extends StatelessWidget {
                 ),
                 child: Text(
                   tradeType,
-                  style: TextStyle(
-                    fontSize: 11.sp,
-                    fontWeight: FontWeight.w700,
-                    color: AppColors.white,
-                  ),
+                  style: smallBadgeTextStyle(),
                 ),
               ),
               SizedBox(width: 10.w),
@@ -65,11 +62,7 @@ class TradeCard extends StatelessWidget {
               Expanded(
                 child: Text(
                   trade.symbol ?? 'N/A',
-                  style: TextStyle(
-                    fontSize: 17.sp,
-                    fontWeight: FontWeight.w800,
-                    color: AppColors.black,
-                  ),
+                  style: tradeSymbolStyle(),
                 ),
               ),
               // Profit/Loss
@@ -83,11 +76,7 @@ class TradeCard extends StatelessWidget {
                   SizedBox(width: 4.w),
                   Text(
                     trade.getProfitWithSign(),
-                    style: TextStyle(
-                      fontSize: 17.sp,
-                      fontWeight: FontWeight.w800,
-                      color: profitColor,
-                    ),
+                    style: tradeProfitStyle(color: profitColor),
                   ),
                 ],
               ),
@@ -149,9 +138,7 @@ class TradeCard extends StatelessWidget {
                       SizedBox(width: 4.w),
                       Text(
                         _formatDateTime(trade.openTime!),
-                        style: TextStyle(
-                          fontSize: 10.sp,
-                          fontWeight: FontWeight.w500,
+                        style: tradeTimeStyle(
                           color: AppColors.textColor.withValues(alpha: 0.7),
                         ),
                       ),
@@ -160,9 +147,7 @@ class TradeCard extends StatelessWidget {
                 if (trade.id != null)
                   Text(
                     '#${trade.id}',
-                    style: TextStyle(
-                      fontSize: 10.sp,
-                      fontWeight: FontWeight.w600,
+                    style: tradeIdStyle(
                       color: AppColors.textColor.withValues(alpha: 0.5),
                     ),
                   ),
@@ -185,20 +170,14 @@ class TradeCard extends StatelessWidget {
         SizedBox(height: 4.h),
         Text(
           label,
-          style: TextStyle(
-            fontSize: 9.sp,
-            fontWeight: FontWeight.w600,
+          style: tradeInfoLabelStyle(
             color: AppColors.textColor.withValues(alpha: 0.7),
           ),
         ),
         SizedBox(height: 2.h),
         Text(
           value,
-          style: TextStyle(
-            fontSize: 11.sp,
-            fontWeight: FontWeight.w700,
-            color: AppColors.black,
-          ),
+          style: tradeInfoValueStyle(),
           overflow: TextOverflow.ellipsis,
         ),
       ],

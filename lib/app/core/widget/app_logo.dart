@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../style/app_colors.dart';
+import '../style/app_style.dart';
 
 class AppLogo extends StatelessWidget {
   final String slogan;
@@ -32,12 +32,7 @@ class AppLogo extends StatelessWidget {
         // Slogan
         Text(
           slogan,
-          style: TextStyle(
-            fontSize: 16,
-            fontWeight: FontWeight.w600,
-            color: AppColors.textColor,
-            letterSpacing: 0.3,
-          ),
+          style: logoSloganStyle(),
         ),
       ],
     );

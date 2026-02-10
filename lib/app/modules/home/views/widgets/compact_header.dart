@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../core/style/app_colors.dart';
+import '../../../../core/style/app_style.dart';
 import '../../../../data/remote/model/profile/profile_response.dart';
 
 class CompactHeader extends StatelessWidget {
@@ -75,20 +76,14 @@ class CompactHeader extends StatelessWidget {
         SizedBox(height: 6.h),
         Text(
           label,
-          style: TextStyle(
-            fontSize: 11.sp,
-            fontWeight: FontWeight.w500,
+          style: compactBalanceLabelStyle(
             color: AppColors.white.withValues(alpha: 0.85),
           ),
         ),
         SizedBox(height: 4.h),
         Text(
           value,
-          style: TextStyle(
-            fontSize: 14.sp,
-            fontWeight: FontWeight.w700,
-            color: AppColors.white,
-          ),
+          style: compactBalanceValueStyle(),
           overflow: TextOverflow.ellipsis,
         ),
       ],
